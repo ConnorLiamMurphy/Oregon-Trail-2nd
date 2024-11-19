@@ -1,0 +1,4 @@
+One of your oxen ran off. do you go after them?,n,0,0,0,0,0,0,0,0,0
+One of your oxen ran off. do you go after them?,y,0,0,0,0,0,1,0,0,-1
+One of your oxen died from illness. Do you eat it?,n,0,0,0,0,0,0,0,0,0
+One of your oxen died from illness. Do you eat it?,y,10,0,0,0,0,0,0,0,-5

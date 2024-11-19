@@ -1,0 +1,7 @@
+You found some extra food!,10,0,0,0,0,0,0,0,0,False
+You encountered a storm! Lose some supplies.,-5,0,0,0,0,0,0,0,0,False
+You met a helpful traveler.,0,0,0,0,0,0,0,1,0,False
+You lost some supplies due to a raccoon!,-5,0,0,0,0,0,0,0,0,False
+You found a shortcut! Gain morale.,0,0,0,0,0,0,0,1,0,False
+One of your oxen ran off. do you go after them?,0,0,0,0,0,-1,0,0,0,True
+One of your oxen died from illness. Do you eat it?,0,0,0,0,0,-1,0,0,0,True
