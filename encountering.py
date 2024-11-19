@@ -10,7 +10,7 @@ def encountering(encounter: Encounter):
         _layout = [
             [sg.Text(f'{encounter.get_name()}', font=('Helvetica', 20))],
             [sg.Text('', font=('Helvetica', 20), key='-BAD_INPUT-')],
-            [sg.Text(f'y/n: ', font=('Helvetica', 20)),
+            [sg.Text(f'decision: ', font=('Helvetica', 20)),
              sg.Input(key='-INPUT-'),
              sg.Button('Submit')]
         ]

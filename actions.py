@@ -45,7 +45,6 @@ class Actions:
         self._weather = self._init_weather[self._date]
         self._landmark = Landmark()
 
-
     def get_inventory(self):
         """get the current games inventory"""
         return self._inventory
@@ -65,6 +64,7 @@ class Actions:
 
     def set_travel_speed(self, travel_speed: str):
         """set how far you travel in a day"""
+        print("test 2")
         self._travel_speed = travel_speed
         self._miles_per_day = self._speed[self._travel_speed]
 
@@ -93,7 +93,7 @@ class Actions:
             return self.get_location()
         if not self._encountered:
             if random.randint(1, 100) <= 5:
-                _new_enc = Encounter(self._inventory)
+                _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
 
@@ -137,7 +137,7 @@ class Actions:
             if self._current_date[4] == '9':
                 self._current_date = self._current_date[0:3] + str(int(self._current_date[4]) + 1)
             else:
-                self._current_date = self._current_date[0:4] + str(int(self._current_date[4])+1)
+                self._current_date = self._current_date[0:4] + str(int(self._current_date[4]) + 1)
         else:
             if _num_of_days[self._current_date[0:2]] == self._current_date[3:5]:
                 if self._current_date[0] == '0':

@@ -1,4 +1,4 @@
-One of your oxen ran off. do you go after them?,n,0,0,0,0,0,0,0,0,0
-One of your oxen ran off. do you go after them?,y,0,0,0,0,0,1,0,0,-1
-One of your oxen died from illness. Do you eat it?,n,0,0,0,0,0,0,0,0,0
-One of your oxen died from illness. Do you eat it?,y,10,0,0,0,0,0,0,0,-5
+One of your oxen ran off. 1: do you go after them? 2: or keep going?,2,0,0,0,0,0,0,0,0,0,None
+One of your oxen ran off. 1: do you go after them? 2: or keep going?,1,0,0,0,0,0,1,0,0,-1,None
+One of your oxen died from illness. 1: Do you eat it? 2: or leave it behind?,2,0,0,0,0,0,0,0,0,0,None
+One of your oxen died from illness. 1: Do you eat it? 2: or leave it behind?,1,10,0,0,0,0,0,0,0,-5,None

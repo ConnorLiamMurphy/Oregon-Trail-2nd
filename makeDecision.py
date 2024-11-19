@@ -32,6 +32,10 @@ class Decision:
         self._diff_health = 0
 
         for i in Decision._DECISIONS:
+            print(i[0])
+            print(self._encounter.get_name())
+            print(i[1])
+            print(kb_input)
             if i[0] == self._encounter.get_name() and i[1] == kb_input:
                 self._changes = i
         if not self._changes:

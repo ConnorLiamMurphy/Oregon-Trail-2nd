@@ -18,6 +18,9 @@ def select_travel_parameters():
     while True:  # Event loop
         _event, _values = _window.read()
         if _event == sg.WINDOW_CLOSED:
+            _travel_speed = 'Moderate'
+            _rations = 'Standard'
+            _date = 'Apr'
             break
         elif _event == 'Confirm':
             _travel_speed = _values['-SPEED-']
@@ -26,6 +29,4 @@ def select_travel_parameters():
             break
 
     _window.close()
-    if _travel_speed and _rations and _date:
-        return _travel_speed, _rations, _date
-    return 'Moderate', 'Standard', 'Apr'  # Default values if window is closed
+    return _travel_speed, _rations, _date

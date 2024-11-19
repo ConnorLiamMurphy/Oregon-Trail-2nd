@@ -46,6 +46,7 @@ def start_game():
         if _event == sg.WINDOW_CLOSED or _event == 'Quit':
             break  # Exit loop here
         elif _event == 'Travel':
+            _game_window.hide()
             while True:
                 _var_type = traveling(_act)
                 if isinstance(_var_type, Encounter):
@@ -55,6 +56,7 @@ def start_game():
                     break
                 else:
                     break
+            _game_window.un_hide()
             if not _var_type:
                 break
             _game_window['-LOCATION-'].update(f'Current Location: {_act.get_location()}')

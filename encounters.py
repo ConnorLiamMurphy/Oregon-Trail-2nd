@@ -15,7 +15,7 @@ class Encounter:
             for row in _reader:
                 Encounter._STATS.append(row)
 
-    def __init__(self, inventory: InventoryAndStats):
+    def __init__(self, inventory: InventoryAndStats, actions):
         """create a random encounter and assign the values to individual variables"""
         Encounter._load_stats()
         self._encounter = random.choice(Encounter._STATS)
@@ -30,7 +30,9 @@ class Encounter:
         self._morale_change = self._encounter[8]
         self._health_change = self._encounter[9]
         self._prompt = self._encounter[10]
+        self._extra_change = self._encounter[11]
         self._inventory = inventory
+        self._actions = actions
 
     def get_name(self):
         """get the encounter name"""
@@ -114,12 +116,19 @@ class Encounter:
 
     def decision(self):
         """change the inventory values based on the current values of the change variables"""
-        self._inventory.set_food(self._inventory.get_food() + int(self._food_change))
-        self._inventory.set_ammo(self._inventory.get_ammo() + int(self._ammo_change))
-        self._inventory.set_clothes(self._inventory.get_clothes() + int(self._clothes_change))
-        self._inventory.set_parts(self._inventory.get_parts() + int(self._parts_change))
-        self._inventory.set_medicine(self._inventory.get_medicine() + int(self._medicine_change))
-        self._inventory.set_oxen(self._inventory.get_oxen() + int(self._oxen_change))
-        self._inventory.set_money(self._inventory.get_money() + int(self._money_change))
-        self._inventory.set_morale(self._inventory.get_morale() + int(self._morale_change))
-        self._inventory.set_health(self._inventory.get_health() + int(self._health_change))
+        if self._extra_change == 'None':
+            self._inventory.set_food(self._inventory.get_food() + int(self._food_change))
+            self._inventory.set_ammo(self._inventory.get_ammo() + int(self._ammo_change))
+            self._inventory.set_clothes(self._inventory.get_clothes() + int(self._clothes_change))
+            self._inventory.set_parts(self._inventory.get_parts() + int(self._parts_change))
+            self._inventory.set_medicine(self._inventory.get_medicine() + int(self._medicine_change))
+            self._inventory.set_oxen(self._inventory.get_oxen() + int(self._oxen_change))
+            self._inventory.set_money(self._inventory.get_money() + int(self._money_change))
+            self._inventory.set_morale(self._inventory.get_morale() + int(self._morale_change))
+            self._inventory.set_health(self._inventory.get_health() + int(self._health_change))
+        else:
+            if self._extra_change == 'Break':
+                print("test")
+                self._actions.set_travel_speed('Broken')
+            self._extra_change = 'None'
+            self.decision()
