@@ -1,8 +1,1 @@
-You found some extra food!,10,0,0,0,0,0,0,0,0,False,None
-You encountered a storm! Lose some supplies.,-5,0,0,0,0,0,0,0,0,False,None
-You met a helpful traveler.,0,0,0,0,0,0,0,1,0,False,None
-You lost some supplies due to a raccoon!,-5,0,0,0,0,0,0,0,0,False,None
-You found a shortcut! Gain morale.,0,0,0,0,0,0,0,1,0,False,None
-One of your oxen ran off. 1: do you go after them? 2: or keep going?,0,0,0,0,0,-1,0,0,0,True,None
-One of your oxen died from illness. 1: Do you eat it? 2: or leave it behind?,0,0,0,0,0,-1,0,0,0,True,None
-Your axel has broken,0,0,0,0,0,0,0,0,0,False,Break
+You have contracted Dysentery,0,0,0,0,0,0,0,0,0,False,Dysentery

@@ -36,6 +36,18 @@ class Encounter:
 
     def get_name(self):
         """get the encounter name"""
+        if self._prompt == "True":
+            split = self._name.split('1')
+            _first_half = split[0]
+            _second_half = f'1{split[1]}'
+            return _first_half, _second_half
+        else:
+            return self._name
+
+    def get_original_name(self):
+        """return the unedited name for encounters with
+        inputs so that they read correctly into the
+        Decisions class"""
         return self._name
 
     def get_food_change(self):
@@ -128,7 +140,8 @@ class Encounter:
             self._inventory.set_health(self._inventory.get_health() + int(self._health_change))
         else:
             if self._extra_change == 'Break':
-                print("test")
                 self._actions.set_travel_speed('Broken')
+            if self._extra_change == 'Dysentery':
+                self._inventory.set_status('Dysentery')
             self._extra_change = 'None'
             self.decision()

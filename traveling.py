@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 from actions import Actions
+from manage_supplies import manage_supplies
 
 
 def traveling(act: Actions):
@@ -11,7 +12,8 @@ def traveling(act: Actions):
         [sg.Text(f'Distance from Oregon: {_distance}',
                  font=('Helvetica', 16), key='-DISTANCE-')],
         [sg.Text(f'Date: {act.get_date()}',
-                 font=('Helvetica', 16), key='-DATE-')]
+                 font=('Helvetica', 16), key='-DATE-')],
+        [sg.Button('Stop', size=(10, 2), font=('Helvetica', 16))]
     ]
 
     _travel_window = sg.Window('Game', _layout, size=(500, 400))
@@ -32,13 +34,21 @@ def traveling(act: Actions):
                 f'Date: {act.get_date()}')
             _distance = act.travel()
             # Check if food is sufficient
-            if act.get_inventory().get_food() <= 0:
+            if (act.get_inventory().get_food() <= 0
+                    or act.get_inventory().get_health() <= 0
+                    or act.get_inventory().get_morale() <= 0):
                 _distance = None
                 break
+            if act.get_inventory().get_oxen() <= 0:
+                if act.get_travel_speed() == 'Broken':
+                    _distance = None
+                    break
+                act.set_travel_speed('No Oxen')
         else:
             break
         if _event == sg.WINDOW_CLOSED:
             break
-
+        if _event == 'Stop':
+            manage_supplies(act, act.get_inventory())  # Open the manage_supplies window
     _travel_window.close()
     return _distance

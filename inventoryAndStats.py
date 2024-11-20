@@ -13,6 +13,7 @@ class InventoryAndStats:
         self._money = money
         self._morale = morale
         self._health = health
+        self._status = 'Healthy'
 
     def get_food(self):
         """get food value"""
@@ -49,6 +50,10 @@ class InventoryAndStats:
     def get_health(self):
         """get health value"""
         return self._health
+
+    def get_status(self):
+        """get health value"""
+        return self._status
 
     def set_food(self, food: int):
         """set food value"""
@@ -87,3 +92,8 @@ class InventoryAndStats:
         if health > 10:
             health = 10
         self._health = health
+
+    def set_status(self, status: str):
+        """set morale value"""
+        self._status = status
+

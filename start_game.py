@@ -52,7 +52,14 @@ def start_game():
                 if isinstance(_var_type, Encounter):
                     encountering(_var_type)
                 elif not _var_type:
-                    sg.popup('You have run out of food! Game Over!')
+                    if _inv.get_food() <= 0:
+                        sg.popup('You have run out of food! Game Over!')
+                    elif _inv.get_health() <= 0:
+                        sg.popup('You have died on your journey! Game Over!')
+                    elif _inv.get_morale() <= 0:
+                        sg.popup('You are hopeless and can\'t keep going! Game Over!')
+                    elif _inv.get_oxen() <= 0 and _act.get_travel_speed() == 'Broken':
+                        sg.popup('You\'re wagon is completely inoperable! Game Over!')
                     break
                 else:
                     break

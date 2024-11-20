@@ -22,6 +22,7 @@ class Actions:
             'Heavy': 8
         }
         self._speed = {
+            'No Oxen': 1,
             'Broken': 1,
             'Slow': 5,
             'Moderate': 10,
@@ -64,7 +65,6 @@ class Actions:
 
     def set_travel_speed(self, travel_speed: str):
         """set how far you travel in a day"""
-        print("test 2")
         self._travel_speed = travel_speed
         self._miles_per_day = self._speed[self._travel_speed]
 
@@ -89,10 +89,12 @@ class Actions:
         self._distance -= self._miles_per_day
         self.increment_date()
         self._inventory.set_food(self._inventory.get_food() - self._daily_food_loss)
+        if self._inventory.get_status() == 'Dysentery':
+            self._inventory.set_health(self._inventory.get_health() - 1)
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
-            if random.randint(1, 100) <= 5:
+            if random.randint(1, 100) <= 15:
                 _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
