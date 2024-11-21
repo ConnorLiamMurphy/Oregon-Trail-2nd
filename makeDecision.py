@@ -30,6 +30,7 @@ class Decision:
         self._diff_money = 0
         self._diff_morale = 0
         self._diff_health = 0
+        self._diff_extra_change = self._encounter.get_extra_change()
 
         for i in Decision._DECISIONS:
             if i[0] == self._encounter.get_original_name() and i[1] == kb_input:
@@ -46,6 +47,7 @@ class Decision:
             self._diff_money = self._changes[8]
             self._diff_morale = self._changes[9]
             self._diff_health = self._changes[10]
+            self._diff_extra_change = self._changes[11]
 
     def make_decision(self):
         """change the values of the encounter then call the encounters method to finalize the encounter"""
@@ -68,5 +70,6 @@ class Decision:
                 int(self._encounter.get_morale_change()) + int(self._diff_morale))
             self._encounter.set_health_change(
                 int(self._encounter.get_health_change()) + int(self._diff_health))
+            self._encounter.set_extra_change(self._diff_extra_change)
             self._encounter.decision()
         return self._valid

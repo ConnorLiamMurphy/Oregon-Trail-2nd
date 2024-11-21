@@ -44,6 +44,11 @@ def traveling(act: Actions):
                     _distance = None
                     break
                 act.set_travel_speed('No Oxen')
+            if act.get_inventory().get_clothes() <= 0:
+                if act.get_weather() == 'Hot' or act.get_weather() == 'Cold':
+                    _distance = None
+                    break
+
         else:
             break
         if _event == sg.WINDOW_CLOSED:

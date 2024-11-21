@@ -72,6 +72,10 @@ class Actions:
         """get your daily rations"""
         return self._rations
 
+    def get_daily_food_loss(self):
+        """return the numeric amount of food you consume per day"""
+        return self._daily_food_loss
+
     def get_travel_speed(self):
         """get how far you travel in a day"""
         return self._travel_speed
@@ -81,6 +85,7 @@ class Actions:
         return self._current_date
 
     def get_weather(self):
+        """get the weather"""
         return self._weather
 
     def travel(self):
@@ -94,7 +99,7 @@ class Actions:
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
-            if random.randint(1, 100) <= 15:
+            if random.randint(1, 100) <= 95:
                 _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance

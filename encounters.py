@@ -19,6 +19,8 @@ class Encounter:
         """create a random encounter and assign the values to individual variables"""
         Encounter._load_stats()
         self._encounter = random.choice(Encounter._STATS)
+        self._inventory = inventory
+        self._actions = actions
         self._name = self._encounter[0]
         self._food_change = self._encounter[1]
         self._ammo_change = self._encounter[2]
@@ -31,8 +33,8 @@ class Encounter:
         self._health_change = self._encounter[9]
         self._prompt = self._encounter[10]
         self._extra_change = self._encounter[11]
-        self._inventory = inventory
-        self._actions = actions
+        if self.check_encounter():
+            self.change_encounter()
 
     def get_name(self):
         """get the encounter name"""
@@ -122,9 +124,56 @@ class Encounter:
         """set the value that the health will change by"""
         self._health_change = health_change
 
+    def get_extra_change(self):
+        """get the value of the non-numeric extra change"""
+        return self._extra_change
+
+    def set_extra_change(self, extra_change: str):
+        """set the value of the non-numeric extra change"""
+        self._extra_change = extra_change
+
     def get_prompt(self):
         """get whether the encounter takes user input"""
         return self._prompt
+
+    def change_encounter(self):
+        self._encounter = random.choice(Encounter._STATS)
+        self._name = self._encounter[0]
+        self._food_change = self._encounter[1]
+        self._ammo_change = self._encounter[2]
+        self._clothes_change = self._encounter[3]
+        self._parts_change = self._encounter[4]
+        self._medicine_change = self._encounter[5]
+        self._oxen_change = self._encounter[6]
+        self._money_change = self._encounter[7]
+        self._morale_change = self._encounter[8]
+        self._health_change = self._encounter[9]
+        self._prompt = self._encounter[10]
+        self._extra_change = self._encounter[11]
+        if self.check_encounter():
+            self.change_encounter()
+
+    def check_encounter(self):
+        """check if the encounter is valid"""
+        if int(self._food_change) < 0 and self._inventory.get_food() <= 0:
+            return True
+        if int(self._ammo_change) < 0 and self._inventory.get_ammo() <= 0:
+            return True
+        if int(self._clothes_change) < 0 and self._inventory.get_clothes() <= 0:
+            return True
+        if int(self._parts_change) < 0 and self._inventory.get_parts() <= 0:
+            return True
+        if int(self._medicine_change) < 0 and self._inventory.get_medicine() <= 0:
+            return True
+        if int(self._oxen_change) < 0 and self._inventory.get_oxen() <= 0:
+            return True
+        if int(self._money_change) < 0 and self._inventory.get_money() <= 0:
+            return True
+        if int(self._morale_change) < 0 and self._inventory.get_morale() <= 0:
+            return True
+        if int(self._health_change) < 0 and self._inventory.get_health() <= 0:
+            return True
+        return False
 
     def decision(self):
         """change the inventory values based on the current values of the change variables"""
@@ -143,5 +192,8 @@ class Encounter:
                 self._actions.set_travel_speed('Broken')
             if self._extra_change == 'Dysentery':
                 self._inventory.set_status('Dysentery')
+            if self._extra_change == 'Dysentery':
+                self._actions.increment_date()
+                self._inventory.set_food(self._inventory.get_food() - self._actions.get_daily_food_loss())
             self._extra_change = 'None'
             self.decision()

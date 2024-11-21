@@ -61,27 +61,45 @@ class InventoryAndStats:
 
     def set_ammo(self, ammo: int):
         """set ammo value"""
-        self._ammo = ammo
+        if ammo <= 0:
+            self._ammo = 0
+        else:
+            self._ammo = ammo
 
     def set_clothes(self, clothes: int):
         """set clothes value"""
-        self._clothes = clothes
+        if clothes <= 0:
+            self._clothes = 0
+        else:
+            self._clothes = clothes
 
     def set_parts(self, parts: int):
         """set parts value"""
-        self._parts = parts
+        if parts <= 0:
+            self._parts = 0
+        else:
+            self._parts = parts
 
     def set_oxen(self, oxen: int):
         """set oxen value"""
-        self._oxen = oxen
+        if oxen <= 0:
+            self._oxen = 0
+        else:
+            self._oxen = oxen
 
     def set_medicine(self, medicine: int):
         """set oxen value"""
-        self._medicine = medicine
+        if self._medicine <= 0:
+            self._medicine = 0
+        else:
+            self._medicine = medicine
 
     def set_money(self, money: int):
         """set money value"""
-        self._money = money
+        if money <= 0:
+            self._money = 0
+        else:
+            self._money = money
 
     def set_morale(self, morale: int):
         """set morale value"""
@@ -96,4 +114,3 @@ class InventoryAndStats:
     def set_status(self, status: str):
         """set morale value"""
         self._status = status
-
