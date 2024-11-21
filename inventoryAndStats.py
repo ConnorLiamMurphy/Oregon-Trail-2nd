@@ -89,7 +89,7 @@ class InventoryAndStats:
 
     def set_medicine(self, medicine: int):
         """set oxen value"""
-        if self._medicine <= 0:
+        if medicine <= 0:
             self._medicine = 0
         else:
             self._medicine = medicine
