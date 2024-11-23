@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 
 from manage_supplies import manage_supplies
+from perform_hunt import perform_hunt
 from store import buy_supplies  # Import the buy_supplies function
 from encountering import encountering
 from encounters import Encounter
@@ -35,7 +36,8 @@ def start_game():
         [sg.Button('Travel', size=(10, 2), font=('Helvetica', 16)),
          sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16)),
          sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))],
-        [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16))]
+        [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Go Hunting', size=(10, 2), font=('Helvetica', 16))]
     ]
     # This is what the game window will look like(Lots of work here still)
     _game_window = sg.Window('Game', _layout, size=(500, 400))
@@ -71,5 +73,17 @@ def start_game():
             show_inventory(_inv)  # Open the inventory window
         elif _event == 'Manage Supplies':
             manage_supplies(_act, _inv)  # Open the manage_supplies window
+        elif _event == 'Go Hunting':
+            if _act.get_hunted():
+                sg.popup("you cannot hunt more than once per day")
+            elif _inv.get_ammo() <= 0:
+                sg.popup("You have no ammunition")
+            else:
+                perform_hunt(_act, _inv)  # Open the perform_hunt window
+                _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
+                _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
+                if _inv.get_health() <= 0:
+                    sg.popup('You have died on your journey! Game Over!')
+                    break
 
     _game_window.close()
