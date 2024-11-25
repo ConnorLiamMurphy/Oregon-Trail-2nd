@@ -9,7 +9,7 @@ from parameters import select_travel_parameters
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
 from traveling import traveling
-
+from view_status import view_status
 
 def start_game():
     """open the window for the main game loop and menu for the player"""
@@ -34,6 +34,7 @@ def start_game():
         [sg.Text(f'Date: {_act.get_date()}', key='-DATE-')],
         [sg.Button('Travel', size=(10, 2), font=('Helvetica', 16)),
          sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16)),
+         sg.Button('View Status', size=(15, 2), font=('Helvetica', 16)),
          sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))],
         [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16))]
     ]
@@ -71,5 +72,7 @@ def start_game():
             show_inventory(_inv)  # Open the inventory window
         elif _event == 'Manage Supplies':
             manage_supplies(_act, _inv)  # Open the manage_supplies window
-
+        elif _event == 'View Status':
+            # Call the view_status function when 'View Status' button is clicked
+            view_status(_inv, _act)
     _game_window.close()
