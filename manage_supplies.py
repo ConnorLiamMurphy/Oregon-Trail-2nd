@@ -23,14 +23,28 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
         [sg.Text('Select ration size (light, standard, heavy):')],
         [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
         [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16))],
+         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16))],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
     ]
 
-    if act.get_travel_speed() != 'Broken':
-        _supply_window = sg.Window('Manage Supplies', _layout, size=(500, 400), finalize=True)
-    else:
+    _No_Oxen_layout = [
+        [sg.Text('Select your travel speed:')],
+        [sg.Combo(['No Oxen'], default_value=f'{act.get_travel_speed()}', key='-SPEED-')],
+        [sg.Text('Select ration size (light, standard, heavy):')],
+        [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
+        [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16))],
+        [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
+    ]
+
+    if act.get_travel_speed() == 'Broken':
         _supply_window = sg.Window('Manage Supplies', _Broken_layout, size=(500, 400), finalize=True)
+    elif act.get_travel_speed() == 'No_Oxen':
+        _supply_window = sg.Window('Manage Supplies', _No_Oxen_layout, size=(500, 400), finalize=True)
+    else:
+        _supply_window = sg.Window('Manage Supplies', _layout, size=(500, 400), finalize=True)
 
     # Event loop
     while True:
@@ -51,10 +65,11 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
                 sg.popup('There is nothing to fix', title='Not Broken')
 
         elif _event == 'Use Medicine':
-            if inv.get_health() < 10:
+            if inv.get_health() < 10 or inv.get_status() != 'Healthy':
                 if inv.get_medicine() > 0:
                     inv.set_health(inv.get_health() + 2)
                     inv.set_medicine(inv.get_medicine() - 1)
+                    inv.set_status('Healthy')
                 else:
                     sg.popup('you don\'t have the medicine to use any', title='no medicine')
             else:

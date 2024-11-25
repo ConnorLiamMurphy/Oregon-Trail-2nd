@@ -32,30 +32,13 @@ class Landmark:
                 return self._name[i], 0
             else:
                 return None
-        if speed == 5:
+        else:
             if str(distance) in self._distance:
                 i = self._distance.index(str(distance))
                 return self._name[i], 0
             else:
-                return None
-        elif speed == 10:
-            if str(distance) in self._distance:
-                i = self._distance.index(str(distance))
-                return self._name[i], 0
-            elif str(distance + 5) in self._distance:
-                i = self._distance.index(str(distance + 5))
-                return self._name[i], 5
-            else:
-                return None
-        elif speed == 15:
-            if str(distance) in self._distance:
-                i = self._distance.index(str(distance))
-                return self._name[i], 0
-            elif str(distance + 5) in self._distance:
-                i = self._distance.index(str(distance + 5))
-                return self._name[i], 5
-            elif str(distance + 10) in self._distance:
-                i = self._distance.index(str(distance + 10))
-                return self._name[i], 10
-            else:
+                for i in range(1, speed):
+                    if str(distance + i) in self._distance:
+                        j = self._distance.index(str(distance + i))
+                        return self._name[j], i
                 return None

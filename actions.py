@@ -22,6 +22,7 @@ class Actions:
             'Heavy': 8
         }
         self._speed = {
+            'No Oxen': 1,
             'Broken': 1,
             'Slow': 5,
             'Moderate': 10,
@@ -44,7 +45,6 @@ class Actions:
         self._current_date = self._exact_leave_date[self._date]
         self._weather = self._init_weather[self._date]
         self._landmark = Landmark()
-
 
     def get_inventory(self):
         """get the current games inventory"""
@@ -72,6 +72,10 @@ class Actions:
         """get your daily rations"""
         return self._rations
 
+    def get_daily_food_loss(self):
+        """return the numeric amount of food you consume per day"""
+        return self._daily_food_loss
+
     def get_travel_speed(self):
         """get how far you travel in a day"""
         return self._travel_speed
@@ -81,6 +85,7 @@ class Actions:
         return self._current_date
 
     def get_weather(self):
+        """get the weather"""
         return self._weather
 
     def travel(self):
@@ -89,11 +94,13 @@ class Actions:
         self._distance -= self._miles_per_day
         self.increment_date()
         self._inventory.set_food(self._inventory.get_food() - self._daily_food_loss)
+        if self._inventory.get_status() == 'Dysentery':
+            self._inventory.set_health(self._inventory.get_health() - 1)
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
             if random.randint(1, 100) <= 5:
-                _new_enc = Encounter(self._inventory)
+                _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
 
@@ -137,7 +144,7 @@ class Actions:
             if self._current_date[4] == '9':
                 self._current_date = self._current_date[0:3] + str(int(self._current_date[4]) + 1)
             else:
-                self._current_date = self._current_date[0:4] + str(int(self._current_date[4])+1)
+                self._current_date = self._current_date[0:4] + str(int(self._current_date[4]) + 1)
         else:
             if _num_of_days[self._current_date[0:2]] == self._current_date[3:5]:
                 if self._current_date[0] == '0':

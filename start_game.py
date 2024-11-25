@@ -47,24 +47,34 @@ def start_game():
         if _event == sg.WINDOW_CLOSED or _event == 'Quit':
             break  # Exit loop here
         elif _event == 'Travel':
+            _game_window.hide()
             while True:
                 _var_type = traveling(_act)
                 if isinstance(_var_type, Encounter):
                     encountering(_var_type)
                 elif not _var_type:
-                    sg.popup('You have run out of food! Game Over!')
+                    if _inv.get_food() <= 0:
+                        sg.popup('You have run out of food! Game Over!')
+                    elif _inv.get_health() <= 0:
+                        sg.popup('You have died on your journey! Game Over!')
+                    elif _inv.get_morale() <= 0:
+                        sg.popup('You are hopeless and can\'t keep going! Game Over!')
+                    elif _inv.get_oxen() <= 0 and _act.get_travel_speed() == 'Broken':
+                        sg.popup('You\'re wagon is completely inoperable! Game Over!')
+                    elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Cold':
+                        sg.popup('You have died of hypothermia in the cold! Game Over!')
+                    elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Hot':
+                        sg.popup('You have died of heatstroke in the sun! Game Over!')
                     break
                 else:
                     break
+            _game_window.un_hide()
             if not _var_type:
                 break
             _game_window['-LOCATION-'].update(f'Current Location: {_act.get_location()}')
             _game_window['-MORALE-'].update(f'Morale: {_inv.get_morale()}')
             _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
             _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
-            if _inv.get_food() <= 0:
-                sg.popup('You have run out of food! Game Over!')
-                break
             _game_window['-DISTANCE-'].update(f'Distance Left: {_act.get_distance()}')
             _game_window['-DATE-'].update(f'Date: {_act.get_date()}')
             _game_window['-GAME-'].update("")
