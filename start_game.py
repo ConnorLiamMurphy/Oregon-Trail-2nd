@@ -33,13 +33,13 @@ def start_game():
         [sg.Text(f'Distance Left: {_act.get_distance()}', key='-DISTANCE-')],
         [sg.Text(f'Date: {_act.get_date()}', key='-DATE-')],
         [sg.Button('Travel', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16)),
-         sg.Button('View Status', size=(15, 2), font=('Helvetica', 16)),
-         sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))],
-        [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16))]
+         sg.Button('Check Inventory', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('View Status', size=(10, 2), font=('Helvetica', 16))],
+        [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))]
     ]
     # This is what the game window will look like(Lots of work here still)
-    _game_window = sg.Window('Game', _layout, size=(500, 400))
+    _game_window = sg.Window('Game', _layout, size=(600, 500))
 
     # Event loop
     while True:
