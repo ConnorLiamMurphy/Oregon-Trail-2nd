@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+from initiate_trade import initiate_trade
 from manage_supplies import manage_supplies
 from store import buy_supplies  # Import the buy_supplies function
 from encountering import encountering
@@ -8,6 +9,7 @@ from show_inventory import show_inventory
 from parameters import select_travel_parameters
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
+from take_rest import take_rest
 from traveling import traveling
 from view_status import view_status
 
@@ -36,7 +38,9 @@ def start_game():
          sg.Button('Check Inventory', size=(10, 2), font=('Helvetica', 16)),
          sg.Button('View Status', size=(10, 2), font=('Helvetica', 16))],
         [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))]
+         sg.Button('Initiate Trade', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Take Rest', size=(10, 2), font=('Helvetica', 16))],
+        [sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))]
     ]
     # This is what the game window will look like(Lots of work here still)
     _game_window = sg.Window('Game', _layout, size=(600, 500))
@@ -85,4 +89,10 @@ def start_game():
         elif _event == 'View Status':
             # Call the view_status function when 'View Status' button is clicked
             view_status(_inv, _act)
+        elif _event == 'Initiate Trade':
+            # Call the initiate trade function when 'Initiate Trade' button is clicked
+            initiate_trade(_inv)
+        elif _event == 'Take Rest':
+            # Call the take rest function when 'Take Rest' button is clicked
+            take_rest(_act,_inv)
     _game_window.close()

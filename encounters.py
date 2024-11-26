@@ -22,6 +22,7 @@ class Encounter:
         self._inventory = inventory
         self._actions = actions
         self._name = self._encounter[0]
+        print(self._name)
         self._food_change = self._encounter[1]
         self._ammo_change = self._encounter[2]
         self._clothes_change = self._encounter[3]
@@ -33,6 +34,9 @@ class Encounter:
         self._health_change = self._encounter[9]
         self._prompt = self._encounter[10]
         self._extra_change = self._encounter[11]
+        self._weather = self._encounter[12]
+        self._speed = self._encounter[13]
+        self._food_consumption = self._encounter[14]
         if self.check_encounter():
             self.change_encounter()
 
@@ -139,6 +143,7 @@ class Encounter:
     def change_encounter(self):
         self._encounter = random.choice(Encounter._STATS)
         self._name = self._encounter[0]
+        print(self._name)
         self._food_change = self._encounter[1]
         self._ammo_change = self._encounter[2]
         self._clothes_change = self._encounter[3]
@@ -150,6 +155,9 @@ class Encounter:
         self._health_change = self._encounter[9]
         self._prompt = self._encounter[10]
         self._extra_change = self._encounter[11]
+        self._weather = self._encounter[12]
+        self._speed = self._encounter[13]
+        self._food_consumption = self._encounter[14]
         if self.check_encounter():
             self.change_encounter()
 
@@ -172,6 +180,15 @@ class Encounter:
         if int(self._morale_change) < 0 and self._inventory.get_morale() <= 0:
             return True
         if int(self._health_change) < 0 and self._inventory.get_health() <= 0:
+            return True
+        _weather_lst = self._weather.split('.')
+        if self._actions.get_weather() not in _weather_lst and self._weather != 'None':
+            return True
+        _speed_lst = self._speed.split('.')
+        if self._actions.get_travel_speed() not in _speed_lst and self._speed != 'None':
+            return True
+        _food_lst = self._food_consumption.split('.')
+        if self._actions.get_rations() not in _food_lst and self._food_consumption != 'None':
             return True
         return False
 

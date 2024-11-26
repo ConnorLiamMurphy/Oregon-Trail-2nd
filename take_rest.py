@@ -50,8 +50,8 @@ def take_rest(_act, _inv):
             night_window.close()
 
             # Apply the resting effect: increase health/morale
-            if _inv.get_health() < 100:  # Cap the health at 100
-                _inv.set_health(min(100, _inv.get_health() + days * 10))  # Increase health by 10 per day
+            if _inv.get_health() < 10:  # Cap the health at 10
+                _inv.set_health(min(10, _inv.get_health() + days))  # Increase health by 10 per day
             if _inv.get_morale() < 100:  # Cap the morale at 100
                 _inv.set_morale(min(100, _inv.get_morale() + days * 5))  # Increase morale by 5 per day
 

@@ -12,8 +12,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
         [sg.Text('Select ration size (light, standard, heavy):')],
         [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
         [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16))],
+         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16))],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
     ]
 
@@ -23,8 +22,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
         [sg.Text('Select ration size (light, standard, heavy):')],
         [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
         [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16))],
+         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16))],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
     ]
 
@@ -74,8 +72,6 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
                     sg.popup('you don\'t have the medicine to use any', title='no medicine')
             else:
                 sg.popup('you are perfectly healthy, no need for medicine', title='full health')
-        elif _event == 'Check Inventory':
-            show_inventory(inv)  # Open the inventory window
         elif _event == 'Confirm':
             act.set_travel_speed(_values['-SPEED-'])
             act.set_rations(_values['-RATIONS-'])
