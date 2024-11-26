@@ -7,18 +7,20 @@ from store import buy_supplies  # Import the buy_supplies function
 from encountering import encountering
 from encounters import Encounter
 from show_inventory import show_inventory
-from parameters import select_travel_parameters
+from parameters import select_travel_parameters, select_class_parameters
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
 from take_rest import take_rest
 from traveling import traveling
 from view_status import view_status
 
+
 def start_game():
     """open the window for the main game loop and menu for the player"""
     # initialize inventory class
     _inv = InventoryAndStats(0, 0, 0, 0, 0, 0, 0, 5, 10)
-
+    _class, _weapon, _skill = select_class_parameters()
+    # isn't class supposed to set starting cash amount?
     buy_supplies(_inv)  # Enter the store to buy supplies(store.py)
 
     # Get travel parameters from the player
@@ -96,7 +98,7 @@ def start_game():
             initiate_trade(_inv)
         elif _event == 'Take Rest':
             # Call the take rest function when 'Take Rest' button is clicked
-            take_rest(_act,_inv)
+            take_rest(_act, _inv)
         elif _event == 'Go Hunting':
             if _act.get_hunted():
                 sg.popup("you cannot hunt more than once per day")
