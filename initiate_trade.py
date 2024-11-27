@@ -4,7 +4,10 @@ from inventoryAndStats import InventoryAndStats
 
 
 class TradeScenario:
+    """create the trade scenario as an object."""
     def __init__(self, offer, cost, offer_description, cost_description):
+        """create a Trade Scenario and
+        assign the values to individual variables"""
         self.offer = offer
         self.cost = cost
         self.offer_description = offer_description
@@ -13,27 +16,40 @@ class TradeScenario:
     def __str__(self):
         return f"Offer: {self.offer_description} for {self.cost_description}"
 
+
 def generate_trade():
+    """house the possible trades and then return that trade."""
     trades = [
-        TradeScenario("5 Food", "2 Health", "Offer: 5 units of food", "Cost: 2 units of health"),
-        TradeScenario("10 Food", "3 Morale", "Offer: 10 units of food", "Cost: 3 morale"),
-        TradeScenario("2 Health", "5 Food", "Offer: 2 units of health", "Cost: 5 units of food"),
-        TradeScenario("3 Morale", "4 Food", "Offer: 3 morale", "Cost: 4 units of food"),            TradeScenario("1 Health", "10 Food", "Offer: 1 unit of health", "Cost: 10 units of food"),
-         TradeScenario("2 Morale", "5 Health", "Offer: 2 morale", "Cost: 5 units of health"),
-        TradeScenario("7 Food", "2 Morale", "Offer: 7 units of food", "Cost: 2 morale"),
-        TradeScenario("15 Food", "5 Health", "Offer: 15 units of food", "Cost: 5 units of health"),
-        ]
+        TradeScenario("5 Food", "2 Health",
+                      "Offer: 5 units of food", "Cost: 2 units of health"),
+        TradeScenario("10 Food", "3 Morale",
+                      "Offer: 10 units of food", "Cost: 3 morale"),
+        TradeScenario("2 Health", "5 Food",
+                      "Offer: 2 units of health", "Cost: 5 units of food"),
+        TradeScenario("3 Morale", "4 Food",
+                      "Offer: 3 morale", "Cost: 4 units of food"),
+        TradeScenario("1 Health", "10 Food",
+                      "Offer: 1 unit of health", "Cost: 10 units of food"),
+        TradeScenario("2 Morale", "5 Health",
+                      "Offer: 2 morale", "Cost: 5 units of health"),
+        TradeScenario("7 Food", "2 Morale",
+                      "Offer: 7 units of food", "Cost: 2 morale"),
+        TradeScenario("15 Food", "5 Health",
+                      "Offer: 15 units of food", "Cost: 5 units of health"),
+    ]
     return random.choice(trades)
 
-def initiate_trade(_inv:InventoryAndStats):
 
+def initiate_trade(_inv: InventoryAndStats):
+    """Send the trade scenario to the GUI"""
     trade_scenario = generate_trade()
     layout = [
         [sg.Text("A traveler approaches and offers you a trade!", font=('Helvetica', 16))],
         [sg.Text(f"{trade_scenario.offer_description}", font=('Helvetica', 14))],
         [sg.Text(f"{trade_scenario.cost_description}", font=('Helvetica', 14))],
         [sg.Text(
-            f"Your current inventory: Food = {_inv.get_food()}, Health = {_inv.get_health()}, Morale = {_inv.get_morale()}",
+            f"Your current inventory: Food = {_inv.get_food()}, "
+            f"Health = {_inv.get_health()}, Morale = {_inv.get_morale()}",
             font=('Helvetica', 12))],
         [sg.Button("Accept Trade", size=(12, 2), font=('Helvetica', 16)),
          sg.Button("Decline Trade", size=(12, 2), font=('Helvetica', 16))]

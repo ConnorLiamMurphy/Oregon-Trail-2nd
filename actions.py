@@ -5,12 +5,14 @@ from inventoryAndStats import InventoryAndStats
 
 
 class Actions:
-    """any functions that are necessary to perform an action will be run from here"""
+    """any functions that are necessary to
+    perform an action will be run from here"""
 
     def __init__(self, distance: int, inventory: InventoryAndStats, travel_speed: str, rations: str, date: str):
         """initialize any necessary variables to do any actions"""
         self._distance = distance
         self._encountered = False
+        self._hunted = False
         self._inventory = inventory
         self._travel_speed = travel_speed
         self._rations = rations
@@ -22,6 +24,7 @@ class Actions:
             'Heavy': 8
         }
         self._speed = {
+            'No Oxen': 1,
             'Broken': 1,
             'Slow': 5,
             'Moderate': 10,
@@ -44,7 +47,6 @@ class Actions:
         self._current_date = self._exact_leave_date[self._date]
         self._weather = self._init_weather[self._date]
         self._landmark = Landmark()
-
 
     def get_inventory(self):
         """get the current games inventory"""
@@ -72,6 +74,10 @@ class Actions:
         """get your daily rations"""
         return self._rations
 
+    def get_daily_food_loss(self):
+        """return the numeric amount of food you consume per day"""
+        return self._daily_food_loss
+
     def get_travel_speed(self):
         """get how far you travel in a day"""
         return self._travel_speed
@@ -81,19 +87,26 @@ class Actions:
         return self._current_date
 
     def get_weather(self):
+        """return the current weather"""
         return self._weather
 
+    def get_hunted(self):
+        """return weather you have hunted today or not"""
+        return self._hunted
+
     def travel(self):
-        """decrease distance by your travel speed and food by your ration amount
-        then return either your distance, encounter or landmark."""
+        """decrease distance by your travel speed and food by your ration
+        amount then return either your distance, encounter or landmark."""
         self._distance -= self._miles_per_day
         self.increment_date()
         self._inventory.set_food(self._inventory.get_food() - self._daily_food_loss)
+        if self._inventory.get_status() == 'Dysentery':
+            self._inventory.set_health(self._inventory.get_health() - 1)
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
             if random.randint(1, 100) <= 5:
-                _new_enc = Encounter(self._inventory)
+                _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
 
@@ -137,7 +150,7 @@ class Actions:
             if self._current_date[4] == '9':
                 self._current_date = self._current_date[0:3] + str(int(self._current_date[4]) + 1)
             else:
-                self._current_date = self._current_date[0:4] + str(int(self._current_date[4])+1)
+                self._current_date = self._current_date[0:4] + str(int(self._current_date[4]) + 1)
         else:
             if _num_of_days[self._current_date[0:2]] == self._current_date[3:5]:
                 if self._current_date[0] == '0':
@@ -154,3 +167,46 @@ class Actions:
                 self._current_date = self._current_date[0:3] + str(int(self._current_date[3:5]) + 1)
 
         self._weather = random.choice(_month_weather[self._current_date[0:2]])
+        self._hunted = False
+
+    def hunt(self, ammo_used: int, time_spent: int):
+        """perform a hunt returning a random amount of food determined by
+        the weather, how much ammo used, and time spent. """
+        self._hunted = True
+        _success_chance = 50
+        _misfire_chance = 5
+        _injury_chance = 30
+        _food_gained = 0
+        _injuries = 0
+        if self._weather == 'Cold':
+            _success_chance -= 15
+        if self._weather == 'Chilly':
+            _success_chance -= 5
+        if self._weather == 'Temperate':
+            _success_chance += 10
+        if self._weather == 'Warm':
+            _success_chance += 15
+        if self._weather == 'Hot':
+            _success_chance -= 15
+
+        if time_spent == 1:
+            _success_chance -= 10
+        if time_spent == 2:
+            _injury_chance += 30
+        if time_spent == 3:
+            _injury_chance += 60
+            _success_chance += 10
+        for i in range(1, ammo_used + 1):
+            if random.randint(1, 100) <= _success_chance:
+                if not random.randint(1, 100) <= _misfire_chance:
+                    _food_gained += 15
+                else:
+                    self._inventory.set_health(self._inventory.get_health() - 1)
+                    _injuries += 1
+            _misfire_chance += 15
+            self._inventory.set_ammo(self._inventory.get_ammo() - 1)
+        if random.randint(1, 100) <= _injury_chance:
+            self._inventory.set_health(self._inventory.get_health() - 2)
+            _injuries += 2
+        self._inventory.set_food(self._inventory.get_food() + _food_gained)
+        return _food_gained, _injuries

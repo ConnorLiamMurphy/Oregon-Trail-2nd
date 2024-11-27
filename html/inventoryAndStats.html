@@ -54,6 +54,9 @@
                                 <a class="function" href="#InventoryAndStats.get_oxen">get_oxen</a>
                         </li>
                         <li>
+                                <a class="function" href="#InventoryAndStats.get_medicine">get_medicine</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#InventoryAndStats.get_money">get_money</a>
                         </li>
                         <li>
@@ -61,6 +64,9 @@
                         </li>
                         <li>
                                 <a class="function" href="#InventoryAndStats.get_health">get_health</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#InventoryAndStats.get_status">get_status</a>
                         </li>
                         <li>
                                 <a class="function" href="#InventoryAndStats.set_food">set_food</a>
@@ -78,6 +84,9 @@
                                 <a class="function" href="#InventoryAndStats.set_oxen">set_oxen</a>
                         </li>
                         <li>
+                                <a class="function" href="#InventoryAndStats.set_medicine">set_medicine</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#InventoryAndStats.set_money">set_money</a>
                         </li>
                         <li>
@@ -85,6 +94,9 @@
                         </li>
                         <li>
                                 <a class="function" href="#InventoryAndStats.set_health">set_health</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#InventoryAndStats.set_status">set_status</a>
                         </li>
                 </ul>
 
@@ -110,82 +122,122 @@ inventoryAndStats    </h1>
 
                         <label class="view-source-button" for="mod-inventoryAndStats-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="k">class</span> <span class="nc">InventoryAndStats</span><span class="p">:</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;hold the inventory and player status values&quot;&quot;&quot;</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the inventory values&quot;&quot;&quot;</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="k">def</span> <span class="nf">get_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get food value&quot;&quot;&quot;</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="k">def</span> <span class="nf">get_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get ammo value&quot;&quot;&quot;</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>    <span class="k">def</span> <span class="nf">get_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get clothes value&quot;&quot;&quot;</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="k">def</span> <span class="nf">get_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get parts value&quot;&quot;&quot;</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>    <span class="k">def</span> <span class="nf">get_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get oxen value&quot;&quot;&quot;</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>    <span class="k">def</span> <span class="nf">get_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get money value&quot;&quot;&quot;</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>    <span class="k">def</span> <span class="nf">get_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get morale value&quot;&quot;&quot;</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>    <span class="k">def</span> <span class="nf">get_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>
-</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>    <span class="k">def</span> <span class="nf">set_food</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set food value&quot;&quot;&quot;</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>    <span class="k">def</span> <span class="nf">set_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set ammo value&quot;&quot;&quot;</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>
-</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>    <span class="k">def</span> <span class="nf">set_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set clothes value&quot;&quot;&quot;</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>    <span class="k">def</span> <span class="nf">set_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set parts value&quot;&quot;&quot;</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>    <span class="k">def</span> <span class="nf">set_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a>
-</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>    <span class="k">def</span> <span class="nf">set_money</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set money value&quot;&quot;&quot;</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
-</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a>
-</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a>    <span class="k">def</span> <span class="nf">set_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a>
-</span><span id="L-74"><a href="#L-74"><span class="linenos">74</span></a>    <span class="k">def</span> <span class="nf">set_health</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set health value&quot;&quot;&quot;</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="k">class</span> <span class="nc">InventoryAndStats</span><span class="p">:</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;hold the inventory and player status values&quot;&quot;&quot;</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>                 <span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the inventory values&quot;&quot;&quot;</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="n">medicine</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="s1">&#39;Healthy&#39;</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>    <span class="k">def</span> <span class="nf">get_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get food value&quot;&quot;&quot;</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>    <span class="k">def</span> <span class="nf">get_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get ammo value&quot;&quot;&quot;</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>    <span class="k">def</span> <span class="nf">get_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get clothes value&quot;&quot;&quot;</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a>    <span class="k">def</span> <span class="nf">get_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get parts value&quot;&quot;&quot;</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>    <span class="k">def</span> <span class="nf">get_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get oxen value&quot;&quot;&quot;</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>    <span class="k">def</span> <span class="nf">get_medicine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get Medicine value&quot;&quot;&quot;</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>    <span class="k">def</span> <span class="nf">get_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get money value&quot;&quot;&quot;</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>    <span class="k">def</span> <span class="nf">get_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get morale value&quot;&quot;&quot;</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>    <span class="k">def</span> <span class="nf">get_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>    <span class="k">def</span> <span class="nf">set_food</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set food value&quot;&quot;&quot;</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>    <span class="k">def</span> <span class="nf">set_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set ammo value&quot;&quot;&quot;</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>        <span class="k">if</span> <span class="n">ammo</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>    <span class="k">def</span> <span class="nf">set_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set clothes value&quot;&quot;&quot;</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>        <span class="k">if</span> <span class="n">clothes</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>    <span class="k">def</span> <span class="nf">set_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set parts value&quot;&quot;&quot;</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>        <span class="k">if</span> <span class="n">parts</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>    <span class="k">def</span> <span class="nf">set_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="k">if</span> <span class="n">oxen</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>    <span class="k">def</span> <span class="nf">set_medicine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>        <span class="k">if</span> <span class="n">medicine</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="n">medicine</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>    <span class="k">def</span> <span class="nf">set_money</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set money value&quot;&quot;&quot;</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>        <span class="k">if</span> <span class="n">money</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>    <span class="k">def</span> <span class="nf">set_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>    <span class="k">def</span> <span class="nf">set_health</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set health value&quot;&quot;&quot;</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>        <span class="k">if</span> <span class="n">health</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>            <span class="n">health</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">status</span>
 </span></pre></div>
 
 
@@ -201,82 +253,122 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats-2"><a href="#InventoryAndStats-2"><span class="linenos"> 2</span></a><span class="k">class</span> <span class="nc">InventoryAndStats</span><span class="p">:</span>
-</span><span id="InventoryAndStats-3"><a href="#InventoryAndStats-3"><span class="linenos"> 3</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;hold the inventory and player status values&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-4"><a href="#InventoryAndStats-4"><span class="linenos"> 4</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-5"><a href="#InventoryAndStats-5"><span class="linenos"> 5</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the inventory values&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-6"><a href="#InventoryAndStats-6"><span class="linenos"> 6</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
-</span><span id="InventoryAndStats-7"><a href="#InventoryAndStats-7"><span class="linenos"> 7</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
-</span><span id="InventoryAndStats-8"><a href="#InventoryAndStats-8"><span class="linenos"> 8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
-</span><span id="InventoryAndStats-9"><a href="#InventoryAndStats-9"><span class="linenos"> 9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
-</span><span id="InventoryAndStats-10"><a href="#InventoryAndStats-10"><span class="linenos">10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
-</span><span id="InventoryAndStats-11"><a href="#InventoryAndStats-11"><span class="linenos">11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
-</span><span id="InventoryAndStats-12"><a href="#InventoryAndStats-12"><span class="linenos">12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
-</span><span id="InventoryAndStats-13"><a href="#InventoryAndStats-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
-</span><span id="InventoryAndStats-14"><a href="#InventoryAndStats-14"><span class="linenos">14</span></a>
-</span><span id="InventoryAndStats-15"><a href="#InventoryAndStats-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="nf">get_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-16"><a href="#InventoryAndStats-16"><span class="linenos">16</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get food value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-17"><a href="#InventoryAndStats-17"><span class="linenos">17</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
-</span><span id="InventoryAndStats-18"><a href="#InventoryAndStats-18"><span class="linenos">18</span></a>
-</span><span id="InventoryAndStats-19"><a href="#InventoryAndStats-19"><span class="linenos">19</span></a>    <span class="k">def</span> <span class="nf">get_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-20"><a href="#InventoryAndStats-20"><span class="linenos">20</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get ammo value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-21"><a href="#InventoryAndStats-21"><span class="linenos">21</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span>
-</span><span id="InventoryAndStats-22"><a href="#InventoryAndStats-22"><span class="linenos">22</span></a>
-</span><span id="InventoryAndStats-23"><a href="#InventoryAndStats-23"><span class="linenos">23</span></a>    <span class="k">def</span> <span class="nf">get_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-24"><a href="#InventoryAndStats-24"><span class="linenos">24</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get clothes value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-25"><a href="#InventoryAndStats-25"><span class="linenos">25</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span>
-</span><span id="InventoryAndStats-26"><a href="#InventoryAndStats-26"><span class="linenos">26</span></a>
-</span><span id="InventoryAndStats-27"><a href="#InventoryAndStats-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="nf">get_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-28"><a href="#InventoryAndStats-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get parts value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-29"><a href="#InventoryAndStats-29"><span class="linenos">29</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span>
-</span><span id="InventoryAndStats-30"><a href="#InventoryAndStats-30"><span class="linenos">30</span></a>
-</span><span id="InventoryAndStats-31"><a href="#InventoryAndStats-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">get_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-32"><a href="#InventoryAndStats-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get oxen value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-33"><a href="#InventoryAndStats-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span>
-</span><span id="InventoryAndStats-34"><a href="#InventoryAndStats-34"><span class="linenos">34</span></a>
-</span><span id="InventoryAndStats-35"><a href="#InventoryAndStats-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">get_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-36"><a href="#InventoryAndStats-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get money value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-37"><a href="#InventoryAndStats-37"><span class="linenos">37</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
-</span><span id="InventoryAndStats-38"><a href="#InventoryAndStats-38"><span class="linenos">38</span></a>
-</span><span id="InventoryAndStats-39"><a href="#InventoryAndStats-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">get_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-40"><a href="#InventoryAndStats-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get morale value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-41"><a href="#InventoryAndStats-41"><span class="linenos">41</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
-</span><span id="InventoryAndStats-42"><a href="#InventoryAndStats-42"><span class="linenos">42</span></a>
-</span><span id="InventoryAndStats-43"><a href="#InventoryAndStats-43"><span class="linenos">43</span></a>    <span class="k">def</span> <span class="nf">get_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats-44"><a href="#InventoryAndStats-44"><span class="linenos">44</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-45"><a href="#InventoryAndStats-45"><span class="linenos">45</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
-</span><span id="InventoryAndStats-46"><a href="#InventoryAndStats-46"><span class="linenos">46</span></a>
-</span><span id="InventoryAndStats-47"><a href="#InventoryAndStats-47"><span class="linenos">47</span></a>    <span class="k">def</span> <span class="nf">set_food</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-48"><a href="#InventoryAndStats-48"><span class="linenos">48</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set food value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-49"><a href="#InventoryAndStats-49"><span class="linenos">49</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
-</span><span id="InventoryAndStats-50"><a href="#InventoryAndStats-50"><span class="linenos">50</span></a>
-</span><span id="InventoryAndStats-51"><a href="#InventoryAndStats-51"><span class="linenos">51</span></a>    <span class="k">def</span> <span class="nf">set_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-52"><a href="#InventoryAndStats-52"><span class="linenos">52</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set ammo value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-53"><a href="#InventoryAndStats-53"><span class="linenos">53</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
-</span><span id="InventoryAndStats-54"><a href="#InventoryAndStats-54"><span class="linenos">54</span></a>
-</span><span id="InventoryAndStats-55"><a href="#InventoryAndStats-55"><span class="linenos">55</span></a>    <span class="k">def</span> <span class="nf">set_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-56"><a href="#InventoryAndStats-56"><span class="linenos">56</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set clothes value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-57"><a href="#InventoryAndStats-57"><span class="linenos">57</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
-</span><span id="InventoryAndStats-58"><a href="#InventoryAndStats-58"><span class="linenos">58</span></a>
-</span><span id="InventoryAndStats-59"><a href="#InventoryAndStats-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">set_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-60"><a href="#InventoryAndStats-60"><span class="linenos">60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set parts value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-61"><a href="#InventoryAndStats-61"><span class="linenos">61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
-</span><span id="InventoryAndStats-62"><a href="#InventoryAndStats-62"><span class="linenos">62</span></a>
-</span><span id="InventoryAndStats-63"><a href="#InventoryAndStats-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">set_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-64"><a href="#InventoryAndStats-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-65"><a href="#InventoryAndStats-65"><span class="linenos">65</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
-</span><span id="InventoryAndStats-66"><a href="#InventoryAndStats-66"><span class="linenos">66</span></a>
-</span><span id="InventoryAndStats-67"><a href="#InventoryAndStats-67"><span class="linenos">67</span></a>    <span class="k">def</span> <span class="nf">set_money</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-68"><a href="#InventoryAndStats-68"><span class="linenos">68</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set money value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-69"><a href="#InventoryAndStats-69"><span class="linenos">69</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
-</span><span id="InventoryAndStats-70"><a href="#InventoryAndStats-70"><span class="linenos">70</span></a>
-</span><span id="InventoryAndStats-71"><a href="#InventoryAndStats-71"><span class="linenos">71</span></a>    <span class="k">def</span> <span class="nf">set_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-72"><a href="#InventoryAndStats-72"><span class="linenos">72</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-73"><a href="#InventoryAndStats-73"><span class="linenos">73</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
-</span><span id="InventoryAndStats-74"><a href="#InventoryAndStats-74"><span class="linenos">74</span></a>
-</span><span id="InventoryAndStats-75"><a href="#InventoryAndStats-75"><span class="linenos">75</span></a>    <span class="k">def</span> <span class="nf">set_health</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats-76"><a href="#InventoryAndStats-76"><span class="linenos">76</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set health value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats-77"><a href="#InventoryAndStats-77"><span class="linenos">77</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats-2"><a href="#InventoryAndStats-2"><span class="linenos">  2</span></a><span class="k">class</span> <span class="nc">InventoryAndStats</span><span class="p">:</span>
+</span><span id="InventoryAndStats-3"><a href="#InventoryAndStats-3"><span class="linenos">  3</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;hold the inventory and player status values&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-4"><a href="#InventoryAndStats-4"><span class="linenos">  4</span></a>
+</span><span id="InventoryAndStats-5"><a href="#InventoryAndStats-5"><span class="linenos">  5</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="InventoryAndStats-6"><a href="#InventoryAndStats-6"><span class="linenos">  6</span></a>                 <span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-7"><a href="#InventoryAndStats-7"><span class="linenos">  7</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the inventory values&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-8"><a href="#InventoryAndStats-8"><span class="linenos">  8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
+</span><span id="InventoryAndStats-9"><a href="#InventoryAndStats-9"><span class="linenos">  9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
+</span><span id="InventoryAndStats-10"><a href="#InventoryAndStats-10"><span class="linenos"> 10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
+</span><span id="InventoryAndStats-11"><a href="#InventoryAndStats-11"><span class="linenos"> 11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
+</span><span id="InventoryAndStats-12"><a href="#InventoryAndStats-12"><span class="linenos"> 12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+</span><span id="InventoryAndStats-13"><a href="#InventoryAndStats-13"><span class="linenos"> 13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="n">medicine</span>
+</span><span id="InventoryAndStats-14"><a href="#InventoryAndStats-14"><span class="linenos"> 14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
+</span><span id="InventoryAndStats-15"><a href="#InventoryAndStats-15"><span class="linenos"> 15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
+</span><span id="InventoryAndStats-16"><a href="#InventoryAndStats-16"><span class="linenos"> 16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+</span><span id="InventoryAndStats-17"><a href="#InventoryAndStats-17"><span class="linenos"> 17</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="s1">&#39;Healthy&#39;</span>
+</span><span id="InventoryAndStats-18"><a href="#InventoryAndStats-18"><span class="linenos"> 18</span></a>
+</span><span id="InventoryAndStats-19"><a href="#InventoryAndStats-19"><span class="linenos"> 19</span></a>    <span class="k">def</span> <span class="nf">get_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-20"><a href="#InventoryAndStats-20"><span class="linenos"> 20</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get food value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-21"><a href="#InventoryAndStats-21"><span class="linenos"> 21</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
+</span><span id="InventoryAndStats-22"><a href="#InventoryAndStats-22"><span class="linenos"> 22</span></a>
+</span><span id="InventoryAndStats-23"><a href="#InventoryAndStats-23"><span class="linenos"> 23</span></a>    <span class="k">def</span> <span class="nf">get_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-24"><a href="#InventoryAndStats-24"><span class="linenos"> 24</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get ammo value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-25"><a href="#InventoryAndStats-25"><span class="linenos"> 25</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span>
+</span><span id="InventoryAndStats-26"><a href="#InventoryAndStats-26"><span class="linenos"> 26</span></a>
+</span><span id="InventoryAndStats-27"><a href="#InventoryAndStats-27"><span class="linenos"> 27</span></a>    <span class="k">def</span> <span class="nf">get_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-28"><a href="#InventoryAndStats-28"><span class="linenos"> 28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get clothes value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-29"><a href="#InventoryAndStats-29"><span class="linenos"> 29</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span>
+</span><span id="InventoryAndStats-30"><a href="#InventoryAndStats-30"><span class="linenos"> 30</span></a>
+</span><span id="InventoryAndStats-31"><a href="#InventoryAndStats-31"><span class="linenos"> 31</span></a>    <span class="k">def</span> <span class="nf">get_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-32"><a href="#InventoryAndStats-32"><span class="linenos"> 32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get parts value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-33"><a href="#InventoryAndStats-33"><span class="linenos"> 33</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span>
+</span><span id="InventoryAndStats-34"><a href="#InventoryAndStats-34"><span class="linenos"> 34</span></a>
+</span><span id="InventoryAndStats-35"><a href="#InventoryAndStats-35"><span class="linenos"> 35</span></a>    <span class="k">def</span> <span class="nf">get_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-36"><a href="#InventoryAndStats-36"><span class="linenos"> 36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get oxen value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-37"><a href="#InventoryAndStats-37"><span class="linenos"> 37</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span>
+</span><span id="InventoryAndStats-38"><a href="#InventoryAndStats-38"><span class="linenos"> 38</span></a>
+</span><span id="InventoryAndStats-39"><a href="#InventoryAndStats-39"><span class="linenos"> 39</span></a>    <span class="k">def</span> <span class="nf">get_medicine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-40"><a href="#InventoryAndStats-40"><span class="linenos"> 40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get Medicine value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-41"><a href="#InventoryAndStats-41"><span class="linenos"> 41</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span>
+</span><span id="InventoryAndStats-42"><a href="#InventoryAndStats-42"><span class="linenos"> 42</span></a>
+</span><span id="InventoryAndStats-43"><a href="#InventoryAndStats-43"><span class="linenos"> 43</span></a>    <span class="k">def</span> <span class="nf">get_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-44"><a href="#InventoryAndStats-44"><span class="linenos"> 44</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get money value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-45"><a href="#InventoryAndStats-45"><span class="linenos"> 45</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="InventoryAndStats-46"><a href="#InventoryAndStats-46"><span class="linenos"> 46</span></a>
+</span><span id="InventoryAndStats-47"><a href="#InventoryAndStats-47"><span class="linenos"> 47</span></a>    <span class="k">def</span> <span class="nf">get_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-48"><a href="#InventoryAndStats-48"><span class="linenos"> 48</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get morale value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-49"><a href="#InventoryAndStats-49"><span class="linenos"> 49</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
+</span><span id="InventoryAndStats-50"><a href="#InventoryAndStats-50"><span class="linenos"> 50</span></a>
+</span><span id="InventoryAndStats-51"><a href="#InventoryAndStats-51"><span class="linenos"> 51</span></a>    <span class="k">def</span> <span class="nf">get_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-52"><a href="#InventoryAndStats-52"><span class="linenos"> 52</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-53"><a href="#InventoryAndStats-53"><span class="linenos"> 53</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+</span><span id="InventoryAndStats-54"><a href="#InventoryAndStats-54"><span class="linenos"> 54</span></a>
+</span><span id="InventoryAndStats-55"><a href="#InventoryAndStats-55"><span class="linenos"> 55</span></a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats-56"><a href="#InventoryAndStats-56"><span class="linenos"> 56</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-57"><a href="#InventoryAndStats-57"><span class="linenos"> 57</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span>
+</span><span id="InventoryAndStats-58"><a href="#InventoryAndStats-58"><span class="linenos"> 58</span></a>
+</span><span id="InventoryAndStats-59"><a href="#InventoryAndStats-59"><span class="linenos"> 59</span></a>    <span class="k">def</span> <span class="nf">set_food</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-60"><a href="#InventoryAndStats-60"><span class="linenos"> 60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set food value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-61"><a href="#InventoryAndStats-61"><span class="linenos"> 61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
+</span><span id="InventoryAndStats-62"><a href="#InventoryAndStats-62"><span class="linenos"> 62</span></a>
+</span><span id="InventoryAndStats-63"><a href="#InventoryAndStats-63"><span class="linenos"> 63</span></a>    <span class="k">def</span> <span class="nf">set_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-64"><a href="#InventoryAndStats-64"><span class="linenos"> 64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set ammo value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-65"><a href="#InventoryAndStats-65"><span class="linenos"> 65</span></a>        <span class="k">if</span> <span class="n">ammo</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats-66"><a href="#InventoryAndStats-66"><span class="linenos"> 66</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats-67"><a href="#InventoryAndStats-67"><span class="linenos"> 67</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats-68"><a href="#InventoryAndStats-68"><span class="linenos"> 68</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
+</span><span id="InventoryAndStats-69"><a href="#InventoryAndStats-69"><span class="linenos"> 69</span></a>
+</span><span id="InventoryAndStats-70"><a href="#InventoryAndStats-70"><span class="linenos"> 70</span></a>    <span class="k">def</span> <span class="nf">set_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-71"><a href="#InventoryAndStats-71"><span class="linenos"> 71</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set clothes value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-72"><a href="#InventoryAndStats-72"><span class="linenos"> 72</span></a>        <span class="k">if</span> <span class="n">clothes</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats-73"><a href="#InventoryAndStats-73"><span class="linenos"> 73</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats-74"><a href="#InventoryAndStats-74"><span class="linenos"> 74</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats-75"><a href="#InventoryAndStats-75"><span class="linenos"> 75</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
+</span><span id="InventoryAndStats-76"><a href="#InventoryAndStats-76"><span class="linenos"> 76</span></a>
+</span><span id="InventoryAndStats-77"><a href="#InventoryAndStats-77"><span class="linenos"> 77</span></a>    <span class="k">def</span> <span class="nf">set_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-78"><a href="#InventoryAndStats-78"><span class="linenos"> 78</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set parts value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-79"><a href="#InventoryAndStats-79"><span class="linenos"> 79</span></a>        <span class="k">if</span> <span class="n">parts</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats-80"><a href="#InventoryAndStats-80"><span class="linenos"> 80</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats-81"><a href="#InventoryAndStats-81"><span class="linenos"> 81</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats-82"><a href="#InventoryAndStats-82"><span class="linenos"> 82</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
+</span><span id="InventoryAndStats-83"><a href="#InventoryAndStats-83"><span class="linenos"> 83</span></a>
+</span><span id="InventoryAndStats-84"><a href="#InventoryAndStats-84"><span class="linenos"> 84</span></a>    <span class="k">def</span> <span class="nf">set_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-85"><a href="#InventoryAndStats-85"><span class="linenos"> 85</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-86"><a href="#InventoryAndStats-86"><span class="linenos"> 86</span></a>        <span class="k">if</span> <span class="n">oxen</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats-87"><a href="#InventoryAndStats-87"><span class="linenos"> 87</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats-88"><a href="#InventoryAndStats-88"><span class="linenos"> 88</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats-89"><a href="#InventoryAndStats-89"><span class="linenos"> 89</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+</span><span id="InventoryAndStats-90"><a href="#InventoryAndStats-90"><span class="linenos"> 90</span></a>
+</span><span id="InventoryAndStats-91"><a href="#InventoryAndStats-91"><span class="linenos"> 91</span></a>    <span class="k">def</span> <span class="nf">set_medicine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-92"><a href="#InventoryAndStats-92"><span class="linenos"> 92</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-93"><a href="#InventoryAndStats-93"><span class="linenos"> 93</span></a>        <span class="k">if</span> <span class="n">medicine</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats-94"><a href="#InventoryAndStats-94"><span class="linenos"> 94</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats-95"><a href="#InventoryAndStats-95"><span class="linenos"> 95</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats-96"><a href="#InventoryAndStats-96"><span class="linenos"> 96</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="n">medicine</span>
+</span><span id="InventoryAndStats-97"><a href="#InventoryAndStats-97"><span class="linenos"> 97</span></a>
+</span><span id="InventoryAndStats-98"><a href="#InventoryAndStats-98"><span class="linenos"> 98</span></a>    <span class="k">def</span> <span class="nf">set_money</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-99"><a href="#InventoryAndStats-99"><span class="linenos"> 99</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set money value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-100"><a href="#InventoryAndStats-100"><span class="linenos">100</span></a>        <span class="k">if</span> <span class="n">money</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats-101"><a href="#InventoryAndStats-101"><span class="linenos">101</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats-102"><a href="#InventoryAndStats-102"><span class="linenos">102</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats-103"><a href="#InventoryAndStats-103"><span class="linenos">103</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
+</span><span id="InventoryAndStats-104"><a href="#InventoryAndStats-104"><span class="linenos">104</span></a>
+</span><span id="InventoryAndStats-105"><a href="#InventoryAndStats-105"><span class="linenos">105</span></a>    <span class="k">def</span> <span class="nf">set_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-106"><a href="#InventoryAndStats-106"><span class="linenos">106</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-107"><a href="#InventoryAndStats-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
+</span><span id="InventoryAndStats-108"><a href="#InventoryAndStats-108"><span class="linenos">108</span></a>
+</span><span id="InventoryAndStats-109"><a href="#InventoryAndStats-109"><span class="linenos">109</span></a>    <span class="k">def</span> <span class="nf">set_health</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats-110"><a href="#InventoryAndStats-110"><span class="linenos">110</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set health value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-111"><a href="#InventoryAndStats-111"><span class="linenos">111</span></a>        <span class="k">if</span> <span class="n">health</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="InventoryAndStats-112"><a href="#InventoryAndStats-112"><span class="linenos">112</span></a>            <span class="n">health</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span id="InventoryAndStats-113"><a href="#InventoryAndStats-113"><span class="linenos">113</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+</span><span id="InventoryAndStats-114"><a href="#InventoryAndStats-114"><span class="linenos">114</span></a>
+</span><span id="InventoryAndStats-115"><a href="#InventoryAndStats-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="InventoryAndStats-116"><a href="#InventoryAndStats-116"><span class="linenos">116</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats-117"><a href="#InventoryAndStats-117"><span class="linenos">117</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">status</span>
 </span></pre></div>
 
 
@@ -288,22 +380,25 @@ inventoryAndStats    </h1>
                                         <input id="InventoryAndStats.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
-        <span class="name">InventoryAndStats</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">food</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">parts</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">money</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">morale</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">health</span><span class="p">:</span> <span class="nb">int</span></span>)</span>
+        <span class="name">InventoryAndStats</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">food</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">parts</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">money</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">morale</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">health</span><span class="p">:</span> <span class="nb">int</span></span>)</span>
 
                 <label class="view-source-button" for="InventoryAndStats.__init__-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.__init__-4"><a href="#InventoryAndStats.__init__-4"><span class="linenos"> 4</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span><span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.__init__-5"><a href="#InventoryAndStats.__init__-5"><span class="linenos"> 5</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the inventory values&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.__init__-6"><a href="#InventoryAndStats.__init__-6"><span class="linenos"> 6</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
-</span><span id="InventoryAndStats.__init__-7"><a href="#InventoryAndStats.__init__-7"><span class="linenos"> 7</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
-</span><span id="InventoryAndStats.__init__-8"><a href="#InventoryAndStats.__init__-8"><span class="linenos"> 8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
-</span><span id="InventoryAndStats.__init__-9"><a href="#InventoryAndStats.__init__-9"><span class="linenos"> 9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
-</span><span id="InventoryAndStats.__init__-10"><a href="#InventoryAndStats.__init__-10"><span class="linenos">10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
-</span><span id="InventoryAndStats.__init__-11"><a href="#InventoryAndStats.__init__-11"><span class="linenos">11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
-</span><span id="InventoryAndStats.__init__-12"><a href="#InventoryAndStats.__init__-12"><span class="linenos">12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
-</span><span id="InventoryAndStats.__init__-13"><a href="#InventoryAndStats.__init__-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.__init__-5"><a href="#InventoryAndStats.__init__-5"><span class="linenos"> 5</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span id="InventoryAndStats.__init__-6"><a href="#InventoryAndStats.__init__-6"><span class="linenos"> 6</span></a>                 <span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.__init__-7"><a href="#InventoryAndStats.__init__-7"><span class="linenos"> 7</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the inventory values&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.__init__-8"><a href="#InventoryAndStats.__init__-8"><span class="linenos"> 8</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
+</span><span id="InventoryAndStats.__init__-9"><a href="#InventoryAndStats.__init__-9"><span class="linenos"> 9</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
+</span><span id="InventoryAndStats.__init__-10"><a href="#InventoryAndStats.__init__-10"><span class="linenos">10</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
+</span><span id="InventoryAndStats.__init__-11"><a href="#InventoryAndStats.__init__-11"><span class="linenos">11</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
+</span><span id="InventoryAndStats.__init__-12"><a href="#InventoryAndStats.__init__-12"><span class="linenos">12</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+</span><span id="InventoryAndStats.__init__-13"><a href="#InventoryAndStats.__init__-13"><span class="linenos">13</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="n">medicine</span>
+</span><span id="InventoryAndStats.__init__-14"><a href="#InventoryAndStats.__init__-14"><span class="linenos">14</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
+</span><span id="InventoryAndStats.__init__-15"><a href="#InventoryAndStats.__init__-15"><span class="linenos">15</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
+</span><span id="InventoryAndStats.__init__-16"><a href="#InventoryAndStats.__init__-16"><span class="linenos">16</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+</span><span id="InventoryAndStats.__init__-17"><a href="#InventoryAndStats.__init__-17"><span class="linenos">17</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="s1">&#39;Healthy&#39;</span>
 </span></pre></div>
 
 
@@ -323,9 +418,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_food"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_food-15"><a href="#InventoryAndStats.get_food-15"><span class="linenos">15</span></a>    <span class="k">def</span> <span class="nf">get_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_food-16"><a href="#InventoryAndStats.get_food-16"><span class="linenos">16</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get food value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_food-17"><a href="#InventoryAndStats.get_food-17"><span class="linenos">17</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_food-19"><a href="#InventoryAndStats.get_food-19"><span class="linenos">19</span></a>    <span class="k">def</span> <span class="nf">get_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_food-20"><a href="#InventoryAndStats.get_food-20"><span class="linenos">20</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get food value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_food-21"><a href="#InventoryAndStats.get_food-21"><span class="linenos">21</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
 </span></pre></div>
 
 
@@ -345,9 +440,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_ammo"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_ammo-19"><a href="#InventoryAndStats.get_ammo-19"><span class="linenos">19</span></a>    <span class="k">def</span> <span class="nf">get_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_ammo-20"><a href="#InventoryAndStats.get_ammo-20"><span class="linenos">20</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get ammo value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_ammo-21"><a href="#InventoryAndStats.get_ammo-21"><span class="linenos">21</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_ammo-23"><a href="#InventoryAndStats.get_ammo-23"><span class="linenos">23</span></a>    <span class="k">def</span> <span class="nf">get_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_ammo-24"><a href="#InventoryAndStats.get_ammo-24"><span class="linenos">24</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get ammo value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_ammo-25"><a href="#InventoryAndStats.get_ammo-25"><span class="linenos">25</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span>
 </span></pre></div>
 
 
@@ -367,9 +462,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_clothes"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_clothes-23"><a href="#InventoryAndStats.get_clothes-23"><span class="linenos">23</span></a>    <span class="k">def</span> <span class="nf">get_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_clothes-24"><a href="#InventoryAndStats.get_clothes-24"><span class="linenos">24</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get clothes value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_clothes-25"><a href="#InventoryAndStats.get_clothes-25"><span class="linenos">25</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_clothes-27"><a href="#InventoryAndStats.get_clothes-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="nf">get_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_clothes-28"><a href="#InventoryAndStats.get_clothes-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get clothes value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_clothes-29"><a href="#InventoryAndStats.get_clothes-29"><span class="linenos">29</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span>
 </span></pre></div>
 
 
@@ -389,9 +484,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_parts"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_parts-27"><a href="#InventoryAndStats.get_parts-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="nf">get_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_parts-28"><a href="#InventoryAndStats.get_parts-28"><span class="linenos">28</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get parts value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_parts-29"><a href="#InventoryAndStats.get_parts-29"><span class="linenos">29</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_parts-31"><a href="#InventoryAndStats.get_parts-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">get_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_parts-32"><a href="#InventoryAndStats.get_parts-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get parts value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_parts-33"><a href="#InventoryAndStats.get_parts-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span>
 </span></pre></div>
 
 
@@ -411,13 +506,35 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_oxen"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_oxen-31"><a href="#InventoryAndStats.get_oxen-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">get_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_oxen-32"><a href="#InventoryAndStats.get_oxen-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get oxen value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_oxen-33"><a href="#InventoryAndStats.get_oxen-33"><span class="linenos">33</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_oxen-35"><a href="#InventoryAndStats.get_oxen-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">get_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_oxen-36"><a href="#InventoryAndStats.get_oxen-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get oxen value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_oxen-37"><a href="#InventoryAndStats.get_oxen-37"><span class="linenos">37</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>get oxen value</p>
+</div>
+
+
+                            </div>
+                            <div id="InventoryAndStats.get_medicine" class="classattr">
+                                        <input id="InventoryAndStats.get_medicine-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_medicine</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="InventoryAndStats.get_medicine-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#InventoryAndStats.get_medicine"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_medicine-39"><a href="#InventoryAndStats.get_medicine-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">get_medicine</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_medicine-40"><a href="#InventoryAndStats.get_medicine-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get Medicine value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_medicine-41"><a href="#InventoryAndStats.get_medicine-41"><span class="linenos">41</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>get Medicine value</p>
 </div>
 
 
@@ -433,9 +550,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_money"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_money-35"><a href="#InventoryAndStats.get_money-35"><span class="linenos">35</span></a>    <span class="k">def</span> <span class="nf">get_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_money-36"><a href="#InventoryAndStats.get_money-36"><span class="linenos">36</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get money value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_money-37"><a href="#InventoryAndStats.get_money-37"><span class="linenos">37</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_money-43"><a href="#InventoryAndStats.get_money-43"><span class="linenos">43</span></a>    <span class="k">def</span> <span class="nf">get_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_money-44"><a href="#InventoryAndStats.get_money-44"><span class="linenos">44</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get money value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_money-45"><a href="#InventoryAndStats.get_money-45"><span class="linenos">45</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
 </span></pre></div>
 
 
@@ -455,9 +572,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_morale"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_morale-39"><a href="#InventoryAndStats.get_morale-39"><span class="linenos">39</span></a>    <span class="k">def</span> <span class="nf">get_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_morale-40"><a href="#InventoryAndStats.get_morale-40"><span class="linenos">40</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get morale value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_morale-41"><a href="#InventoryAndStats.get_morale-41"><span class="linenos">41</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_morale-47"><a href="#InventoryAndStats.get_morale-47"><span class="linenos">47</span></a>    <span class="k">def</span> <span class="nf">get_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_morale-48"><a href="#InventoryAndStats.get_morale-48"><span class="linenos">48</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get morale value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_morale-49"><a href="#InventoryAndStats.get_morale-49"><span class="linenos">49</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
 </span></pre></div>
 
 
@@ -477,9 +594,31 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.get_health"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_health-43"><a href="#InventoryAndStats.get_health-43"><span class="linenos">43</span></a>    <span class="k">def</span> <span class="nf">get_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="InventoryAndStats.get_health-44"><a href="#InventoryAndStats.get_health-44"><span class="linenos">44</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.get_health-45"><a href="#InventoryAndStats.get_health-45"><span class="linenos">45</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_health-51"><a href="#InventoryAndStats.get_health-51"><span class="linenos">51</span></a>    <span class="k">def</span> <span class="nf">get_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_health-52"><a href="#InventoryAndStats.get_health-52"><span class="linenos">52</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_health-53"><a href="#InventoryAndStats.get_health-53"><span class="linenos">53</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>get health value</p>
+</div>
+
+
+                            </div>
+                            <div id="InventoryAndStats.get_status" class="classattr">
+                                        <input id="InventoryAndStats.get_status-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_status</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="InventoryAndStats.get_status-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#InventoryAndStats.get_status"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.get_status-55"><a href="#InventoryAndStats.get_status-55"><span class="linenos">55</span></a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="InventoryAndStats.get_status-56"><a href="#InventoryAndStats.get_status-56"><span class="linenos">56</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;get health value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.get_status-57"><a href="#InventoryAndStats.get_status-57"><span class="linenos">57</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span>
 </span></pre></div>
 
 
@@ -499,9 +638,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_food"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_food-47"><a href="#InventoryAndStats.set_food-47"><span class="linenos">47</span></a>    <span class="k">def</span> <span class="nf">set_food</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_food-48"><a href="#InventoryAndStats.set_food-48"><span class="linenos">48</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set food value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_food-49"><a href="#InventoryAndStats.set_food-49"><span class="linenos">49</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_food-59"><a href="#InventoryAndStats.set_food-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">set_food</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_food-60"><a href="#InventoryAndStats.set_food-60"><span class="linenos">60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set food value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_food-61"><a href="#InventoryAndStats.set_food-61"><span class="linenos">61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="n">food</span>
 </span></pre></div>
 
 
@@ -521,9 +660,12 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_ammo"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_ammo-51"><a href="#InventoryAndStats.set_ammo-51"><span class="linenos">51</span></a>    <span class="k">def</span> <span class="nf">set_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_ammo-52"><a href="#InventoryAndStats.set_ammo-52"><span class="linenos">52</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set ammo value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_ammo-53"><a href="#InventoryAndStats.set_ammo-53"><span class="linenos">53</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_ammo-63"><a href="#InventoryAndStats.set_ammo-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">set_ammo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ammo</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_ammo-64"><a href="#InventoryAndStats.set_ammo-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set ammo value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_ammo-65"><a href="#InventoryAndStats.set_ammo-65"><span class="linenos">65</span></a>        <span class="k">if</span> <span class="n">ammo</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_ammo-66"><a href="#InventoryAndStats.set_ammo-66"><span class="linenos">66</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats.set_ammo-67"><a href="#InventoryAndStats.set_ammo-67"><span class="linenos">67</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_ammo-68"><a href="#InventoryAndStats.set_ammo-68"><span class="linenos">68</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_ammo</span> <span class="o">=</span> <span class="n">ammo</span>
 </span></pre></div>
 
 
@@ -543,9 +685,12 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_clothes"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_clothes-55"><a href="#InventoryAndStats.set_clothes-55"><span class="linenos">55</span></a>    <span class="k">def</span> <span class="nf">set_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_clothes-56"><a href="#InventoryAndStats.set_clothes-56"><span class="linenos">56</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set clothes value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_clothes-57"><a href="#InventoryAndStats.set_clothes-57"><span class="linenos">57</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_clothes-70"><a href="#InventoryAndStats.set_clothes-70"><span class="linenos">70</span></a>    <span class="k">def</span> <span class="nf">set_clothes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">clothes</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_clothes-71"><a href="#InventoryAndStats.set_clothes-71"><span class="linenos">71</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set clothes value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_clothes-72"><a href="#InventoryAndStats.set_clothes-72"><span class="linenos">72</span></a>        <span class="k">if</span> <span class="n">clothes</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_clothes-73"><a href="#InventoryAndStats.set_clothes-73"><span class="linenos">73</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats.set_clothes-74"><a href="#InventoryAndStats.set_clothes-74"><span class="linenos">74</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_clothes-75"><a href="#InventoryAndStats.set_clothes-75"><span class="linenos">75</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_clothes</span> <span class="o">=</span> <span class="n">clothes</span>
 </span></pre></div>
 
 
@@ -565,9 +710,12 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_parts"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_parts-59"><a href="#InventoryAndStats.set_parts-59"><span class="linenos">59</span></a>    <span class="k">def</span> <span class="nf">set_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_parts-60"><a href="#InventoryAndStats.set_parts-60"><span class="linenos">60</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set parts value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_parts-61"><a href="#InventoryAndStats.set_parts-61"><span class="linenos">61</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_parts-77"><a href="#InventoryAndStats.set_parts-77"><span class="linenos">77</span></a>    <span class="k">def</span> <span class="nf">set_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parts</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_parts-78"><a href="#InventoryAndStats.set_parts-78"><span class="linenos">78</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set parts value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_parts-79"><a href="#InventoryAndStats.set_parts-79"><span class="linenos">79</span></a>        <span class="k">if</span> <span class="n">parts</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_parts-80"><a href="#InventoryAndStats.set_parts-80"><span class="linenos">80</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats.set_parts-81"><a href="#InventoryAndStats.set_parts-81"><span class="linenos">81</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_parts-82"><a href="#InventoryAndStats.set_parts-82"><span class="linenos">82</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_parts</span> <span class="o">=</span> <span class="n">parts</span>
 </span></pre></div>
 
 
@@ -587,9 +735,37 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_oxen"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_oxen-63"><a href="#InventoryAndStats.set_oxen-63"><span class="linenos">63</span></a>    <span class="k">def</span> <span class="nf">set_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_oxen-64"><a href="#InventoryAndStats.set_oxen-64"><span class="linenos">64</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_oxen-65"><a href="#InventoryAndStats.set_oxen-65"><span class="linenos">65</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_oxen-84"><a href="#InventoryAndStats.set_oxen-84"><span class="linenos">84</span></a>    <span class="k">def</span> <span class="nf">set_oxen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oxen</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_oxen-85"><a href="#InventoryAndStats.set_oxen-85"><span class="linenos">85</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_oxen-86"><a href="#InventoryAndStats.set_oxen-86"><span class="linenos">86</span></a>        <span class="k">if</span> <span class="n">oxen</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_oxen-87"><a href="#InventoryAndStats.set_oxen-87"><span class="linenos">87</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats.set_oxen-88"><a href="#InventoryAndStats.set_oxen-88"><span class="linenos">88</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_oxen-89"><a href="#InventoryAndStats.set_oxen-89"><span class="linenos">89</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_oxen</span> <span class="o">=</span> <span class="n">oxen</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>set oxen value</p>
+</div>
+
+
+                            </div>
+                            <div id="InventoryAndStats.set_medicine" class="classattr">
+                                        <input id="InventoryAndStats.set_medicine-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">set_medicine</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="InventoryAndStats.set_medicine-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#InventoryAndStats.set_medicine"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_medicine-91"><a href="#InventoryAndStats.set_medicine-91"><span class="linenos">91</span></a>    <span class="k">def</span> <span class="nf">set_medicine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">medicine</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_medicine-92"><a href="#InventoryAndStats.set_medicine-92"><span class="linenos">92</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set oxen value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_medicine-93"><a href="#InventoryAndStats.set_medicine-93"><span class="linenos">93</span></a>        <span class="k">if</span> <span class="n">medicine</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_medicine-94"><a href="#InventoryAndStats.set_medicine-94"><span class="linenos">94</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats.set_medicine-95"><a href="#InventoryAndStats.set_medicine-95"><span class="linenos">95</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_medicine-96"><a href="#InventoryAndStats.set_medicine-96"><span class="linenos">96</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_medicine</span> <span class="o">=</span> <span class="n">medicine</span>
 </span></pre></div>
 
 
@@ -609,9 +785,12 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_money"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_money-67"><a href="#InventoryAndStats.set_money-67"><span class="linenos">67</span></a>    <span class="k">def</span> <span class="nf">set_money</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_money-68"><a href="#InventoryAndStats.set_money-68"><span class="linenos">68</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set money value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_money-69"><a href="#InventoryAndStats.set_money-69"><span class="linenos">69</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_money-98"><a href="#InventoryAndStats.set_money-98"><span class="linenos"> 98</span></a>    <span class="k">def</span> <span class="nf">set_money</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">money</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_money-99"><a href="#InventoryAndStats.set_money-99"><span class="linenos"> 99</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set money value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_money-100"><a href="#InventoryAndStats.set_money-100"><span class="linenos">100</span></a>        <span class="k">if</span> <span class="n">money</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_money-101"><a href="#InventoryAndStats.set_money-101"><span class="linenos">101</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="InventoryAndStats.set_money-102"><a href="#InventoryAndStats.set_money-102"><span class="linenos">102</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_money-103"><a href="#InventoryAndStats.set_money-103"><span class="linenos">103</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="n">money</span>
 </span></pre></div>
 
 
@@ -631,9 +810,9 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_morale"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_morale-71"><a href="#InventoryAndStats.set_morale-71"><span class="linenos">71</span></a>    <span class="k">def</span> <span class="nf">set_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_morale-72"><a href="#InventoryAndStats.set_morale-72"><span class="linenos">72</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_morale-73"><a href="#InventoryAndStats.set_morale-73"><span class="linenos">73</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_morale-105"><a href="#InventoryAndStats.set_morale-105"><span class="linenos">105</span></a>    <span class="k">def</span> <span class="nf">set_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">morale</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_morale-106"><a href="#InventoryAndStats.set_morale-106"><span class="linenos">106</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_morale-107"><a href="#InventoryAndStats.set_morale-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="n">morale</span>
 </span></pre></div>
 
 
@@ -653,13 +832,37 @@ inventoryAndStats    </h1>
 
     </div>
     <a class="headerlink" href="#InventoryAndStats.set_health"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_health-75"><a href="#InventoryAndStats.set_health-75"><span class="linenos">75</span></a>    <span class="k">def</span> <span class="nf">set_health</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-</span><span id="InventoryAndStats.set_health-76"><a href="#InventoryAndStats.set_health-76"><span class="linenos">76</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set health value&quot;&quot;&quot;</span>
-</span><span id="InventoryAndStats.set_health-77"><a href="#InventoryAndStats.set_health-77"><span class="linenos">77</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_health-109"><a href="#InventoryAndStats.set_health-109"><span class="linenos">109</span></a>    <span class="k">def</span> <span class="nf">set_health</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">health</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_health-110"><a href="#InventoryAndStats.set_health-110"><span class="linenos">110</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set health value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_health-111"><a href="#InventoryAndStats.set_health-111"><span class="linenos">111</span></a>        <span class="k">if</span> <span class="n">health</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="InventoryAndStats.set_health-112"><a href="#InventoryAndStats.set_health-112"><span class="linenos">112</span></a>            <span class="n">health</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span id="InventoryAndStats.set_health-113"><a href="#InventoryAndStats.set_health-113"><span class="linenos">113</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="n">health</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>set health value</p>
+</div>
+
+
+                            </div>
+                            <div id="InventoryAndStats.set_status" class="classattr">
+                                        <input id="InventoryAndStats.set_status-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">set_status</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">status</span><span class="p">:</span> <span class="nb">str</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="InventoryAndStats.set_status-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#InventoryAndStats.set_status"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="InventoryAndStats.set_status-115"><a href="#InventoryAndStats.set_status-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">set_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="InventoryAndStats.set_status-116"><a href="#InventoryAndStats.set_status-116"><span class="linenos">116</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;set morale value&quot;&quot;&quot;</span>
+</span><span id="InventoryAndStats.set_status-117"><a href="#InventoryAndStats.set_status-117"><span class="linenos">117</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">status</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>set morale value</p>
 </div>
 
 

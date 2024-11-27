@@ -4,13 +4,15 @@ import PySimpleGUI as sg
 
 
 def is_peaceful(area):
-    """Returns True if the area is peaceful, False otherwise. For now, it's random."""
+    """Returns True if the area is peaceful,
+    False otherwise. For now, it's random."""
     # Simulate the peace status of the area, 70% chance peaceful.
     return random.choice([True, False])  # 70% peaceful, 30% encounter
 
 
 def take_rest(_act, _inv):
-    """Allow the player to rest for a specified number of days in a peaceful area."""
+    """Allow the player to rest for a
+    specified number of days in a peaceful area."""
     # Check if the area is peaceful
     if not is_peaceful(_act.get_location()):
         sg.popup("This area is not peaceful. You cannot rest here.")
@@ -25,7 +27,7 @@ def take_rest(_act, _inv):
          sg.Button("Cancel", size=(12, 2), font=('Helvetica', 14))]
     ]
 
-    rest_window = sg.Window("Take a Rest", layout, size=(400, 300))
+    rest_window = sg.Window("Take a Rest", layout, size=(500, 400))
 
     # Event loop
     while True:
@@ -45,13 +47,14 @@ def take_rest(_act, _inv):
                 [sg.Text("The night sky is beautiful... Resting...", font=('Helvetica', 20))],
                 [sg.Image(filename="night_sky.png")]
             ]
-            night_window = sg.Window("Night Sky", layout_night, size=(400, 300), no_titlebar=True, grab_anywhere=True)
+            night_window = sg.Window("Night Sky", layout_night,
+                                     size=(400, 300), no_titlebar=True, grab_anywhere=True)
             night_window.read(timeout=3000)  # Show the night sky for 3 seconds
             night_window.close()
 
             # Apply the resting effect: increase health/morale
-            if _inv.get_health() < 100:  # Cap the health at 100
-                _inv.set_health(min(100, _inv.get_health() + days * 10))  # Increase health by 10 per day
+            if _inv.get_health() < 10:  # Cap the health at 10
+                _inv.set_health(min(10, _inv.get_health() + days))  # Increase health by 10 per day
             if _inv.get_morale() < 100:  # Cap the morale at 100
                 _inv.set_morale(min(100, _inv.get_morale() + days * 5))  # Increase morale by 5 per day
 
