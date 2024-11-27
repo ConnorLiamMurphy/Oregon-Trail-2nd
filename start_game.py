@@ -10,6 +10,7 @@ from show_inventory import show_inventory
 from parameters import select_travel_parameters, select_class_parameters
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
+from story import show_story
 from take_rest import take_rest
 from traveling import traveling
 from view_status import view_status
@@ -18,9 +19,10 @@ from view_status import view_status
 def start_game():
     """open the window for the main game loop and menu for the player"""
     # initialize inventory class
+    # Prints the beginning story(This can be changed in story.py)
+    show_story()
     _inv = InventoryAndStats(0, 0, 0, 0, 0, 0, 0, 5, 10)
     _class, _weapon, _skill = select_class_parameters()
-    # isn't class supposed to set starting cash amount?
     buy_supplies(_inv)  # Enter the store to buy supplies(store.py)
 
     # Get travel parameters from the player
@@ -32,8 +34,6 @@ def start_game():
     _layout = [
         [sg.Text('Game Started!', font=('Helvetica', 20), key='-GAME-')],
         [sg.Text(f'Current Location: {_act.get_location()}', font=('Helvetica', 16), key='-LOCATION-')],
-        [sg.Text(f'Morale: {_inv.get_morale()}', key='-MORALE-')],
-        [sg.Text(f'Health: {_inv.get_health()}', key='-HEALTH-')],
         [sg.Text(f'Food: {_inv.get_food()}', key='-FOOD-')],
         [sg.Text(f'Distance Left: {_act.get_distance()}', key='-DISTANCE-')],
         [sg.Text(f'Date: {_act.get_date()}', key='-DATE-')],
