@@ -33,6 +33,7 @@ def select_travel_parameters():
 
 
 def select_class_parameters():
+    """set the values of the players class from the GUI"""
     _layout = [
         [sg.Text('Select your character class (Merchant, Hunter, Guide):')],
         [sg.Combo(['Hunter', 'Merchant', 'Guide'], default_value='Hunter', key='-CLASS-')],
@@ -60,4 +61,3 @@ def select_class_parameters():
 
     _window.close()
     return _class, _weapon, _skill
-

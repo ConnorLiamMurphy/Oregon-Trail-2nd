@@ -8,14 +8,16 @@ class Decision:
 
     @staticmethod
     def _load_decisions():
-        """load decisions from the decisions file and append them to the _DECISIONS list"""
+        """load decisions from the decisions file and
+        append them to the _DECISIONS list"""
         with open('./decisions', 'r') as f:
             _reader = csv.reader(f)
             for row in _reader:
                 Decision._DECISIONS.append(row)
 
     def __init__(self, encounter: Encounter, kb_input: int):
-        """create a decision with the changes to the encounter passed in based on the input given"""
+        """create a decision with the changes to the
+        encounter passed in based on the input given"""
         Decision._load_decisions()
         self._kb_input = kb_input
         self._encounter = encounter
@@ -50,7 +52,8 @@ class Decision:
             self._diff_extra_change = self._changes[11]
 
     def make_decision(self):
-        """change the values of the encounter then call the encounters method to finalize the encounter"""
+        """change the values of the encounter then call
+        the encounters method to finalize the encounter"""
         if self._valid:
             self._encounter.set_food_change(
                 int(self._encounter.get_food_change()) + int(self._diff_food))

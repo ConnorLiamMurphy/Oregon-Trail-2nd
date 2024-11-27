@@ -8,7 +8,8 @@ from inventoryAndStats import InventoryAndStats
 
 # Buying supplies at the beginning of the game(Logic here can be revisited)
 def buy_supplies(inventory: InventoryAndStats):
-    """open the store window which allows the player to buy items with their money until closed"""
+    """open the store window which allows the player
+    to buy items with their money until closed"""
     # Starting money(This can change)
     _total_money = 700
     # Set the player's starting money

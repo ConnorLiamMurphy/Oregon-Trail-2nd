@@ -6,6 +6,7 @@ from show_inventory import show_inventory
 
 
 def manage_supplies(act: Actions, inv: InventoryAndStats):
+    """allow the user to manage and use their supplies in the GUI"""
     _layout = [
         [sg.Text('Select your travel speed (Slow, Moderate, Quick):')],
         [sg.Combo(['Slow', 'Moderate', 'Quick'], default_value=f'{act.get_travel_speed()}', key='-SPEED-')],
@@ -55,7 +56,8 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
                     act.set_travel_speed('Moderate')
                     inv.set_parts(inv.get_parts() - 1)
                     _supply_window.close()  # Close the current window
-                    _supply_window = sg.Window("Game", _layout, size=(500, 400), finalize=True)  # open with new layout
+                    # open with new layout
+                    _supply_window = sg.Window("Game", _layout, size=(500, 400), finalize=True)
                     _supply_window['-SPEED-'].update(value=act.get_travel_speed())
                 else:
                     sg.popup('You don\'t have the supplies to fix the cart', title='No parts')

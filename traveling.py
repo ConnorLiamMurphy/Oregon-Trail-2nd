@@ -4,7 +4,8 @@ from manage_supplies import manage_supplies
 
 
 def traveling(act: Actions):
-    """show the window that displays the traveling progress of the player when not at a landmark."""
+    """show the window that displays the traveling progress
+    of the player when not at a landmark."""
     # game states and other variables
     _distance = act.get_distance()
 

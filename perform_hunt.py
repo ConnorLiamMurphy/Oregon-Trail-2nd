@@ -5,6 +5,7 @@ from inventoryAndStats import InventoryAndStats
 
 
 def perform_hunt(act: Actions, inv: InventoryAndStats):
+    """set the values tou use for the hunt from the GUI and then hunt"""
     ammo = []
     if inv.get_ammo() <= 6:
         for i in range(1, inv.get_ammo() + 1):

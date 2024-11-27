@@ -5,7 +5,8 @@ from inventoryAndStats import InventoryAndStats
 
 
 class Actions:
-    """any functions that are necessary to perform an action will be run from here"""
+    """any functions that are necessary to
+    perform an action will be run from here"""
 
     def __init__(self, distance: int, inventory: InventoryAndStats, travel_speed: str, rations: str, date: str):
         """initialize any necessary variables to do any actions"""
@@ -94,8 +95,8 @@ class Actions:
         return self._hunted
 
     def travel(self):
-        """decrease distance by your travel speed and food by your ration amount
-        then return either your distance, encounter or landmark."""
+        """decrease distance by your travel speed and food by your ration
+        amount then return either your distance, encounter or landmark."""
         self._distance -= self._miles_per_day
         self.increment_date()
         self._inventory.set_food(self._inventory.get_food() - self._daily_food_loss)
@@ -104,7 +105,7 @@ class Actions:
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
-            if random.randint(1, 100) <= 95:
+            if random.randint(1, 100) <= 5:
                 _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
@@ -195,9 +196,9 @@ class Actions:
         if time_spent == 3:
             _injury_chance += 60
             _success_chance += 10
-        for i in range(1,ammo_used+1):
+        for i in range(1, ammo_used + 1):
             if random.randint(1, 100) <= _success_chance:
-                if not random.randint(1,100) <= _misfire_chance:
+                if not random.randint(1, 100) <= _misfire_chance:
                     _food_gained += 15
                 else:
                     self._inventory.set_health(self._inventory.get_health() - 1)
@@ -209,8 +210,3 @@ class Actions:
             _injuries += 2
         self._inventory.set_food(self._inventory.get_food() + _food_gained)
         return _food_gained, _injuries
-
-
-
-
-

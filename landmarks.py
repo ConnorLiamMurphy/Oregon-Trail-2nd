@@ -7,14 +7,16 @@ class Landmark:
 
     @staticmethod
     def _load_locations():
-        """load locations from the locations file and append them to the _LOCATIONS list"""
+        """load locations from the locations file and
+        append them to the _LOCATIONS list"""
         with open('./locations', 'r') as f:
             _reader = csv.reader(f)
             for row in _reader:
                 Landmark._LOCATIONS.append(row)
 
     def __init__(self):
-        """Create the list of names and corresponding distances of each location"""
+        """Create the list of names and
+        corresponding distances of each location"""
         Landmark._load_locations()
         self._name = []
         self._distance = []

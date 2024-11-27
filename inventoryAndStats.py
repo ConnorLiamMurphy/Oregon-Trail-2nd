@@ -1,8 +1,8 @@
 class InventoryAndStats:
     """hold the inventory and player status values"""
 
-    def __init__(self, food: int, ammo: int, clothes: int, parts: int, oxen: int, medicine: int, money: int,
-                 morale: int, health: int):
+    def __init__(self, food: int, ammo: int, clothes: int, parts: int, oxen: int,
+                 medicine: int, money: int, morale: int, health: int):
         """initialize the inventory values"""
         self._food = food
         self._ammo = ammo

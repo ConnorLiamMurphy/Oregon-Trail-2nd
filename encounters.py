@@ -4,19 +4,22 @@ from inventoryAndStats import InventoryAndStats
 
 
 class Encounter:
-    """randomly chose a encounter and change the inventory values of the player if encountered"""
+    """randomly chose a encounter and change the
+    inventory values of the player if encountered"""
     _STATS = []
 
     @staticmethod
     def _load_stats():
-        """load encounters from the encounter_stats file and append them to the _STATS list"""
+        """load encounters from the encounter_stats
+        file and append them to the _STATS list"""
         with open('./encounter_stats', 'r') as f:
             _reader = csv.reader(f)
             for row in _reader:
                 Encounter._STATS.append(row)
 
     def __init__(self, inventory: InventoryAndStats, actions):
-        """create a random encounter and assign the values to individual variables"""
+        """create a random encounter and assign
+        the values to individual variables"""
         Encounter._load_stats()
         self._encounter = random.choice(Encounter._STATS)
         self._inventory = inventory
@@ -141,6 +144,8 @@ class Encounter:
         return self._prompt
 
     def change_encounter(self):
+        """if the encounter doesn't meet the expected
+        requirements from your current values change the encounter"""
         self._encounter = random.choice(Encounter._STATS)
         self._name = self._encounter[0]
         print(self._name)
