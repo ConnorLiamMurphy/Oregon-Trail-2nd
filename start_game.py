@@ -80,8 +80,6 @@ def start_game():
             if not _var_type:
                 break
             _game_window['-LOCATION-'].update(f'Current Location: {_act.get_location()}')
-            _game_window['-MORALE-'].update(f'Morale: {_inv.get_morale()}')
-            _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
             _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
             _game_window['-DISTANCE-'].update(f'Distance Left: {_act.get_distance()}')
             _game_window['-DATE-'].update(f'Date: {_act.get_date()}')

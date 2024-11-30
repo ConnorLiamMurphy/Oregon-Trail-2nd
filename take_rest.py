@@ -27,7 +27,7 @@ def take_rest(_act, _inv):
          sg.Button("Cancel", size=(12, 2), font=('Helvetica', 14))]
     ]
 
-    rest_window = sg.Window("Take a Rest", layout, size=(500, 400))
+    rest_window = sg.Window("Take a Rest", layout, size=(700, 400))
 
     # Event loop
     while True:
@@ -48,7 +48,7 @@ def take_rest(_act, _inv):
                 [sg.Image(filename="night_sky.png")]
             ]
             night_window = sg.Window("Night Sky", layout_night,
-                                     size=(400, 300), no_titlebar=True, grab_anywhere=True)
+                                     size=(500, 300), no_titlebar=True, grab_anywhere=True)
             night_window.read(timeout=3000)  # Show the night sky for 3 seconds
             night_window.close()
 
