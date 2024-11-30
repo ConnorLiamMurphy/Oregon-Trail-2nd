@@ -36,7 +36,7 @@ def select_travel_parameters():
     return _travel_speed, _rations, _date
 
 
-def select_class_parameters():   #FIXME
+def select_class_parameters():
     """set the values of the players class from the GUI"""
     _layout = [
         # Display the background image
