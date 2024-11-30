@@ -1,11 +1,10 @@
 You found some extra food!,10,0,0,0,0,0,0,0,0,False,None,Chilly.Temperate.Warm.Hot,None,None
 You encountered a storm! Lose some supplies.,-5,0,-1,0,0,0,0,0,0,False,None,None,None,None
-You met a helpful traveler.,0,0,0,0,0,0,0,1,0,False,None,Chilly.Temperate.Warm.Hot,None,None
-You lost some supplies due to a raccoon!,-5,0,0,0,0,0,0,0,0,False,None,Chilly.Temperate.Warm.Hot,None,None
+You met a helpful space traveler.,0,0,0,0,0,0,0,1,0,False,None,Chilly.Temperate.Warm.Hot,None,None
+You lost some supplies due to a scavenger!,-5,0,0,0,0,0,0,0,0,False,None,Chilly.Temperate.Warm.Hot,None,None
 You found a shortcut! Gain morale.,0,0,0,0,0,0,0,1,0,False,None,None,None,None
-One of your oxen ran off. 1: do you go after them? 2: or keep going?,0,0,0,0,0,-1,0,0,0,True,None,Warm.Hot,None,None
-One of your oxen died from illness. 1: Do you eat it? 2: or leave it behind?,0,0,0,0,0,-1,0,0,0,True,None,Cold.Chilly,Quick,None
-Your axel has broken,0,0,0,0,0,0,0,0,0,False,Break,None,Moderate.Quick,None
+One of your engines broke. 1: do you stop and fix it? 2: or keep going?,0,0,0,0,0,-1,0,0,0,True,None,Warm.Hot,None,None
+Your ship has broken,0,0,0,0,0,0,0,0,0,False,Break,None,Moderate.Quick,None
 You have contracted Dysentery,0,0,0,0,0,0,0,0,0,False,Dysentery,Temperate.Warm.Hot,None,None
-You encounter a raging river. 1: Do you attempt to cross it? 2: Do you wait for a ferry? 3: Do you wait for it to die down?,0,0,0,0,0,0,0,0,0,True,None,Chilly.Warm.Temperate.Hot,None,None
-You have found some berries along the trail. 1: Do you eat them? 2: or leave them alone?,5,0,0,0,0,0,0,0,0,True,Dysentery,Chilly.Temperate.Warm.Hot,None,Light
+You encounter an asteroid belt. 1: Do you attempt to cross it? 2: Do you wait for a clear passage? 3: Do you wait for it to die down?,0,0,0,0,0,0,0,0,0,True,None,Chilly.Warm.Temperate.Hot,None,None
+You found a space-sandwich in your air-lock. 1: Do you eat it? 2: or leave them it?,5,0,0,0,0,0,0,0,0,True,Dysentery,Chilly.Temperate.Warm.Hot,None,Light

@@ -11,8 +11,8 @@ def show_inventory(inventory: InventoryAndStats):
         [sg.Text(f'Food: {inventory.get_food()}', font=('Helvetica', 16))],
         [sg.Text(f'Ammo: {inventory.get_ammo()}', font=('Helvetica', 16))],
         [sg.Text(f'Clothes: {inventory.get_clothes()}', font=('Helvetica', 16))],
-        [sg.Text(f'Wagon Parts: {inventory.get_parts()}', font=('Helvetica', 16))],
-        [sg.Text(f'Oxen: {inventory.get_oxen()}', font=('Helvetica', 16))],
+        [sg.Text(f'Ship Parts: {inventory.get_parts()}', font=('Helvetica', 16))],
+        [sg.Text(f'Engines: {inventory.get_oxen()}', font=('Helvetica', 16))],
         [sg.Text(f'Medicine: {inventory.get_medicine()}', font=('Helvetica', 16))],
         [sg.Text(f'money: {inventory.get_money()}', font=('Helvetica', 16))],
         [sg.Button('Return to Game', size=(15, 2), font=('Helvetica', 16))]

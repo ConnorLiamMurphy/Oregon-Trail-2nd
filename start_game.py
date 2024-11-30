@@ -15,8 +15,11 @@ from take_rest import take_rest
 from traveling import traveling
 from view_status import view_status
 
+#Use Pygbag to make a web browser game
 
 def start_game():
+    button_image = r'images/new_button.png'
+    sg.theme("Dark Blue 2")
     """open the window for the main game loop and menu for the player"""
     # initialize inventory class
     # Prints the beginning story(This can be changed in story.py)
@@ -31,23 +34,37 @@ def start_game():
     # initialize action class and set travel distance, speed, and rations
     _act = Actions(500, _inv, _travel_speed, _rations, _date)
     # This is what the game window will look like(Lots of work here still)
+
     _layout = [
-        [sg.Text('Game Started!', font=('Helvetica', 20), key='-GAME-')],
-        [sg.Text(f'Current Location: {_act.get_location()}', font=('Helvetica', 16), key='-LOCATION-')],
-        [sg.Text(f'Food: {_inv.get_food()}', key='-FOOD-')],
-        [sg.Text(f'Distance Left: {_act.get_distance()}', key='-DISTANCE-')],
-        [sg.Text(f'Date: {_act.get_date()}', key='-DATE-')],
-        [sg.Button('Travel', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Check Inventory', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('View Status', size=(10, 2), font=('Helvetica', 16))],
-        [sg.Button('Manage Supplies', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Initiate Trade', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Take Rest', size=(10, 2), font=('Helvetica', 16))],
-        [sg.Button('Go Hunting', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))]
+        # Single row containing two columns: left-aligned text and right-aligned buttons
+        [
+            # Left-aligned text column
+            sg.Column([
+                [sg.Text('Game Started!', font=('Helvetica', 20, "bold"), key='-GAME-', justification='left')],
+                [sg.Text(f'Current Location: {_act.get_location()}', font=('Helvetica', 16,"bold"), key='-LOCATION-',
+                         justification='left')],
+                [sg.Text(f'Food: {_inv.get_food()}', key='-FOOD-', justification='left')],
+                [sg.Text(f'Distance Left: {_act.get_distance()} light years', key='-DISTANCE-', justification='left')],
+                [sg.Text(f'Date: {_act.get_date()}', key='-DATE-', justification='left')],
+                [sg.Image(r'images/Spaceship.png', size=(500, 479))]  # Image placed below the text
+            ], element_justification='left'),
+
+            # Right-aligned buttons column
+            sg.Column([
+                [sg.Button('Travel', size=(10, 2), image_filename=button_image, font=('Orbitron', 16))],
+                [sg.Button('Check Inventory', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('View Status', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('Manage Supplies', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('Initiate Trade', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('Take Rest', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('Go Hunting', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('Quit', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))]
+            ], justification='right', vertical_alignment='top')  # Ensure buttons align vertically on the right side
+        ]
     ]
+
     # This is what the game window will look like(Lots of work here still)
-    _game_window = sg.Window('Game', _layout, size=(600, 500))
+    _game_window = sg.Window('Game', _layout, size=(800, 700))
 
     # Event loop
     while True:
@@ -68,7 +85,7 @@ def start_game():
                     elif _inv.get_morale() <= 0:
                         sg.popup('You are hopeless and can\'t keep going! Game Over!')
                     elif _inv.get_oxen() <= 0 and _act.get_travel_speed() == 'Broken':
-                        sg.popup('You\'re wagon is completely inoperable! Game Over!')
+                        sg.popup('You\'re ship is completely inoperable! Game Over!')
                     elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Cold':
                         sg.popup('You have died of hypothermia in the cold! Game Over!')
                     elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Hot':
@@ -83,7 +100,7 @@ def start_game():
             _game_window['-MORALE-'].update(f'Morale: {_inv.get_morale()}')
             _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
             _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
-            _game_window['-DISTANCE-'].update(f'Distance Left: {_act.get_distance()}')
+            _game_window['-DISTANCE-'].update(f'Distance Left: {_act.get_distance()} light years')
             _game_window['-DATE-'].update(f'Date: {_act.get_date()}')
             _game_window['-GAME-'].update("")
         elif _event == 'Check Inventory':

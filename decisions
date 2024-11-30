@@ -1,9 +1,7 @@
-One of your oxen ran off. 1: do you go after them? 2: or keep going?,2,0,0,0,0,0,0,0,0,0,None
-One of your oxen ran off. 1: do you go after them? 2: or keep going?,1,0,0,0,0,0,1,0,0,-1,None
-One of your oxen died from illness. 1: Do you eat it? 2: or leave it behind?,2,0,0,0,0,0,0,0,0,0,None
-One of your oxen died from illness. 1: Do you eat it? 2: or leave it behind?,1,10,0,0,0,0,0,0,0,-5,None
-You encounter a raging river. 1: Do you attempt to cross it? 2: Do you wait for a ferry? 3: Do you wait for it to die down?,1,-5,0,0,0,0,0,0,-3,0,Break
-You encounter a raging river. 1: Do you attempt to cross it? 2: Do you wait for a ferry? 3: Do you wait for it to die down?,2,0,0,0,0,0,0,0,0,0,Wait
-You encounter a raging river. 1: Do you attempt to cross it? 2: Do you wait for a ferry? 3: Do you wait for it to die down?,3,-2,0,0,0,0,0,0,0,0,Wait
-You have found some berries along the trail. 1: Do you eat them? 2: or leave them alone?,1,0,0,0,0,0,0,0,0,0,Dysentery
-You have found some berries along the trail. 1: Do you eat them? 2: or leave them alone?,2,-5,0,0,0,0,0,0,0,0,None
+One of your engines is broken. 1: do you stop and try to fix it? 2: or keep going?,2,0,0,0,0,0,0,0,0,0,None
+One of your engines is broken. 1: do you stop and try to fix it? 2: or keep going?,1,0,0,0,0,0,1,0,0,-1,None
+You encounter an asteroid belt. 1: Do you attempt to cross it? 2: Do you wait for a clear passage? 3: Do you wait for it to die down?,1,-5,0,0,0,0,0,0,-3,0,Break
+You encounter an asteroid belt. 1: Do you attempt to cross it? 2: Do you wait for a clear passage? 3: Do you wait for it to die down?,2,0,0,0,0,0,0,0,0,0,Wait
+You encounter an asteroid belt. 1: Do you attempt to cross it? 2: Do you wait for a clear passage? 3: Do you wait for it to die down?,3,-2,0,0,0,0,0,0,0,0,Wait
+You found a space-sandwich in your air-lock 1: Do you eat it? 2: or leave it?,1,0,0,0,0,0,0,0,0,0,Dysentery
+You found a space-sandwich in your air-lock. 1: Do you eat it? 2: or leave it?,2,-5,0,0,0,0,0,0,0,0,None

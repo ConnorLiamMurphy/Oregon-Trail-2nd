@@ -3,24 +3,19 @@ import PySimpleGUI as sg
 
 # Story at the beginning of the game(This can be changed,
 # we can add multiple story lines, choices. etc.)
+
 def show_story():
-    """open a window that displays the story text until closed"""
+    """Open a window that displays the story text until closed"""
     _story_text = (
-        "Welcome to the Oregon Trail!\n\n"
-        "In 1843, a group of pioneers set out from "
-        "Missouri to settle in Oregon. "
-        "They faced numerous challenges along the way, "
-        "including harsh weather, "
-        "limited supplies, "
-        "and unpredictable dangers. "
-        "As a traveler, "
-        "you'll need to make wise choices to survive the journey. "
-        "Prepare your oxen team, gather food, "
-        "ammunition, and supplies, "
-        "and embark on an adventure across the "
-        "rugged landscape of the Oregon Trail.\n\n"
-        "Good luck, traveler!"
+        "Welcome to The Stellar Trail!\n\n"
+        "It is the year 2355, humanity has spread across the stars.\n"
+        "Your colony ship, the Explorer, lost contact with Earth during its journey.\n"
+        "It became stranded in an uncharted part of the galaxy.\n"
+        "You are one of the last survivors aboard, and your mission is clear \n\n"
+        "Find a way to return to Earth...\n\n"
+        "You must repair your ship, gather supplies, and navigate through space.\n"
+        "Prepare to gather food, fuel, and ship parts, and set course for Earth.\n"
+        "Will you make it home, or will the vastness of space claim you as its own?\n\n\n\n"
+        "Good luck, traveler...."
     )
-    # This is what the story will look like
-    # (This can be changed -> maybe make it moving?)
-    sg.popup(_story_text, title="The Oregon Trail Story", font=('Helvetica', 14))
+    sg.popup(_story_text, title="The Oregon Trail Story", font=('Arial', 14))
