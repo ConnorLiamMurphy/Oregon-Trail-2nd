@@ -2,13 +2,14 @@ import random
 from encounters import Encounter
 from landmarks import Landmark
 from inventoryAndStats import InventoryAndStats
+from parameters import Character
 
 
 class Actions:
     """any functions that are necessary to
     perform an action will be run from here"""
 
-    def __init__(self, distance: int, inventory: InventoryAndStats, travel_speed: str, rations: str, date: str):
+    def __init__(self, distance: int, inventory: InventoryAndStats, travel_speed: str, rations: str, date: str, char: Character):
         """initialize any necessary variables to do any actions"""
         self._distance = distance
         self._encountered = False
@@ -47,6 +48,7 @@ class Actions:
         self._current_date = self._exact_leave_date[self._date]
         self._weather = self._init_weather[self._date]
         self._landmark = Landmark()
+        self._char = char
 
     def get_inventory(self):
         """get the current games inventory"""
@@ -189,6 +191,16 @@ class Actions:
         if self._weather == 'Hot':
             _success_chance -= 15
 
+        if self._char.get_weapon() == 'Knife':
+            _success_chance -= 5
+            _misfire_chance -= 5
+            _injury_chance += 10
+        if self._char.get_weapon() == 'Rifle':
+            _success_chance += 15
+        if self._char.get_weapon() == 'Axe':
+            _success_chance += 5
+            _injury_chance += 10
+
         if time_spent == 1:
             _success_chance -= 10
         if time_spent == 2:
@@ -199,11 +211,22 @@ class Actions:
         for i in range(1, ammo_used + 1):
             if random.randint(1, 100) <= _success_chance:
                 if not random.randint(1, 100) <= _misfire_chance:
-                    _food_gained += 15
+                    if self._char.get_weapon() == 'Knife':
+                        _food_gained += 10
+                    if self._char.get_weapon() == 'Rifle':
+                        _misfire_chance += 15
+                    if self._char.get_weapon() == 'Axe':
+                        _misfire_chance += 5
                 else:
                     self._inventory.set_health(self._inventory.get_health() - 1)
                     _injuries += 1
-            _misfire_chance += 15
+
+            if self._char.get_weapon() == 'Knife':
+                _misfire_chance += 5
+            if self._char.get_weapon() == 'Rifle':
+                _misfire_chance += 15
+            if self._char.get_weapon() == 'Axe':
+                _misfire_chance += 10
             self._inventory.set_ammo(self._inventory.get_ammo() - 1)
         if random.randint(1, 100) <= _injury_chance:
             self._inventory.set_health(self._inventory.get_health() - 2)

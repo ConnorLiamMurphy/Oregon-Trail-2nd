@@ -1,8 +1,11 @@
+from parameters import Character
+
+
 class InventoryAndStats:
     """hold the inventory and player status values"""
 
     def __init__(self, food: int, ammo: int, clothes: int, parts: int, oxen: int,
-                 medicine: int, money: int, morale: int, health: int):
+                 medicine: int, money: int, morale: int, health: int, char: Character):
         """initialize the inventory values"""
         self._food = food
         self._ammo = ammo
@@ -14,6 +17,7 @@ class InventoryAndStats:
         self._morale = morale
         self._health = health
         self._status = 'Healthy'
+        self._char = char
 
     def get_food(self):
         """get food value"""
@@ -107,8 +111,8 @@ class InventoryAndStats:
 
     def set_health(self, health: int):
         """set health value"""
-        if health > 10:
-            health = 10
+        if health > self._char.get_class_health():
+            health = self._char.get_class_health()
         self._health = health
 
     def set_status(self, status: str):

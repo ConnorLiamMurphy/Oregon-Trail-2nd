@@ -7,7 +7,7 @@ from store import buy_supplies  # Import the buy_supplies function
 from encountering import encountering
 from encounters import Encounter
 from show_inventory import show_inventory
-from parameters import select_travel_parameters, select_class_parameters
+from parameters import select_travel_parameters, select_class_parameters, Character
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
 from story import show_story
@@ -21,15 +21,18 @@ def start_game():
     # initialize inventory class
     # Prints the beginning story(This can be changed in story.py)
     show_story()
-    _inv = InventoryAndStats(0, 0, 0, 0, 0, 0, 0, 5, 10)
-    _class, _weapon, _skill = select_class_parameters()
+    _class, _weapon = select_class_parameters()
+    _char_class = Character(_class, _weapon)
+    _inv = InventoryAndStats(_char_class.get_class_food(), 0, 0, 0, 0,
+                             0, _char_class.get_class_money(), _char_class.get_class_morale(),
+                             _char_class.get_class_health(), _char_class)
     buy_supplies(_inv)  # Enter the store to buy supplies(store.py)
 
     # Get travel parameters from the player
     _travel_speed, _rations, _date = select_travel_parameters()
 
     # initialize action class and set travel distance, speed, and rations
-    _act = Actions(500, _inv, _travel_speed, _rations, _date)
+    _act = Actions(500, _inv, _travel_speed, _rations, _date, _char_class)
     # This is what the game window will look like(Lots of work here still)
     _layout = [
         [sg.Text('Game Started!', font=('Helvetica', 20), key='-GAME-')],
@@ -87,16 +90,17 @@ def start_game():
         elif _event == 'Check Inventory':
             show_inventory(_inv)  # Open the inventory window
         elif _event == 'Manage Supplies':
-            manage_supplies(_act, _inv)  # Open the manage_supplies window
+            manage_supplies(_act, _inv, _char_class)  # Open the manage_supplies window
         elif _event == 'View Status':
             # Call the view_status function when 'View Status' button is clicked
-            view_status(_inv, _act)
+            view_status(_inv, _act, _char_class)
         elif _event == 'Initiate Trade':
             # Call the initiate trade function when 'Initiate Trade' button is clicked
             initiate_trade(_inv)
         elif _event == 'Take Rest':
             # Call the take rest function when 'Take Rest' button is clicked
-            take_rest(_act, _inv)
+            take_rest(_act, _inv, _char_class)
+            _game_window['-DATE-'].update(f'Date: {_act.get_date()}')
         elif _event == 'Go Hunting':
             if _act.get_hunted():
                 sg.popup("you cannot hunt more than once per day")

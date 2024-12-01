@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import random
 
+
 def select_travel_parameters():
     """open the window to select the parameters and return their values once closed"""
     _layout = [
@@ -33,36 +34,87 @@ def select_travel_parameters():
 
 
 class Character:
-    def __init__(self, char_class):
-        self.char_class = char_class
-        self.money = self.assign_money()
-        self.food = 10  # Default food
-        self.health = 10  # Default health
-        self.morale = 10  # Default morale
+    """store the data of your character class"""
+
+    def __init__(self, char_class, char_weapon):
+        self._char_class = char_class
+        self._char_weapon = char_weapon
+        self._money = self.assign_money()
+        self._food = self.assign_food()
+        self._health = self.assign_health()
+        self._morale = self.assign_morale()
 
     def assign_money(self):
         """Assign money based on the character class."""
         money_by_class = {
-            'Hunter': 100,
-            'Merchant': 200,
-            'Guide': 150
+            'Hunter': 700,
+            'Merchant': 1000,
+            'Guide': 850
         }
-        return money_by_class.get(self.char_class, 100)  # Default to 100 if class not found
+        return money_by_class.get(self._char_class, 700)  # Default to 700 if class not found
+
+    def assign_food(self):
+        """Assign food based on the character class."""
+        food_by_class = {
+            'Hunter': 15,
+            'Merchant': 10,
+            'Guide': 5
+        }
+        return food_by_class.get(self._char_class, 10)  # Default to 10 if class not found
+
+    def assign_health(self):
+        """Assign health based on the character class."""
+        health_by_class = {
+            'Hunter': 15,
+            'Merchant': 12,
+            'Guide': 10
+        }
+        return health_by_class.get(self._char_class, 10)  # Default to 100 if class not found
+
+    def assign_morale(self):
+        """Assign morale based on the character class."""
+        morale_by_class = {
+            'Hunter': 5,
+            'Merchant': 8,
+            'Guide': 10
+        }
+        return morale_by_class.get(self._char_class, 5)  # Default to 5 if class not found
 
     def get_inventory(self):
         """Return the character's inventory."""
         return {
-            'Food': self.food,
-            'Health': self.health,
-            'Morale': self.morale,
-            'Money': self.money
+            'Food': self._food,
+            'Health': self._health,
+            'Morale': self._morale,
+            'Money': self._money
         }
 
     def update_inventory(self, food_change=0, health_change=0, morale_change=0):
-        """Update the inventory based on trade outcomes."""
-        self.food += food_change
-        self.health += health_change
-        self.morale += morale_change
+        """Update the inventory"""
+        self._food += food_change
+        self._health += health_change
+        self._morale += morale_change
+
+    def get_class_food(self):
+        """return the amount of food you get from your class"""
+        return self._food
+
+    def get_class_money(self):
+        """return the amount of money you get from your class"""
+        return self._money
+
+    def get_class_morale(self):
+        """return the amount of morale you get from your class"""
+        return self._morale
+
+    def get_class_health(self):
+        """return the amount of health you get from your class"""
+        return self._health
+
+    def get_weapon(self):
+        """return your chosen weapon"""
+        return self._char_weapon
+
 
 def select_class_parameters():
     """Display a GUI for selecting character class and weapon."""
@@ -91,9 +143,3 @@ def select_class_parameters():
 
     _window.close()
     return _class, _weapon
-
-if __name__ == "__main__":
-    # Call the function and display the selected options
-    selected_class, selected_weapon = select_class_parameters()
-    character = Character(selected_class)
-    print(f"Class: {character.char_class}, Weapon: {selected_weapon}, Money: {character.money}")

@@ -2,6 +2,8 @@ import random
 
 import PySimpleGUI as sg
 
+from parameters import Character
+
 
 def is_peaceful(area):
     """Returns True if the area is peaceful,
@@ -10,7 +12,7 @@ def is_peaceful(area):
     return random.choice([True, False])  # 70% peaceful, 30% encounter
 
 
-def take_rest(_act, _inv):
+def take_rest(_act, _inv, _char: Character):
     """Allow the player to rest for a
     specified number of days in a peaceful area."""
     # Check if the area is peaceful
@@ -53,8 +55,9 @@ def take_rest(_act, _inv):
             night_window.close()
 
             # Apply the resting effect: increase health/morale
-            if _inv.get_health() < 10:  # Cap the health at 10
-                _inv.set_health(min(10, _inv.get_health() + days))  # Increase health by 10 per day
+            if _inv.get_health() < _char.get_class_health():  # Cap the health at 10
+                # Increase health by 10 per day
+                _inv.set_health(min(_char.get_class_health(), _inv.get_health() + days * 3))
             if _inv.get_morale() < 100:  # Cap the morale at 100
                 _inv.set_morale(min(100, _inv.get_morale() + days * 5))  # Increase morale by 5 per day
 
