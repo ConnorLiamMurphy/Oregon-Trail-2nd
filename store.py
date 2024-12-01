@@ -28,7 +28,7 @@ def buy_supplies(inventory: InventoryAndStats):
         [sg.Text('How many cases of ammunition would you like to purchase? ($15/case of six)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-AMMO-')],
-        [sg.Text('How many sets of clothing would you like to purchase? ($20/set)',
+        [sg.Text('How many space suits would you like to purchase? ($20/set)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-CLOTHING-')],
         [sg.Text('How many ship parts would you like to purchase? ($50/set)',
@@ -94,7 +94,7 @@ def buy_supplies(inventory: InventoryAndStats):
                     sg.popup(f'You spent:\nEngine: ${_oxen_spent}\n'
                              f'Food: ${_food_spent}\n'
                              f'Ammunition: ${_ammo_spent}\n'
-                             f'Clothing: ${_clothing_spent}\n'
+                             f'Space suits: ${_clothing_spent}\n'
                              f'Parts: ${_parts_spent}\n'
                              f'Medicine: ${_medicine_spent}\n'
                              f'You now have ${inventory.get_money()} left.', title='purchase complete')
@@ -145,7 +145,7 @@ def buy_supplies(inventory: InventoryAndStats):
                     sg.popup(f'You sold:\n${_oxen_sold} worth of engines\n'
                              f'${_food_sold} worth of food\n'
                              f'${_ammo_sold} worth of ammunition\n'
-                             f'${_clothing_sold} worth of clothing\n'
+                             f'${_clothing_sold} worth of space suits\n'
                              f'${_parts_sold} worth of parts\n'
                              f'${_medicine_sold} worth of medicine\n'
                              f'You now have ${inventory.get_money()} left.', title='selling complete')
@@ -164,8 +164,8 @@ def buy_supplies(inventory: InventoryAndStats):
             sg.popup(f'Recommended amounts:\n'
                      '3 engines\n'
                      '100 lbs of food\n'
-                     '4 cases of Ammunition, or 60 ammo\n'
-                     '3 sets of clothing per party member\n'
+                     '4 cases of Ammunition, or 24 ammo\n'
+                     '3 space suits\n'
                      '3 sets of ship parts\n'
                      '3 Medicine\n', title='recommendations')
     _store_window.close()  # Closes window

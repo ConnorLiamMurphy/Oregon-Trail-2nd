@@ -10,7 +10,7 @@ def show_inventory(inventory: InventoryAndStats):
         [sg.Text('Inventory', font=('Helvetica', 20))],
         [sg.Text(f'Food: {inventory.get_food()}', font=('Helvetica', 16))],
         [sg.Text(f'Ammo: {inventory.get_ammo()}', font=('Helvetica', 16))],
-        [sg.Text(f'Clothes: {inventory.get_clothes()}', font=('Helvetica', 16))],
+        [sg.Text(f'Space Suits: {inventory.get_clothes()}', font=('Helvetica', 16))],
         [sg.Text(f'Ship Parts: {inventory.get_parts()}', font=('Helvetica', 16))],
         [sg.Text(f'Engines: {inventory.get_oxen()}', font=('Helvetica', 16))],
         [sg.Text(f'Medicine: {inventory.get_medicine()}', font=('Helvetica', 16))],

@@ -46,7 +46,7 @@ def traveling(act: Actions):
                     break
                 act.set_travel_speed('No Oxen')
             if act.get_inventory().get_clothes() <= 0:
-                if act.get_weather() == 'Hot' or act.get_weather() == 'Cold':
+                if act.get_weather() == 'No Oxygen' or act.get_weather() == 'Dangerously High Oxygen Levels':
                     _distance = None
                     break
 

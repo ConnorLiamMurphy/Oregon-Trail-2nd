@@ -37,10 +37,10 @@ class Actions:
             'Jun': '06/01'
         }
         self._init_weather = {
-            'Mar': 'chilly',
-            'Apr': 'temperate',
-            'May': 'warm',
-            'Jun': 'warm'
+            'Mar': 'Low Oxygen',
+            'Apr': 'Normal Oxygen Levels',
+            'May': 'High Oxygen Levels',
+            'Jun': 'High Oxygen Levels'
         }
         self._daily_food_loss = self._food_consumption[self._rations]
         self._miles_per_day = self._speed[self._travel_speed]
@@ -133,18 +133,18 @@ class Actions:
             '12': '31',
         }
         _month_weather = {
-            '01': ['Cold', 'Chilly'],
-            '02': ['Cold', 'Chilly'],
-            '03': ['Chilly', 'Temperate'],
-            '04': ['Chilly', 'Temperate', 'Warm'],
-            '05': ['Chilly', 'Temperate', 'Warm'],
-            '06': ['Temperate', 'Warm', 'Hot'],
-            '07': ['Warm', 'Hot'],
-            '08': ['Warm', 'Hot'],
-            '09': ['Temperate', 'Warm'],
-            '10': ['Chilly', 'Temperate'],
-            '11': ['Chilly', 'Temperate'],
-            '12': ['Cold', 'Chilly', 'Temperate'],
+            '01': ['No Oxygen', 'Low Oxygen'],
+            '02': ['No Oxygen', 'Low Oxygen'],
+            '03': ['Low Oxygen', 'Normal Oxygen Levels'],
+            '04': ['Low Oxygen', 'Normal Oxygen Levels', 'High Oxygen Levels'],
+            '05': ['Low Oxygen', 'Normal Oxygen Levels', 'High Oxygen Levels'],
+            '06': ['Normal Oxygen Levels', 'High Oxygen Levels', 'Dangerously High Oxygen Levels'],
+            '07': ['High Oxygen Levels', 'Dangerously High Oxygen Levels'],
+            '08': ['High Oxygen Levels', 'Dangerously High Oxygen Levels'],
+            '09': ['Normal Oxygen Levels', 'High Oxygen Levels'],
+            '10': ['Low Oxygen', 'Normal Oxygen Levels'],
+            '11': ['Low Oxygen', 'Normal Oxygen Levels'],
+            '12': ['No Oxygen', 'Low Oxygen', 'Normal Oxygen Levels'],
         }
         if self._current_date[3] == '0':
             if self._current_date[4] == '9':
@@ -178,15 +178,15 @@ class Actions:
         _injury_chance = 30
         _food_gained = 0
         _injuries = 0
-        if self._weather == 'Cold':
+        if self._weather == 'No Oxygen':
             _success_chance -= 15
-        if self._weather == 'Chilly':
+        if self._weather == 'Low Oxygen':
             _success_chance -= 5
-        if self._weather == 'Temperate':
-            _success_chance += 10
-        if self._weather == 'Warm':
+        if self._weather == 'Normal Oxygen Levels':
             _success_chance += 15
-        if self._weather == 'Hot':
+        if self._weather == 'High Oxygen Levels':
+            _success_chance += 10
+        if self._weather == 'Dangerously High Oxygen Levels':
             _success_chance -= 15
 
         if time_spent == 1:

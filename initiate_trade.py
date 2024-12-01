@@ -20,22 +20,22 @@ class TradeScenario:
 def generate_trade():
     """house the possible trades and then return that trade."""
     trades = [
-        TradeScenario("5 Food", "2 Health",
-                      "Offer: 5 units of food", "Cost: 2 units of health"),
-        TradeScenario("10 Food", "3 Morale",
-                      "Offer: 10 units of food", "Cost: 3 morale"),
-        TradeScenario("2 Health", "5 Food",
-                      "Offer: 2 units of health", "Cost: 5 units of food"),
-        TradeScenario("3 Morale", "4 Food",
-                      "Offer: 3 morale", "Cost: 4 units of food"),
-        TradeScenario("1 Health", "10 Food",
-                      "Offer: 1 unit of health", "Cost: 10 units of food"),
-        TradeScenario("2 Morale", "5 Health",
-                      "Offer: 2 morale", "Cost: 5 units of health"),
-        TradeScenario("7 Food", "2 Morale",
-                      "Offer: 7 units of food", "Cost: 2 morale"),
-        TradeScenario("15 Food", "5 Health",
-                      "Offer: 15 units of food", "Cost: 5 units of health"),
+        TradeScenario("5 Food", "6 Ammo",
+                      "Offer: 5 units of food", "Cost: 6 units of ammo"),
+        TradeScenario("10 Food", "1 Space Suit",
+                      "Offer: 10 units of food", "Cost: 1 Space Suit"),
+        TradeScenario("1 Engine", "85 Food",
+                      "Offer: 1 engine", "Cost: 85 units of food"),
+        TradeScenario("1 Medicine", "5 Food",
+                      "Offer: 1 case of medicine", "Cost: 5 units of food"),
+        TradeScenario("1 ship part", "35 Dollars",
+                      "Offer: 1 ship part", "Cost: 35 dollars"),
+        TradeScenario("1 Space Suit", "1 Medicine",
+                      "Offer: 1 Space Suit", "Cost: 1 case of medicine"),
+        TradeScenario("100 Ammo", "1 Engine",
+                      "Offer: 100 units of Ammo", "Cost: 1 engine"),
+        TradeScenario("30 Dollars", "30 Food",
+                      "Offer: 30 Dollars", "Cost: 30 units of food"),
     ]
     return random.choice(trades)
 
@@ -47,10 +47,6 @@ def initiate_trade(_inv: InventoryAndStats):
         [sg.Text("A traveler approaches and offers you a trade!", font=('Helvetica', 16))],
         [sg.Text(f"{trade_scenario.offer_description}", font=('Helvetica', 14))],
         [sg.Text(f"{trade_scenario.cost_description}", font=('Helvetica', 14))],
-        [sg.Text(
-            f"Your current inventory: Food = {_inv.get_food()}, "
-            f"Health = {_inv.get_health()}, Morale = {_inv.get_morale()}",
-            font=('Helvetica', 12))],
         [sg.Button("Accept Trade", size=(12, 2), font=('Helvetica', 16)),
          sg.Button("Decline Trade", size=(12, 2), font=('Helvetica', 16))]
     ]
@@ -67,25 +63,83 @@ def initiate_trade(_inv: InventoryAndStats):
 
         elif event == "Accept Trade":
             # Check if the player has enough inventory for the trade
-            if _inv.get_food() >= int(trade_scenario.cost.split(" ")[0]) and \
-                    _inv.get_health() >= int(trade_scenario.cost.split(" ")[2]) and \
-                    _inv.get_morale() >= int(trade_scenario.cost.split(" ")[4]):
-
-                # Accept the trade, update inventory
-                _inv.set_food(_inv.get_food() - int(trade_scenario.cost.split(" ")[0]))
-                _inv.set_health(_inv.get_health() - int(trade_scenario.cost.split(" ")[2]))
-                _inv.set_morale(_inv.get_morale() - int(trade_scenario.cost.split(" ")[4]))
-                print(f"Trade Accepted! You lost {trade_scenario.cost} but gained {trade_scenario.offer}.")
-
-                # Add the offer items to the inventory
+            if trade_scenario.cost.split(" ")[1] == 'Food':
+                if _inv.get_food() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_food(_inv.get_food() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            elif trade_scenario.cost.split(" ")[1] == 'Ammo':
+                if _inv.get_ammo() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_ammo(_inv.get_ammo() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            elif trade_scenario.cost.split(" ")[1] == 'Space':
+                if _inv.get_clothes() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_clothes(_inv.get_clothes() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            elif trade_scenario.cost.split(" ")[1] == 'Ship':
+                if _inv.get_parts() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_parts(_inv.get_parts() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            elif trade_scenario.cost.split(" ")[1] == 'Engine':
+                if _inv.get_oxen() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_oxen(_inv.get_oxen() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            elif trade_scenario.cost.split(" ")[1] == 'Medicine':
+                if _inv.get_medicine() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_medicine(_inv.get_medicine() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            elif trade_scenario.cost.split(" ")[1] == 'Dollars':
+                if _inv.get_money() >= int(trade_scenario.cost.split(" ")[0]):
+                    # Accept the trade, update inventory
+                    _inv.set_money(_inv.get_money() - int(trade_scenario.cost.split(" ")[0]))
+                else:
+                    # Not enough inventory for the trade
+                    sg.popup("You do not have enough resources for this trade!")
+                    trade_window.close()
+                    return None
+            if trade_scenario.offer.split(" ")[1] == 'Dollars':
+                _inv.set_money(_inv.get_money() + int(trade_scenario.offer.split(" ")[0]))
+            if trade_scenario.offer.split(" ")[1] == 'Food':
                 _inv.set_food(_inv.get_food() + int(trade_scenario.offer.split(" ")[0]))
-                _inv.set_health(_inv.get_health() + int(trade_scenario.offer.split(" ")[2]))
-                _inv.set_morale(_inv.get_morale() + int(trade_scenario.offer.split(" ")[4]))
-
-                trade_window.close()
-                return "Trade completed!"  # Return trade result
-            else:
-                # Not enough inventory for the trade
-                sg.popup("You do not have enough resources for this trade!")
-                trade_window.close()
-                return None
+            if trade_scenario.offer.split(" ")[1] == 'Ship':
+                _inv.set_parts(_inv.get_parts() + int(trade_scenario.offer.split(" ")[0]))
+            if trade_scenario.offer.split(" ")[1] == 'Engine':
+                _inv.set_oxen(_inv.get_oxen() + int(trade_scenario.offer.split(" ")[0]))
+            if trade_scenario.offer.split(" ")[1] == 'Ammo':
+                _inv.set_ammo(_inv.get_ammo() + int(trade_scenario.offer.split(" ")[0]))
+            if trade_scenario.offer.split(" ")[1] == 'Space':
+                _inv.set_clothes(_inv.get_clothes() + int(trade_scenario.offer.split(" ")[0]))
+            if trade_scenario.offer.split(" ")[1] == 'Medicine':
+                _inv.set_medicine(_inv.get_medicine() + int(trade_scenario.offer.split(" ")[0]))
+            sg.popup(f"Trade Accepted! You lost {trade_scenario.cost} but gained {trade_scenario.offer}.")
+            trade_window.close()
+            return "Trade completed!"  # Return trade result

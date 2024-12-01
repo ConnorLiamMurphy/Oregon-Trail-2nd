@@ -57,7 +57,7 @@ def start_game():
                 [sg.Button('Manage Supplies', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
                 [sg.Button('Initiate Trade', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
                 [sg.Button('Take Rest', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Go Hunting', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
+                [sg.Button('Go Scavenging', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
                 [sg.Button('Quit', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))]
             ], justification='right', vertical_alignment='top')  # Ensure buttons align vertically on the right side
         ]
@@ -86,10 +86,10 @@ def start_game():
                         sg.popup('You are hopeless and can\'t keep going! Game Over!')
                     elif _inv.get_oxen() <= 0 and _act.get_travel_speed() == 'Broken':
                         sg.popup('You\'re ship is completely inoperable! Game Over!')
-                    elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Cold':
-                        sg.popup('You have died of hypothermia in the cold! Game Over!')
-                    elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Hot':
-                        sg.popup('You have died of heatstroke in the sun! Game Over!')
+                    elif _inv.get_clothes() <= 0 and _act.get_weather() == 'No Oxygen':
+                        sg.popup('You have died from lack of air! Game Over!')
+                    elif _inv.get_clothes() <= 0 and _act.get_weather() == 'Dangerously High Oxygen Levels ':
+                        sg.popup('You have died of oxygen poisoning! Game Over!')
                     break
                 else:
                     break
@@ -97,8 +97,6 @@ def start_game():
             if not _var_type:
                 break
             _game_window['-LOCATION-'].update(f'Current Location: {_act.get_location()}')
-            _game_window['-MORALE-'].update(f'Morale: {_inv.get_morale()}')
-            _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
             _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
             _game_window['-DISTANCE-'].update(f'Distance Left: {_act.get_distance()} light years')
             _game_window['-DATE-'].update(f'Date: {_act.get_date()}')
@@ -116,14 +114,14 @@ def start_game():
         elif _event == 'Take Rest':
             # Call the take rest function when 'Take Rest' button is clicked
             take_rest(_act, _inv)
-        elif _event == 'Go Hunting':
+            _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
+        elif _event == 'Go Scavenging':
             if _act.get_hunted():
                 sg.popup("you cannot hunt more than once per day")
             elif _inv.get_ammo() <= 0:
                 sg.popup("You have no ammunition")
             else:
                 perform_hunt(_act, _inv)  # Open the perform_hunt window
-                _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
                 _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
                 if _inv.get_health() <= 0:
                     sg.popup('You have died on your journey! Game Over!')
