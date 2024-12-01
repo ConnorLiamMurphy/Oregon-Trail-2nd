@@ -104,7 +104,6 @@ def start_game():
                 sg.popup("You have no ammunition")
             else:
                 perform_hunt(_act, _inv)  # Open the perform_hunt window
-                _game_window['-HEALTH-'].update(f'Health: {_inv.get_health()}')
                 _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
                 if _inv.get_health() <= 0:
                     sg.popup('You have died on your journey! Game Over!')
