@@ -112,4 +112,48 @@ def start_game():
                 if _inv.get_health() <= 0:
                     sg.popup('You have died on your journey! Game Over!')
                     break
+             if _act.get_distance == 0:
+                    sg.popup("Game Over", "You have reached the end of your journey!", font=('Helvetica', 16))
+                    end_game_results(_inv, _act)
     _game_window.close()
+
+
+def end_game_results(inventory, actions):
+    food_remaining = inventory.get_food()
+    health_remaining = inventory.get_health()
+    morale_remaining = inventory.get_morale()
+    distance_traveled = 500
+
+    final_location = actions.get_location()
+    date = actions.get_date()
+
+    # Generate the end-game summary
+    results = [
+        "Your journey on the Oregon Trail has ended!",
+        f"Final Location: {final_location}",
+        f"Date of Arrival: {date}",
+        f"Distance Traveled: {distance_traveled} miles",
+        "",
+        "Final Stats:",
+        f"  Food Remaining: {food_remaining}",
+        f"  Health Remaining: {health_remaining}",
+        f"  Morale Remaining: {morale_remaining}",
+    ]
+
+    # Display the results in a GUI window
+    layout = [
+        [sg.Text(line, font=('Helvetica', 14))] for line in results
+    ] + [[sg.Button('Close', size=(10, 2), font=('Helvetica', 16))]]
+
+    window = sg.Window('End Game Results', layout, size=(400, 400))
+
+    while True:
+        event, _ = window.read()
+        if event == sg.WINDOW_CLOSED or event == 'Close':
+            break
+
+    window.close()
+
+
+
+
