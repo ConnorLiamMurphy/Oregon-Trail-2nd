@@ -10,7 +10,7 @@ def traveling(act: Actions):
     _distance = act.get_distance()
 
     _layout = [
-        [sg.Text(f'Distance from Oregon: {_distance}',
+        [sg.Text(f'Distance from Earth: {_distance} light years',
                  font=('Helvetica', 16), key='-DISTANCE-')],
         [sg.Text(f'Date: {act.get_date()}',
                  font=('Helvetica', 16), key='-DATE-')],
@@ -30,7 +30,7 @@ def traveling(act: Actions):
         elif isinstance(_distance, int):
             act.set_encountered(False)
             _travel_window['-DISTANCE-'].update(
-                f'Distance from Oregon: {_distance}')
+                f'Distance from Earth: {_distance} light years')
             _travel_window['-DATE-'].update(
                 f'Date: {act.get_date()}')
             _distance = act.travel()
@@ -46,7 +46,7 @@ def traveling(act: Actions):
                     break
                 act.set_travel_speed('No Oxen')
             if act.get_inventory().get_clothes() <= 0:
-                if act.get_weather() == 'Hot' or act.get_weather() == 'Cold':
+                if act.get_weather() == 'No Oxygen' or act.get_weather() == 'Dangerously High Oxygen Levels':
                     _distance = None
                     break
 

@@ -17,7 +17,7 @@ def view_status(inv: InventoryAndStats, act: Actions, char: Character):
         [sg.Text(f'Health: {inv.get_health()}/{char.get_class_health()}', font=('Helvetica', 14))],
         [sg.Text(f'Weather: {act.get_weather()}', font=('Helvetica', 14))],
         [sg.Text(f'Status: {inv.get_status()}', font=('Helvetica', 14))],
-        [sg.Text(f'Distance from Oregon: {_distance}', font=('Helvetica', 14))],  # Show distance here
+        [sg.Text(f'Distance from Earth: {_distance}', font=('Helvetica', 14))],  # Show distance here
         [sg.Button('Close', size=(10, 2), font=('Helvetica', 16))]
     ]
 

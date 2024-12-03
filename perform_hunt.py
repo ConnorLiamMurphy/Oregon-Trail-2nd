@@ -18,13 +18,13 @@ def perform_hunt(act: Actions, inv: InventoryAndStats, char: Character):
         [sg.Text(f'Your Weapon: {char.get_weapon()}', font=('Helvetica', 16))],
         [sg.Text('How much ammunition will you use:')],
         [sg.Combo(ammo, default_value=f'{ammo[len(ammo) - 1]}', key='-AMMO-')],
-        [sg.Text('How long will you hunt for(hrs):')],
+        [sg.Text('How long will you scavenge for(hrs):')],
         [sg.Combo(['1', '2', '3'], default_value='3', key='-TIME-')],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16)),
          sg.Button('Quit', size=(10, 2), font=('Helvetica', 16))]
     ]
 
-    _hunt_window = sg.Window('Hunting', _layout, size=(500, 400), finalize=True)
+    _hunt_window = sg.Window('Scavenging', _layout, size=(500, 400), finalize=True)
 
     # Event loop
     while True:

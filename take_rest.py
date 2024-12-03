@@ -46,8 +46,8 @@ def take_rest(_act, _inv, _char: Character):
             # Simulate the night sky display for a few seconds
             _ = sg.Image(data='night_sky_image_path.png')  # You can replace this with an actual image file
             layout_night = [
-                [sg.Text("The night sky is beautiful... Resting...", font=('Helvetica', 20))],
-                [sg.Image(filename="night_sky.png")]
+                [sg.Text("The stars are so... Resting...", font=('Helvetica', 20))],
+                [sg.Image(filename=r'images/space.png')]
             ]
             night_window = sg.Window("Night Sky", layout_night,
                                      size=(500, 300), no_titlebar=True, grab_anywhere=True)

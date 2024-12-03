@@ -13,7 +13,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats, char: Character):
         [sg.Text('Select ration size (light, standard, heavy):')],
         [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
         [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16))],
+         sg.Button('Fix Ship', size=(10, 2), font=('Helvetica', 16))],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
     ]
 
@@ -23,7 +23,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats, char: Character):
         [sg.Text('Select ration size (light, standard, heavy):')],
         [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
         [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16))],
+         sg.Button('Fix Ship', size=(10, 2), font=('Helvetica', 16))],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
     ]
 
@@ -33,7 +33,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats, char: Character):
         [sg.Text('Select ration size (light, standard, heavy):')],
         [sg.Combo(['Light', 'Standard', 'Heavy'], default_value=f'{act.get_rations()}', key='-RATIONS-')],
         [sg.Button('Use Medicine', size=(10, 2), font=('Helvetica', 16)),
-         sg.Button('Fix Wagon', size=(10, 2), font=('Helvetica', 16)),
+         sg.Button('Fix Ship', size=(10, 2), font=('Helvetica', 16)),
          sg.Button('Check Inventory', size=(15, 2), font=('Helvetica', 16))],
         [sg.Button('Confirm', size=(10, 2), font=('Helvetica', 16))]
     ]
@@ -50,7 +50,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats, char: Character):
         _event, _values = _supply_window.read()
         if _event == sg.WINDOW_CLOSED or _event == 'Quit':
             break  # Exit loop here
-        elif _event == 'Fix Wagon':
+        elif _event == 'Fix Ship':
             if act.get_travel_speed() == 'Broken':
                 if inv.get_parts() > 0:
                     act.set_travel_speed('Moderate')
@@ -60,7 +60,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats, char: Character):
                     _supply_window = sg.Window("Game", _layout, size=(500, 400), finalize=True)
                     _supply_window['-SPEED-'].update(value=act.get_travel_speed())
                 else:
-                    sg.popup('You don\'t have the supplies to fix the cart', title='No parts')
+                    sg.popup('You don\'t have the supplies to fix the ship', title='No parts')
             else:
                 sg.popup('There is nothing to fix', title='Not Broken')
 

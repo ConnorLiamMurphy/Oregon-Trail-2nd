@@ -18,7 +18,7 @@ def buy_supplies(inventory: InventoryAndStats):
         [sg.Text('Welcome to the Store!', font=('Helvetica', 20))],
         [sg.Text(f'You have ${inventory.get_money()} to spend.',
                  font=('Helvetica', 14), key="-MONEY-")],
-        [sg.Text('How many oxen do you want to purchase? at least 2 are required. ($100 each)',
+        [sg.Text('How many engines do you want to purchase? at least 2 are required. ($100 each)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-OXEN-')],
         [sg.Text('How many pounds of food would you like to purchase? ($1/lbs)',
@@ -27,13 +27,13 @@ def buy_supplies(inventory: InventoryAndStats):
         [sg.Text('How many cases of ammunition would you like to purchase? ($15/case of six)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-AMMO-')],
-        [sg.Text('How many sets of clothing would you like to purchase? ($20/set)',
+        [sg.Text('How many space suits would you like to purchase? ($20/set)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-CLOTHING-')],
-        [sg.Text('How many wagon parts would you like to purchase? ($50/set)',
+        [sg.Text('How many ship parts would you like to purchase? ($50/set)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-PARTS-')],
-        [sg.Text('How Much Medicine would you like to purchase? ($10 each)',
+        [sg.Text('How much medicine would you like to purchase? ($10 each)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-MEDICINE-')],
         [sg.Button('Buy', font=('Helvetica', 16)),
@@ -53,8 +53,8 @@ def buy_supplies(inventory: InventoryAndStats):
         elif _event == 'Leave Store':
             # Check oxen spending
             if inventory.get_oxen() < 2:
-                sg.popup('Invalid amount of oxen. '
-                         'you should have at least 2.', title='purchase more oxen')
+                sg.popup('Invalid amount of engines, '
+                         'you should have at least 2.', title='purchase more engines')
             else:
                 break
 
@@ -90,10 +90,10 @@ def buy_supplies(inventory: InventoryAndStats):
                     _total_money = inventory.get_money()
                     # Summary of everything the user bought
                     # (This output can be changed)
-                    sg.popup(f'You spent:\nOxen: ${_oxen_spent}\n'
+                    sg.popup(f'You spent:\nEngine: ${_oxen_spent}\n'
                              f'Food: ${_food_spent}\n'
                              f'Ammunition: ${_ammo_spent}\n'
-                             f'Clothing: ${_clothing_spent}\n'
+                             f'Space suits: ${_clothing_spent}\n'
                              f'Parts: ${_parts_spent}\n'
                              f'Medicine: ${_medicine_spent}\n'
                              f'You now have ${inventory.get_money()} left.', title='purchase complete')
@@ -141,10 +141,10 @@ def buy_supplies(inventory: InventoryAndStats):
                     _total_money = inventory.get_money()
                     # Summary of everything the user bought
                     # (This output can be changed)
-                    sg.popup(f'You sold:\n${_oxen_sold} worth of oxen\n'
+                    sg.popup(f'You sold:\n${_oxen_sold} worth of engines\n'
                              f'${_food_sold} worth of food\n'
                              f'${_ammo_sold} worth of ammunition\n'
-                             f'${_clothing_sold} worth of clothing\n'
+                             f'${_clothing_sold} worth of space suits\n'
                              f'${_parts_sold} worth of parts\n'
                              f'${_medicine_sold} worth of medicine\n'
                              f'You now have ${inventory.get_money()} left.', title='selling complete')
@@ -161,10 +161,10 @@ def buy_supplies(inventory: InventoryAndStats):
             show_inventory(inventory)
         elif _event == 'Recommendations':
             sg.popup(f'Recommended amounts:\n'
-                     '3 oxen\n'
+                     '3 engines\n'
                      '100 lbs of food\n'
-                     '4 cases of Ammunition, or 60 ammo\n'
-                     '3 sets of clothing per party member\n'
-                     '3 sets of wagon parts\n'
+                     '4 cases of Ammunition, or 24 ammo\n'
+                     '3 space suits\n'
+                     '3 sets of ship parts\n'
                      '3 Medicine\n', title='recommendations')
     _store_window.close()  # Closes window
