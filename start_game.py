@@ -7,7 +7,7 @@ from store import buy_supplies  # Import the buy_supplies function
 from encountering import encountering
 from encounters import Encounter
 from show_inventory import show_inventory
-from parameters import select_travel_parameters, select_class_parameters
+from parameters import select_travel_parameters, select_class_parameters, Character
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
 from story import show_story
@@ -24,15 +24,18 @@ def start_game():
     # initialize inventory class
     # Prints the beginning story(This can be changed in story.py)
     show_story()
-    _inv = InventoryAndStats(0, 0, 0, 0, 0, 0, 0, 5, 10)
-    _class, _weapon, _skill = select_class_parameters()
+    _class, _weapon = select_class_parameters()
+    _char_class = Character(_class, _weapon)
+    _inv = InventoryAndStats(_char_class.get_class_food(), 0, 0, 0, 0,
+                             0, _char_class.get_class_money(), _char_class.get_class_morale(),
+                             _char_class.get_class_health(), _char_class)
     buy_supplies(_inv)  # Enter the store to buy supplies(store.py)
 
     # Get travel parameters from the player
     _travel_speed, _rations, _date = select_travel_parameters()
 
     # initialize action class and set travel distance, speed, and rations
-    _act = Actions(500, _inv, _travel_speed, _rations, _date)
+    _act = Actions(500, _inv, _travel_speed, _rations, _date, _char_class)
     # This is what the game window will look like(Lots of work here still)
 
     _layout = [
@@ -104,18 +107,18 @@ def start_game():
         elif _event == 'Check Inventory':
             show_inventory(_inv)  # Open the inventory window
         elif _event == 'Manage Supplies':
-            manage_supplies(_act, _inv)  # Open the manage_supplies window
+            manage_supplies(_act, _inv, _char_class)  # Open the manage_supplies window
         elif _event == 'View Status':
             # Call the view_status function when 'View Status' button is clicked
-            view_status(_inv, _act)
+            view_status(_inv, _act, _char_class)
         elif _event == 'Initiate Trade':
             # Call the initiate trade function when 'Initiate Trade' button is clicked
             initiate_trade(_inv)
         elif _event == 'Take Rest':
             # Call the take rest function when 'Take Rest' button is clicked
-            take_rest(_act, _inv)
-            _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
-        elif _event == 'Go Scavenging':
+            take_rest(_act, _inv, _char_class)
+            _game_window['-DATE-'].update(f'Date: {_act.get_date()}')
+        elif _event == 'Go Hunting':
             if _act.get_hunted():
                 sg.popup("you cannot hunt more than once per day")
             elif _inv.get_ammo() <= 0:
@@ -126,4 +129,46 @@ def start_game():
                 if _inv.get_health() <= 0:
                     sg.popup('You have died on your journey! Game Over!')
                     break
+        if _act.get_distance() == 0:
+            _game_window.hide()
+            sg.popup("Game Over", "You have reached the end of your journey!", font=('Helvetica', 16))
+            end_game_results(_inv, _act)
+            break
     _game_window.close()
+
+
+def end_game_results(inventory, actions):
+    food_remaining = inventory.get_food()
+    health_remaining = inventory.get_health()
+    morale_remaining = inventory.get_morale()
+    distance_traveled = 500
+
+    final_location = actions.get_location()
+    date = actions.get_date()
+
+    # Generate the end-game summary
+    results = [
+        "Your journey on the Oregon Trail has ended!",
+        f"Final Location: {final_location}",
+        f"Date of Arrival: {date}",
+        f"Distance Traveled: {distance_traveled} miles",
+        "",
+        "Final Stats:",
+        f"  Food Remaining: {food_remaining}",
+        f"  Health Remaining: {health_remaining}",
+        f"  Morale Remaining: {morale_remaining}",
+    ]
+
+    # Display the results in a GUI window
+    layout = [
+                 [sg.Text(line, font=('Helvetica', 14))] for line in results
+             ] + [[sg.Button('Close', size=(10, 2), font=('Helvetica', 16))]]
+
+    window = sg.Window('End Game Results', layout, size=(400, 400))
+
+    while True:
+        event, _ = window.read()
+        if event == sg.WINDOW_CLOSED or event == 'Close':
+            break
+
+    window.close()

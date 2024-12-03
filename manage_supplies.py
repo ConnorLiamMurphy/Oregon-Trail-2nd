@@ -2,10 +2,10 @@ from actions import Actions
 import PySimpleGUI as sg
 
 from inventoryAndStats import InventoryAndStats
-from show_inventory import show_inventory
+from parameters import Character
 
 
-def manage_supplies(act: Actions, inv: InventoryAndStats):
+def manage_supplies(act: Actions, inv: InventoryAndStats, char: Character):
     """allow the user to manage and use their supplies in the GUI"""
     _layout = [
         [sg.Text('Select your travel speed (Slow, Moderate, Quick):')],
@@ -65,7 +65,7 @@ def manage_supplies(act: Actions, inv: InventoryAndStats):
                 sg.popup('There is nothing to fix', title='Not Broken')
 
         elif _event == 'Use Medicine':
-            if inv.get_health() < 10 or inv.get_status() != 'Healthy':
+            if inv.get_health() < char.get_class_health() or inv.get_status() != 'Healthy':
                 if inv.get_medicine() > 0:
                     inv.set_health(inv.get_health() + 2)
                     inv.set_medicine(inv.get_medicine() - 1)

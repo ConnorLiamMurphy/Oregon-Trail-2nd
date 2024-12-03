@@ -11,9 +11,8 @@ def buy_supplies(inventory: InventoryAndStats):
     """open the store window which allows the player
     to buy items with their money until closed"""
     # Starting money(This can change)
-    _total_money = 700
+    _total_money = inventory.get_money()
     # Set the player's starting money
-    inventory.set_money(_total_money)
     # This is what the store window will look like(This can be changed)
     _layout = [
         [sg.Text('Welcome to the Store!', font=('Helvetica', 20))],

@@ -2,9 +2,10 @@ from actions import Actions
 import PySimpleGUI as sg
 
 from inventoryAndStats import InventoryAndStats
+from parameters import Character
 
 
-def perform_hunt(act: Actions, inv: InventoryAndStats):
+def perform_hunt(act: Actions, inv: InventoryAndStats, char: Character):
     """set the values tou use for the hunt from the GUI and then hunt"""
     ammo = []
     if inv.get_ammo() <= 6:
@@ -13,7 +14,8 @@ def perform_hunt(act: Actions, inv: InventoryAndStats):
     else:
         ammo = ['1', '2', '3', '4', '5', '6']
     _layout = [
-        [sg.Text(f'Current Environment: {act.get_weather()}', font=('Helvetica', 16), key='-LOCATION-')],
+        [sg.Text(f'Current Weather: {act.get_weather()}', font=('Helvetica', 16))],
+        [sg.Text(f'Your Weapon: {char.get_weapon()}', font=('Helvetica', 16))],
         [sg.Text('How much ammunition will you use:')],
         [sg.Combo(ammo, default_value=f'{ammo[len(ammo) - 1]}', key='-AMMO-')],
         [sg.Text('How long will you scavenge for(hrs):')],
