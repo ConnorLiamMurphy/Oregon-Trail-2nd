@@ -29,7 +29,7 @@ class Actions:
             'Broken': 1,
             'Slow': 5,
             'Moderate': 10,
-            'Quick': 100
+            'Quick': 15
         }
         self._exact_leave_date = {
             'Mar': '03/01',
@@ -57,6 +57,10 @@ class Actions:
     def get_distance(self):
         """get the distance from the final destination"""
         return self._distance
+
+    def get_char(self):
+        """get the character class of the player"""
+        return self._char
 
     def set_encountered(self, val: bool):
         """set whether you just encountered something"""

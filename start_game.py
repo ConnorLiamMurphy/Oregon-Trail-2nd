@@ -44,26 +44,38 @@ def start_game():
         [
             # Left-aligned text column
             sg.Column([
-                [sg.Text('Game Started!', font=('Helvetica', 20, "bold"), key='-GAME-', justification='left')],
-                [sg.Text(f'Current Location: {_act.get_location()}', font=('Helvetica', 16, "bold"), key='-LOCATION-',
+                [sg.Text('Game Started!', font=('Helvetica', 20, "bold"),
+                         key='-GAME-', justification='left')],
+                [sg.Text(f'Current Location: {_act.get_location()}',
+                         font=('Helvetica', 16, "bold"), key='-LOCATION-',
                          justification='left')],
                 [sg.Text(f'Food: {_inv.get_food()}', key='-FOOD-', justification='left')],
-                [sg.Text(f'Distance Left: {_act.get_distance()} light years', key='-DISTANCE-', justification='left')],
+                [sg.Text(f'Distance Left: {_act.get_distance()} light years',
+                         key='-DISTANCE-', justification='left')],
                 [sg.Text(f'Date: {_act.get_date()}', key='-DATE-', justification='left')],
                 [sg.Image(r'images/Spaceship.png', size=(500, 479))]  # Image placed below the text
             ], element_justification='left'),
 
             # Right-aligned buttons column
             sg.Column([
-                [sg.Button('Travel', size=(10, 2), image_filename=button_image, font=('Orbitron', 16))],
-                [sg.Button('Check Inventory', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('View Status', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Manage Supplies', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Initiate Trade', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Take Rest', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Go Scavenging', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Quit', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))]
-            ], justification='right', vertical_alignment='top')  # Ensure buttons align vertically on the right side
+                [sg.Button('Travel', size=(10, 2), image_filename=button_image,
+                           font=('Orbitron', 16))],
+                [sg.Button('Check Inventory', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('View Status', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Manage Supplies', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Initiate Trade', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Take Rest', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Go Scavenging', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Quit', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))]
+            ], justification='right', vertical_alignment='top')
+            # Ensure buttons align vertically on the right side
         ]
     ]
 
