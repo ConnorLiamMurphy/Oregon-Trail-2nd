@@ -16,7 +16,7 @@ def perform_hunt(act: Actions, inv: InventoryAndStats, char: Character):
     _layout = [
         [sg.Text(f'Current Weather: {act.get_weather()}', font=('Helvetica', 16))],
         [sg.Text(f'Your Weapon: {char.get_weapon()}', font=('Helvetica', 16))],
-        [sg.Text('How much ammunition will you use:')],
+        [sg.Text('How much weapon energy will you use:')],
         [sg.Combo(ammo, default_value=f'{ammo[len(ammo) - 1]}', key='-AMMO-')],
         [sg.Text('How long will you scavenge for(hrs):')],
         [sg.Combo(['1', '2', '3'], default_value='3', key='-TIME-')],

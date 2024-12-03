@@ -24,7 +24,7 @@ def buy_supplies(inventory: InventoryAndStats):
         [sg.Text('How many pounds of food would you like to purchase? ($1/lbs)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-FOOD-')],
-        [sg.Text('How many cases of ammunition would you like to purchase? ($15/case of six)',
+        [sg.Text('How many weapon batteries would you like to purchase? ($15/six units of power)',
                  font=('Helvetica', 14))],
         [sg.InputText(size=(5, 1), key='-AMMO-')],
         [sg.Text('How many space suits would you like to purchase? ($20/set)',
@@ -92,7 +92,7 @@ def buy_supplies(inventory: InventoryAndStats):
                     # (This output can be changed)
                     sg.popup(f'You spent:\nEngine: ${_oxen_spent}\n'
                              f'Food: ${_food_spent}\n'
-                             f'Ammunition: ${_ammo_spent}\n'
+                             f'Weapon batteries: ${_ammo_spent}\n'
                              f'Space suits: ${_clothing_spent}\n'
                              f'Parts: ${_parts_spent}\n'
                              f'Medicine: ${_medicine_spent}\n'
@@ -143,7 +143,7 @@ def buy_supplies(inventory: InventoryAndStats):
                     # (This output can be changed)
                     sg.popup(f'You sold:\n${_oxen_sold} worth of engines\n'
                              f'${_food_sold} worth of food\n'
-                             f'${_ammo_sold} worth of ammunition\n'
+                             f'${_ammo_sold} worth of weapon batteries\n'
                              f'${_clothing_sold} worth of space suits\n'
                              f'${_parts_sold} worth of parts\n'
                              f'${_medicine_sold} worth of medicine\n'
@@ -163,7 +163,7 @@ def buy_supplies(inventory: InventoryAndStats):
             sg.popup(f'Recommended amounts:\n'
                      '3 engines\n'
                      '100 lbs of food\n'
-                     '4 cases of Ammunition, or 24 ammo\n'
+                     '4 weapon batteries, or 24 units of weapon energy\n'
                      '3 space suits\n'
                      '3 sets of ship parts\n'
                      '3 Medicine\n', title='recommendations')

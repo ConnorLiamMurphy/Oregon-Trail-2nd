@@ -29,7 +29,7 @@ class Actions:
             'Broken': 1,
             'Slow': 5,
             'Moderate': 10,
-            'Quick': 15
+            'Quick': 100
         }
         self._exact_leave_date = {
             'Mar': '03/01',
@@ -191,13 +191,13 @@ class Actions:
         if self._weather == 'Dangerously High Oxygen Levels':
             _success_chance -= 15
 
-        if self._char.get_weapon() == 'Knife':
+        if self._char.get_weapon() == 'Light saber':
             _success_chance -= 5
             _misfire_chance -= 5
             _injury_chance += 10
-        if self._char.get_weapon() == 'Rifle':
+        if self._char.get_weapon() == 'Laser blaster':
             _success_chance += 15
-        if self._char.get_weapon() == 'Axe':
+        if self._char.get_weapon() == 'Gravity hammer':
             _success_chance += 5
             _injury_chance += 10
 
@@ -211,21 +211,21 @@ class Actions:
         for i in range(1, ammo_used + 1):
             if random.randint(1, 100) <= _success_chance:
                 if not random.randint(1, 100) <= _misfire_chance:
-                    if self._char.get_weapon() == 'Knife':
+                    if self._char.get_weapon() == 'Light saber':
                         _food_gained += 10
-                    if self._char.get_weapon() == 'Rifle':
-                        _misfire_chance += 15
-                    if self._char.get_weapon() == 'Axe':
-                        _misfire_chance += 5
+                    if self._char.get_weapon() == 'Laser blaster':
+                        _food_gained += 15
+                    if self._char.get_weapon() == 'Gravity hammer':
+                        _food_gained += 5
                 else:
                     self._inventory.set_health(self._inventory.get_health() - 1)
                     _injuries += 1
 
-            if self._char.get_weapon() == 'Knife':
+            if self._char.get_weapon() == 'Light saber':
                 _misfire_chance += 5
-            if self._char.get_weapon() == 'Rifle':
+            if self._char.get_weapon() == 'Laser blaster':
                 _misfire_chance += 15
-            if self._char.get_weapon() == 'Axe':
+            if self._char.get_weapon() == 'Gravity hammer':
                 _misfire_chance += 10
             self._inventory.set_ammo(self._inventory.get_ammo() - 1)
         if random.randint(1, 100) <= _injury_chance:

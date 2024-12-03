@@ -2,19 +2,24 @@ import PySimpleGUI as sg
 import random
 
 _button_image = r'images/continue.png'
+
+
 def select_travel_parameters():
     """open the window to select the parameters and return their values once closed"""
     _layout = [
         [sg.Text('Select your travel speed (Slow, Moderate, Quick):', font=("arial", 16), text_color='white',
                  background_color='black')],
-        [sg.Combo(['Slow', 'Moderate', 'Quick'], default_value='Moderate', key='-SPEED-', font=('arial', 14), size=(20, 1))],
+        [sg.Combo(['Slow', 'Moderate', 'Quick'], default_value='Moderate', key='-SPEED-', font=('arial', 14),
+                  size=(20, 1))],
         [sg.Text('Select ration size (light, standard, heavy):', font=("arial", 16), text_color='white',
                  background_color='black')],
-        [sg.Combo(['Light', 'Standard', 'Heavy'], default_value='Standard', key='-RATIONS-', font=('arial', 14), size=(20, 1))],
-        [sg.Text('Select leave date (March, April, May, June):', font=("arial",16), text_color='white',
+        [sg.Combo(['Light', 'Standard', 'Heavy'], default_value='Standard', key='-RATIONS-', font=('arial', 14),
+                  size=(20, 1))],
+        [sg.Text('Select leave date (March, April, May, June):', font=("arial", 16), text_color='white',
                  background_color='black')],
         [sg.Combo(['Mar', 'Apr', 'May', 'Jun'], default_value='Apr', key='-DATE-', font=('arial', 14), size=(20, 1))],
-        [sg.Button('Confirm', size=(10, 3), font="arial", image_filename = _button_image, button_color = ("black", "black"), border_width=0,
+        [sg.Button('Confirm', size=(10, 3), font="arial", image_filename=_button_image, button_color=("black", "black"),
+                   border_width=0,
                    pad=(10, 10))],
     ]
 
@@ -51,36 +56,36 @@ class Character:
     def assign_money(self):
         """Assign money based on the character class."""
         money_by_class = {
-            'Hunter': 700,
-            'Merchant': 1000,
-            'Guide': 850
+            'Alien Hunter': 700,
+            'Space Trader': 1000,
+            'Astro Explorer': 850
         }
         return money_by_class.get(self._char_class, 700)  # Default to 700 if class not found
 
     def assign_food(self):
         """Assign food based on the character class."""
         food_by_class = {
-            'Hunter': 15,
-            'Merchant': 10,
-            'Guide': 5
+            'Alien Hunter': 15,
+            'Space Trader': 10,
+            'Astro Explorer': 5
         }
         return food_by_class.get(self._char_class, 10)  # Default to 10 if class not found
 
     def assign_health(self):
         """Assign health based on the character class."""
         health_by_class = {
-            'Hunter': 15,
-            'Merchant': 12,
-            'Guide': 10
+            'Alien Hunter': 15,
+            'Space Trader': 12,
+            'Astro Explorer': 10
         }
         return health_by_class.get(self._char_class, 10)  # Default to 100 if class not found
 
     def assign_morale(self):
         """Assign morale based on the character class."""
         morale_by_class = {
-            'Hunter': 5,
-            'Merchant': 8,
-            'Guide': 10
+            'Alien Hunter': 5,
+            'Space Trader': 8,
+            'Astro Explorer': 10
         }
         return morale_by_class.get(self._char_class, 5)  # Default to 5 if class not found
 
@@ -128,16 +133,18 @@ def select_class_parameters():
         # Display the background image
 
         # Text for character class selection
-        [sg.Text('Select your character class (Merchant, Hunter, Guide):',
+        [sg.Text('Select your character class (Alien Hunter, Space Trader, Astro Explorer):',
                  font=('arial', 16), text_color='white', background_color='black', justification='center')],
-        [sg.Combo(['Hunter', 'Merchant', 'Guide'], default_value='Hunter', key='-CLASS-', font=('arial', 14),
+        [sg.Combo(['Alien Hunter', 'Space Trader', 'Astro Explorer'], default_value='Alien Hunter', key='-CLASS-',
+                  font=('arial', 14),
                   size=(20, 1))],
         [sg.Text('Select your starting weapon (Rifle, Knife, Axe):',
                  font=('Helvetica', 16), text_color='white', background_color='black', justification='center')],
-        [sg.Combo(['Knife', 'Rifle', 'Axe'], default_value='Knife', key='-WEAPON-', font=('arial', 14),
+        [sg.Combo(['Light saber', 'Laser blaster', 'Gravity hammer'], default_value='Light saber', key='-WEAPON-',
+                  font=('arial', 14),
                   size=(20, 1))],
-        [sg.Button('Confirm', size=(10, 3), font=('Helvetica', 16), image_filename = _button_image,
-                   button_color = ("black", "black"), pad=(10, 10))]
+        [sg.Button('Confirm', size=(10, 3), font=('Helvetica', 16), image_filename=_button_image,
+                   button_color=("black", "black"), pad=(10, 10))]
     ]
 
     _window = sg.Window('Choose Class', _layout, size=(600, 300), finalize=True)
@@ -146,14 +153,13 @@ def select_class_parameters():
     while True:
         _event, _values = _window.read()
         if _event == sg.WINDOW_CLOSED:  # Handle window close
-            _class, _weapon = 'Hunter', 'Knife'
+            _class, _weapon = 'Alien Hunter', 'Knife'
             break
         elif _event == 'Confirm':  # Handle confirm button
-            _class = _values.get('-CLASS-', 'Hunter')
+            _class = _values.get('-CLASS-', 'Alien Hunter')
             _weapon = _values.get('-WEAPON-', 'Knife')
             break
 
     _window.close()
 
     return _class, _weapon
-

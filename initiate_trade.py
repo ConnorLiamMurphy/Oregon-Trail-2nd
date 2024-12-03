@@ -20,8 +20,8 @@ class TradeScenario:
 def generate_trade():
     """house the possible trades and then return that trade."""
     trades = [
-        TradeScenario("5 Food", "6 Ammo",
-                      "Offer: 5 units of food", "Cost: 6 units of ammo"),
+        TradeScenario("5 Food", "6 Weapon energy",
+                      "Offer: 5 units of food", "Cost: 6 units of Weapon energy"),
         TradeScenario("10 Food", "1 Space Suit",
                       "Offer: 10 units of food", "Cost: 1 Space Suit"),
         TradeScenario("1 Engine", "85 Food",
@@ -32,8 +32,8 @@ def generate_trade():
                       "Offer: 1 ship part", "Cost: 35 dollars"),
         TradeScenario("1 Space Suit", "1 Medicine",
                       "Offer: 1 Space Suit", "Cost: 1 case of medicine"),
-        TradeScenario("100 Ammo", "1 Engine",
-                      "Offer: 100 units of Ammo", "Cost: 1 engine"),
+        TradeScenario("100 Weapon energy", "1 Engine",
+                      "Offer: 100 units of Weapon energy", "Cost: 1 engine"),
         TradeScenario("30 Dollars", "30 Food",
                       "Offer: 30 Dollars", "Cost: 30 units of food"),
     ]
@@ -72,7 +72,7 @@ def initiate_trade(_inv: InventoryAndStats):
                     sg.popup("You do not have enough resources for this trade!")
                     trade_window.close()
                     return None
-            elif trade_scenario.cost.split(" ")[1] == 'Ammo':
+            elif trade_scenario.cost.split(" ")[1] == 'Weapon':
                 if _inv.get_ammo() >= int(trade_scenario.cost.split(" ")[0]):
                     # Accept the trade, update inventory
                     _inv.set_ammo(_inv.get_ammo() - int(trade_scenario.cost.split(" ")[0]))
@@ -134,7 +134,7 @@ def initiate_trade(_inv: InventoryAndStats):
                 _inv.set_parts(_inv.get_parts() + int(trade_scenario.offer.split(" ")[0]))
             if trade_scenario.offer.split(" ")[1] == 'Engine':
                 _inv.set_oxen(_inv.get_oxen() + int(trade_scenario.offer.split(" ")[0]))
-            if trade_scenario.offer.split(" ")[1] == 'Ammo':
+            if trade_scenario.offer.split(" ")[1] == 'Weapon':
                 _inv.set_ammo(_inv.get_ammo() + int(trade_scenario.offer.split(" ")[0]))
             if trade_scenario.offer.split(" ")[1] == 'Space':
                 _inv.set_clothes(_inv.get_clothes() + int(trade_scenario.offer.split(" ")[0]))
