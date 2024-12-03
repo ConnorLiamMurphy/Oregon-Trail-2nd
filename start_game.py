@@ -112,9 +112,11 @@ def start_game():
                 if _inv.get_health() <= 0:
                     sg.popup('You have died on your journey! Game Over!')
                     break
-             if _act.get_distance == 0:
-                    sg.popup("Game Over", "You have reached the end of your journey!", font=('Helvetica', 16))
-                    end_game_results(_inv, _act)
+        if _act.get_distance() == 0:
+            _game_window.hide()
+            sg.popup("Game Over", "You have reached the end of your journey!", font=('Helvetica', 16))
+            end_game_results(_inv, _act)
+            break
     _game_window.close()
 
 
@@ -142,8 +144,8 @@ def end_game_results(inventory, actions):
 
     # Display the results in a GUI window
     layout = [
-        [sg.Text(line, font=('Helvetica', 14))] for line in results
-    ] + [[sg.Button('Close', size=(10, 2), font=('Helvetica', 16))]]
+                 [sg.Text(line, font=('Helvetica', 14))] for line in results
+             ] + [[sg.Button('Close', size=(10, 2), font=('Helvetica', 16))]]
 
     window = sg.Window('End Game Results', layout, size=(400, 400))
 
@@ -153,7 +155,3 @@ def end_game_results(inventory, actions):
             break
 
     window.close()
-
-
-
-
