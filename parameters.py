@@ -133,13 +133,17 @@ def select_class_parameters():
         # Display the background image
 
         # Text for character class selection
-        [sg.Text('Select your character class (Alien Hunter, Space Trader, Astro Explorer):',
+        [sg.Text('Select your character class ',
+                 font=('arial', 16), text_color='white', background_color='black', justification='center')],
+        [sg.Text('(Alien Hunter, Space Trader, Astro Explorer):',
                  font=('arial', 16), text_color='white', background_color='black', justification='center')],
         [sg.Combo(['Alien Hunter', 'Space Trader', 'Astro Explorer'],
                   default_value='Alien Hunter', key='-CLASS-',
                   font=('arial', 14),
                   size=(20, 1))],
-        [sg.Text('Select your starting weapon (Rifle, Knife, Axe):',
+        [sg.Text('Select your starting weapon',
+                 font=('Helvetica', 16), text_color='white', background_color='black', justification='center')],
+        [sg.Text('(Light saber, Laser blaster, Gravity hammer):',
                  font=('Helvetica', 16), text_color='white', background_color='black', justification='center')],
         [sg.Combo(['Light saber', 'Laser blaster', 'Gravity hammer'],
                   default_value='Light saber', key='-WEAPON-',

@@ -51,7 +51,7 @@ def initiate_trade(_inv: InventoryAndStats):
          sg.Button("Decline Trade", size=(12, 2), font=('Helvetica', 16))]
     ]
 
-    trade_window = sg.Window("Trade with Traveler", layout, size=(400, 300))
+    trade_window = sg.Window("Trade with Traveler", layout, size=(500, 300))
 
     # Event loop
     while True:

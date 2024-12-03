@@ -25,7 +25,6 @@ class Encounter:
         self._inventory = inventory
         self._actions = actions
         self._name = self._encounter[0]
-        print(self._name)
         self._food_change = self._encounter[1]
         self._ammo_change = self._encounter[2]
         self._clothes_change = self._encounter[3]
@@ -46,10 +45,16 @@ class Encounter:
     def get_name(self):
         """get the encounter name"""
         if self._prompt == "True":
-            split = self._name.split('1')
-            _first_half = split[0]
-            _second_half = f'1{split[1]}'
-            return _first_half, _second_half
+            _split = self._name.split('1')
+            _first_half = _split[0]
+            _second_half = f'1{_split[1]}'
+            _second_split = _split[1].split('3')
+            if len(_second_split) == 2:
+                _second_half = f'1{_second_split[0]}'
+                _third_half = f'3{_second_split[1]}'
+            else:
+                _third_half = ""
+            return _first_half, _second_half, _third_half
         else:
             return self._name
 
@@ -148,7 +153,6 @@ class Encounter:
         requirements from your current values change the encounter"""
         self._encounter = random.choice(Encounter._STATS)
         self._name = self._encounter[0]
-        print(self._name)
         self._food_change = self._encounter[1]
         self._ammo_change = self._encounter[2]
         self._clothes_change = self._encounter[3]

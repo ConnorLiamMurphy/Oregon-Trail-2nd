@@ -3,7 +3,7 @@ You encountered a cosmic storm! Lose some supplies.,-5,0,-1,0,0,0,0,0,0,False,No
 You met a helpful space traveler.,0,0,0,0,0,0,0,1,0,False,None,Low Oxygen.Normal Oxygen Levels.High Oxygen Levels.Dangerously High Oxygen Levels,None,None
 You lost some supplies due to a scavenger!,-5,0,0,0,0,0,0,0,0,False,None,Low Oxygen.Normal Oxygen Levels.High Oxygen Levels.Dangerously High Oxygen Levels,None,None
 You found a wormhole! Gain morale.,0,0,0,0,0,0,0,1,0,False,None,None,None,None
-One of your engines broke. 1: do you stop and fix it? 2: or keep going?,0,0,0,0,0,-1,0,0,0,True,None,High Oxygen Levels.Dangerously High Oxygen Levels,None,None
+One of your engines broke. 1: do you stop and fix it? 2: or keep going?,0,0,0,0,0,-1,0,0,0,True,None,None,None,None
 Your ship has broken,0,0,0,0,0,0,0,0,0,False,Break,None,Moderate.Quick,None
 You have contracted Dysentery,0,0,0,0,0,0,0,0,0,False,Dysentery,Normal Oxygen Levels.High Oxygen Levels.Dangerously High Oxygen Levels,None,None
 You encounter an asteroid belt. 1: Do you attempt to cross it? 2: Do you wait for a clear passage? 3: Do you wait for it to die down?,0,0,0,0,0,0,0,0,0,True,None,Low Oxygen.High Oxygen Levels.Normal Oxygen Levels.Dangerously High Oxygen Levels,None,None
