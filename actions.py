@@ -111,7 +111,7 @@ class Actions:
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
-            if random.randint(1, 100) <= 95:
+            if random.randint(1, 100) <= 45:
                 _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
