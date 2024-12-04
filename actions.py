@@ -143,7 +143,7 @@ class Actions:
             '02': ['No Oxygen', 'Low Oxygen'],
             '03': ['Low Oxygen', 'Normal Oxygen Levels'],
             '04': ['Low Oxygen', 'Normal Oxygen Levels', 'High Oxygen Levels'],
-            '05': ['Low Oxygen', 'Normal Oxygen Levels', 'High Oxygen Levels'],
+            '05': ['Normal Oxygen Levels', 'High Oxygen Levels'],
             '06': ['Normal Oxygen Levels', 'High Oxygen Levels', 'Dangerously High Oxygen Levels'],
             '07': ['High Oxygen Levels', 'Dangerously High Oxygen Levels'],
             '08': ['High Oxygen Levels', 'Dangerously High Oxygen Levels'],
