@@ -10,13 +10,6 @@ class TestStore(unittest.TestCase):
         """Set up the initial inventory for testing."""
         self.inventory = InventoryAndStats(0, 0, 0, 0, 0, 0, 0, 0, 0, Character("Hunter", "Axe"))
         # Initialize inventory and money
-        self.inventory.set_money(500)
-        self.inventory.set_oxen(2)
-        self.inventory.set_food(50)
-        self.inventory.set_ammo(20)
-        self.inventory.set_clothes(1)
-        self.inventory.set_parts(1)
-        self.inventory.set_medicine(2)
 
     def test_buy_supplies_successful(self):
         """Test that supplies are bought successfully."""
