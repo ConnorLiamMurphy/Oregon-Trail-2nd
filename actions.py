@@ -58,6 +58,10 @@ class Actions:
         """get the distance from the final destination"""
         return self._distance
 
+    def get_char(self):
+        """get the character class of the player"""
+        return self._char
+
     def set_encountered(self, val: bool):
         """set whether you just encountered something"""
         self._encountered = val
@@ -107,7 +111,7 @@ class Actions:
         if self._landmark.get_landmark(self._distance, self._miles_per_day):
             return self.get_location()
         if not self._encountered:
-            if random.randint(1, 100) <= 5:
+            if random.randint(1, 100) <= 45:
                 _new_enc = Encounter(self._inventory, self)
                 return _new_enc
         return self._distance
@@ -139,7 +143,7 @@ class Actions:
             '02': ['No Oxygen', 'Low Oxygen'],
             '03': ['Low Oxygen', 'Normal Oxygen Levels'],
             '04': ['Low Oxygen', 'Normal Oxygen Levels', 'High Oxygen Levels'],
-            '05': ['Low Oxygen', 'Normal Oxygen Levels', 'High Oxygen Levels'],
+            '05': ['Normal Oxygen Levels', 'High Oxygen Levels'],
             '06': ['Normal Oxygen Levels', 'High Oxygen Levels', 'Dangerously High Oxygen Levels'],
             '07': ['High Oxygen Levels', 'Dangerously High Oxygen Levels'],
             '08': ['High Oxygen Levels', 'Dangerously High Oxygen Levels'],
@@ -191,13 +195,13 @@ class Actions:
         if self._weather == 'Dangerously High Oxygen Levels':
             _success_chance -= 15
 
-        if self._char.get_weapon() == 'Knife':
+        if self._char.get_weapon() == 'Light saber':
             _success_chance -= 5
             _misfire_chance -= 5
             _injury_chance += 10
-        if self._char.get_weapon() == 'Rifle':
+        if self._char.get_weapon() == 'Laser blaster':
             _success_chance += 15
-        if self._char.get_weapon() == 'Axe':
+        if self._char.get_weapon() == 'Gravity hammer':
             _success_chance += 5
             _injury_chance += 10
 
@@ -211,21 +215,21 @@ class Actions:
         for i in range(1, ammo_used + 1):
             if random.randint(1, 100) <= _success_chance:
                 if not random.randint(1, 100) <= _misfire_chance:
-                    if self._char.get_weapon() == 'Knife':
+                    if self._char.get_weapon() == 'Light saber':
                         _food_gained += 10
-                    if self._char.get_weapon() == 'Rifle':
-                        _misfire_chance += 15
-                    if self._char.get_weapon() == 'Axe':
-                        _misfire_chance += 5
+                    if self._char.get_weapon() == 'Laser blaster':
+                        _food_gained += 15
+                    if self._char.get_weapon() == 'Gravity hammer':
+                        _food_gained += 5
                 else:
                     self._inventory.set_health(self._inventory.get_health() - 1)
                     _injuries += 1
 
-            if self._char.get_weapon() == 'Knife':
+            if self._char.get_weapon() == 'Light saber':
                 _misfire_chance += 5
-            if self._char.get_weapon() == 'Rifle':
+            if self._char.get_weapon() == 'Laser blaster':
                 _misfire_chance += 15
-            if self._char.get_weapon() == 'Axe':
+            if self._char.get_weapon() == 'Gravity hammer':
                 _misfire_chance += 10
             self._inventory.set_ammo(self._inventory.get_ammo() - 1)
         if random.randint(1, 100) <= _injury_chance:

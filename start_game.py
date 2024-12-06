@@ -15,7 +15,8 @@ from take_rest import take_rest
 from traveling import traveling
 from view_status import view_status
 
-#Use Pygbag to make a web browser game
+
+# Use Pygbag to make a web browser game
 
 def start_game():
     button_image = r'images/new_button.png'
@@ -43,26 +44,38 @@ def start_game():
         [
             # Left-aligned text column
             sg.Column([
-                [sg.Text('Game Started!', font=('Helvetica', 20, "bold"), key='-GAME-', justification='left')],
-                [sg.Text(f'Current Location: {_act.get_location()}', font=('Helvetica', 16,"bold"), key='-LOCATION-',
+                [sg.Text('Game Started!', font=('Helvetica', 20, "bold"),
+                         key='-GAME-', justification='left')],
+                [sg.Text(f'Current Location: {_act.get_location()}',
+                         font=('Helvetica', 16, "bold"), key='-LOCATION-',
                          justification='left')],
                 [sg.Text(f'Food: {_inv.get_food()}', key='-FOOD-', justification='left')],
-                [sg.Text(f'Distance Left: {_act.get_distance()} light years', key='-DISTANCE-', justification='left')],
+                [sg.Text(f'Distance Left: {_act.get_distance()} light years',
+                         key='-DISTANCE-', justification='left')],
                 [sg.Text(f'Date: {_act.get_date()}', key='-DATE-', justification='left')],
                 [sg.Image(r'images/Spaceship.png', size=(500, 479))]  # Image placed below the text
             ], element_justification='left'),
 
             # Right-aligned buttons column
             sg.Column([
-                [sg.Button('Travel', size=(10, 2), image_filename=button_image, font=('Orbitron', 16))],
-                [sg.Button('Check Inventory', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('View Status', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Manage Supplies', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Initiate Trade', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Take Rest', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Go Scavenging', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))],
-                [sg.Button('Quit', image_filename=button_image, size=(10, 3), font=('Helvetica', 16))]
-            ], justification='right', vertical_alignment='top')  # Ensure buttons align vertically on the right side
+                [sg.Button('Travel', size=(10, 2), image_filename=button_image,
+                           font=('Orbitron', 16))],
+                [sg.Button('Check Inventory', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('View Status', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Manage Supplies', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Initiate Trade', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Take Rest', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Go Scavenging', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))],
+                [sg.Button('Quit', image_filename=button_image, size=(10, 3),
+                           font=('Helvetica', 16))]
+            ], justification='right', vertical_alignment='top')
+            # Ensure buttons align vertically on the right side
         ]
     ]
 
@@ -118,13 +131,13 @@ def start_game():
             # Call the take rest function when 'Take Rest' button is clicked
             take_rest(_act, _inv, _char_class)
             _game_window['-DATE-'].update(f'Date: {_act.get_date()}')
-        elif _event == 'Go Hunting':
+        elif _event == 'Go Scavenging':
             if _act.get_hunted():
-                sg.popup("you cannot hunt more than once per day")
+                sg.popup("you cannot scavenge more than once per day")
             elif _inv.get_ammo() <= 0:
-                sg.popup("You have no ammunition")
+                sg.popup("You have no weapon energy")
             else:
-                perform_hunt(_act, _inv)  # Open the perform_hunt window
+                perform_hunt(_act, _inv, _char_class)  # Open the perform_hunt window
                 _game_window['-FOOD-'].update(f'Food: {_inv.get_food()}')
                 if _inv.get_health() <= 0:
                     sg.popup('You have died on your journey! Game Over!')
@@ -138,6 +151,7 @@ def start_game():
 
 
 def end_game_results(inventory, actions):
+    """end the game once the player reaches the final destination"""
     food_remaining = inventory.get_food()
     health_remaining = inventory.get_health()
     morale_remaining = inventory.get_morale()
@@ -148,10 +162,10 @@ def end_game_results(inventory, actions):
 
     # Generate the end-game summary
     results = [
-        "Your journey on the Oregon Trail has ended!",
+        "Your journey on the Stellar Trail has ended!",
         f"Final Location: {final_location}",
         f"Date of Arrival: {date}",
-        f"Distance Traveled: {distance_traveled} miles",
+        f"Distance Traveled: {distance_traveled} light years",
         "",
         "Final Stats:",
         f"  Food Remaining: {food_remaining}",

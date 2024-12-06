@@ -7,10 +7,11 @@ from makeDecision import Decision
 def encountering(encounter: Encounter):
     """open the encounter window until it is closed"""
     if encounter.get_prompt() == "True":
-        _line_1, _line_2 = encounter.get_name()
+        _line_1, _line_2, _line_3 = encounter.get_name()
         _layout = [
             [sg.Text(f'{_line_1}', font=('Helvetica', 20))],
             [sg.Text(f'{_line_2}', font=('Helvetica', 20))],
+            [sg.Text(f'{_line_3}', font=('Helvetica', 20))],
             [sg.Text('', font=('Helvetica', 20), key='-BAD_INPUT-')],
             [sg.Text(f'decision: ', font=('Helvetica', 20)),
              sg.Input(key='-INPUT-'),

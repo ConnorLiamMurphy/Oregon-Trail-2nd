@@ -55,6 +55,6 @@ def traveling(act: Actions):
         if _event == sg.WINDOW_CLOSED:
             break
         if _event == 'Stop':
-            manage_supplies(act, act.get_inventory())  # Open the manage_supplies window
+            manage_supplies(act, act.get_inventory(), act.get_char())  # Open the manage_supplies window
     _travel_window.close()
     return _distance

@@ -36,6 +36,48 @@
                     <a class="function" href="#select_travel_parameters">select_travel_parameters</a>
             </li>
             <li>
+                    <a class="class" href="#Character">Character</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#Character.__init__">Character</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.assign_money">assign_money</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.assign_food">assign_food</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.assign_health">assign_health</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.assign_morale">assign_morale</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.get_inventory">get_inventory</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.update_inventory">update_inventory</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.get_class_food">get_class_food</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.get_class_money">get_class_money</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.get_class_morale">get_class_morale</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.get_class_health">get_class_health</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Character.get_weapon">get_weapon</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="function" href="#select_class_parameters">select_class_parameters</a>
             </li>
     </ul>
@@ -59,69 +101,173 @@ parameters    </h1>
 
                         <label class="view-source-button" for="mod-parameters-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="k">def</span> <span class="nf">select_travel_parameters</span><span class="p">():</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;open the window to select the parameters and return their values once closed&quot;&quot;&quot;</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your travel speed (Slow, Moderate, Quick):&#39;</span><span class="p">)],</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Slow&#39;</span><span class="p">,</span> <span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="s1">&#39;Quick&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">)],</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select ration size (light, standard, heavy):&#39;</span><span class="p">)],</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Light&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="s1">&#39;Heavy&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">)],</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select leave date (March, April, May, June):&#39;</span><span class="p">)],</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Mar&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">)],</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))],</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>    <span class="p">]</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Travel Parameters&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># Event loop</span>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="s1">&#39;Moderate&#39;</span>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="s1">&#39;Standard&#39;</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="s1">&#39;Apr&#39;</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>            <span class="k">break</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">]</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">]</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">]</span>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>            <span class="k">break</span>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>    <span class="k">return</span> <span class="n">_travel_speed</span><span class="p">,</span> <span class="n">_rations</span><span class="p">,</span> <span class="n">_date</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="k">def</span> <span class="nf">select_class_parameters</span><span class="p">():</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;set the values of the players class from the GUI&quot;&quot;&quot;</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your character class (Merchant, Hunter, Guide):&#39;</span><span class="p">)],</span>
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Hunter&#39;</span><span class="p">,</span> <span class="s1">&#39;Merchant&#39;</span><span class="p">,</span> <span class="s1">&#39;Guide&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Hunter&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">)],</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your starting weapon (Rifle, Knife, Axe):&#39;</span><span class="p">)],</span>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Knife&#39;</span><span class="p">,</span> <span class="s1">&#39;Rifle&#39;</span><span class="p">,</span> <span class="s1">&#39;Axe&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Knife&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">)],</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your starting skill (Strength, Magic, Stealth):&#39;</span><span class="p">)],</span>
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Magic&#39;</span><span class="p">,</span> <span class="s1">&#39;Stealth&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-SKILL-&#39;</span><span class="p">)],</span>
-</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))]</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>    <span class="p">]</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>
-</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Choose Class&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>
-</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>            <span class="n">_class</span> <span class="o">=</span> <span class="s1">&#39;Hunter&#39;</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>            <span class="n">_weapon</span> <span class="o">=</span> <span class="s1">&#39;Knife&#39;</span>
-</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>            <span class="n">_skill</span> <span class="o">=</span> <span class="s1">&#39;Strength&#39;</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>            <span class="k">break</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>            <span class="n">_class</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">]</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>            <span class="n">_weapon</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">]</span>
-</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>            <span class="n">_skill</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-SKILL-&#39;</span><span class="p">]</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>            <span class="k">break</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>    <span class="k">return</span> <span class="n">_class</span><span class="p">,</span> <span class="n">_weapon</span><span class="p">,</span> <span class="n">_skill</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="kn">import</span> <span class="nn">PySimpleGUI</span> <span class="k">as</span> <span class="nn">sg</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="kn">import</span> <span class="nn">random</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a><span class="n">_button_image</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;images/continue.png&#39;</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="k">def</span> <span class="nf">select_travel_parameters</span><span class="p">():</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;open the window to select the parameters and return their values once closed&quot;&quot;&quot;</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your travel speed (Slow, Moderate, Quick):&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a>                 <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)],</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Slow&#39;</span><span class="p">,</span> <span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="s1">&#39;Quick&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select ration size (light, standard, heavy):&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a>                 <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)],</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Light&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="s1">&#39;Heavy&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select leave date (March, April, May, June):&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a>                 <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)],</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Mar&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="n">image_filename</span><span class="o">=</span><span class="n">_button_image</span><span class="p">,</span> <span class="n">button_color</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a>                   <span class="n">border_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a>                   <span class="n">pad</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))],</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>    <span class="p">]</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Travel Parameters&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># Event loop</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="s1">&#39;Moderate&#39;</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="s1">&#39;Standard&#39;</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="s1">&#39;Apr&#39;</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>            <span class="k">break</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">]</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">]</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">]</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a>            <span class="k">break</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a>    <span class="k">return</span> <span class="n">_travel_speed</span><span class="p">,</span> <span class="n">_rations</span><span class="p">,</span> <span class="n">_date</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a><span class="k">class</span> <span class="nc">Character</span><span class="p">:</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;store the data of your character class&quot;&quot;&quot;</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char_class</span><span class="p">,</span> <span class="n">char_weapon</span><span class="p">):</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span> <span class="o">=</span> <span class="n">char_class</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_char_weapon</span> <span class="o">=</span> <span class="n">char_weapon</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_money</span><span class="p">()</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_food</span><span class="p">()</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_health</span><span class="p">()</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_morale</span><span class="p">()</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>    <span class="k">def</span> <span class="nf">assign_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign money based on the character class.&quot;&quot;&quot;</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>        <span class="n">money_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">850</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>        <span class="p">}</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>        <span class="k">return</span> <span class="n">money_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span>  <span class="c1"># Default to 700 if class not found</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>    <span class="k">def</span> <span class="nf">assign_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign food based on the character class.&quot;&quot;&quot;</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>        <span class="n">food_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">5</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>        <span class="p">}</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>        <span class="k">return</span> <span class="n">food_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Default to 10 if class not found</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>    <span class="k">def</span> <span class="nf">assign_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign health based on the character class.&quot;&quot;&quot;</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>        <span class="n">health_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>        <span class="p">}</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>        <span class="k">return</span> <span class="n">health_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Default to 100 if class not found</span>
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>    <span class="k">def</span> <span class="nf">assign_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign morale based on the character class.&quot;&quot;&quot;</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>        <span class="n">morale_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>        <span class="p">}</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>        <span class="k">return</span> <span class="n">morale_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Default to 5 if class not found</span>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">get_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the character&#39;s inventory.&quot;&quot;&quot;</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>            <span class="s1">&#39;Food&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span><span class="p">,</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>            <span class="s1">&#39;Health&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span><span class="p">,</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>            <span class="s1">&#39;Morale&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span><span class="p">,</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>            <span class="s1">&#39;Money&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>        <span class="p">}</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>    <span class="k">def</span> <span class="nf">update_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food_change</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">health_change</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">morale_change</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the inventory&quot;&quot;&quot;</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">+=</span> <span class="n">food_change</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">+=</span> <span class="n">health_change</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">+=</span> <span class="n">morale_change</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>    <span class="k">def</span> <span class="nf">get_class_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of food you get from your class&quot;&quot;&quot;</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>    <span class="k">def</span> <span class="nf">get_class_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of money you get from your class&quot;&quot;&quot;</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">get_class_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of morale you get from your class&quot;&quot;&quot;</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a>    <span class="k">def</span> <span class="nf">get_class_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of health you get from your class&quot;&quot;&quot;</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>    <span class="k">def</span> <span class="nf">get_weapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return your chosen weapon&quot;&quot;&quot;</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_char_weapon</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="k">def</span> <span class="nf">select_class_parameters</span><span class="p">():</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Display a GUI for selecting character class and weapon.&quot;&quot;&quot;</span>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>    <span class="c1"># Define the layout of the window</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>        <span class="c1"># Display the background image</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>        <span class="c1"># Text for character class selection</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your character class (Alien Hunter, Space Trader, Astro Explorer):&#39;</span><span class="p">,</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>                 <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">justification</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)],</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Alien Hunter&#39;</span><span class="p">,</span> <span class="s1">&#39;Space Trader&#39;</span><span class="p">,</span> <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">],</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>                  <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Alien Hunter&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">,</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>                  <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your starting weapon (Rifle, Knife, Axe):&#39;</span><span class="p">,</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>                 <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">justification</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)],</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Light saber&#39;</span><span class="p">,</span> <span class="s1">&#39;Laser blaster&#39;</span><span class="p">,</span> <span class="s1">&#39;Gravity hammer&#39;</span><span class="p">],</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>                  <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Light saber&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">,</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>                  <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">image_filename</span><span class="o">=</span><span class="n">_button_image</span><span class="p">,</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>                   <span class="n">button_color</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span> <span class="n">pad</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))]</span>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>    <span class="p">]</span>
+</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a>
+</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Choose Class&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a>    <span class="c1"># Event loop for the window</span>
+</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>  <span class="c1"># Handle window close</span>
+</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a>            <span class="n">_class</span><span class="p">,</span> <span class="n">_weapon</span> <span class="o">=</span> <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">,</span> <span class="s1">&#39;Knife&#39;</span>
+</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a>            <span class="k">break</span>
+</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>  <span class="c1"># Handle confirm button</span>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a>            <span class="n">_class</span> <span class="o">=</span> <span class="n">_values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">,</span> <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">)</span>
+</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a>            <span class="n">_weapon</span> <span class="o">=</span> <span class="n">_values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">,</span> <span class="s1">&#39;Knife&#39;</span><span class="p">)</span>
+</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>            <span class="k">break</span>
+</span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a>
+</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a>
+</span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a>    <span class="k">return</span> <span class="n">_class</span><span class="p">,</span> <span class="n">_weapon</span>
 </span></pre></div>
 
 
@@ -137,35 +283,42 @@ parameters    </h1>
 
     </div>
     <a class="headerlink" href="#select_travel_parameters"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="select_travel_parameters-5"><a href="#select_travel_parameters-5"><span class="linenos"> 5</span></a><span class="k">def</span> <span class="nf">select_travel_parameters</span><span class="p">():</span>
-</span><span id="select_travel_parameters-6"><a href="#select_travel_parameters-6"><span class="linenos"> 6</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;open the window to select the parameters and return their values once closed&quot;&quot;&quot;</span>
-</span><span id="select_travel_parameters-7"><a href="#select_travel_parameters-7"><span class="linenos"> 7</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="select_travel_parameters-8"><a href="#select_travel_parameters-8"><span class="linenos"> 8</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your travel speed (Slow, Moderate, Quick):&#39;</span><span class="p">)],</span>
-</span><span id="select_travel_parameters-9"><a href="#select_travel_parameters-9"><span class="linenos"> 9</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Slow&#39;</span><span class="p">,</span> <span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="s1">&#39;Quick&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">)],</span>
-</span><span id="select_travel_parameters-10"><a href="#select_travel_parameters-10"><span class="linenos">10</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select ration size (light, standard, heavy):&#39;</span><span class="p">)],</span>
-</span><span id="select_travel_parameters-11"><a href="#select_travel_parameters-11"><span class="linenos">11</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Light&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="s1">&#39;Heavy&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">)],</span>
-</span><span id="select_travel_parameters-12"><a href="#select_travel_parameters-12"><span class="linenos">12</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select leave date (March, April, May, June):&#39;</span><span class="p">)],</span>
-</span><span id="select_travel_parameters-13"><a href="#select_travel_parameters-13"><span class="linenos">13</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Mar&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">)],</span>
-</span><span id="select_travel_parameters-14"><a href="#select_travel_parameters-14"><span class="linenos">14</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))],</span>
-</span><span id="select_travel_parameters-15"><a href="#select_travel_parameters-15"><span class="linenos">15</span></a>    <span class="p">]</span>
-</span><span id="select_travel_parameters-16"><a href="#select_travel_parameters-16"><span class="linenos">16</span></a>
-</span><span id="select_travel_parameters-17"><a href="#select_travel_parameters-17"><span class="linenos">17</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Travel Parameters&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="select_travel_parameters-18"><a href="#select_travel_parameters-18"><span class="linenos">18</span></a>
-</span><span id="select_travel_parameters-19"><a href="#select_travel_parameters-19"><span class="linenos">19</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># Event loop</span>
-</span><span id="select_travel_parameters-20"><a href="#select_travel_parameters-20"><span class="linenos">20</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span id="select_travel_parameters-21"><a href="#select_travel_parameters-21"><span class="linenos">21</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>
-</span><span id="select_travel_parameters-22"><a href="#select_travel_parameters-22"><span class="linenos">22</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="s1">&#39;Moderate&#39;</span>
-</span><span id="select_travel_parameters-23"><a href="#select_travel_parameters-23"><span class="linenos">23</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="s1">&#39;Standard&#39;</span>
-</span><span id="select_travel_parameters-24"><a href="#select_travel_parameters-24"><span class="linenos">24</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="s1">&#39;Apr&#39;</span>
-</span><span id="select_travel_parameters-25"><a href="#select_travel_parameters-25"><span class="linenos">25</span></a>            <span class="k">break</span>
-</span><span id="select_travel_parameters-26"><a href="#select_travel_parameters-26"><span class="linenos">26</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>
-</span><span id="select_travel_parameters-27"><a href="#select_travel_parameters-27"><span class="linenos">27</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">]</span>
-</span><span id="select_travel_parameters-28"><a href="#select_travel_parameters-28"><span class="linenos">28</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">]</span>
-</span><span id="select_travel_parameters-29"><a href="#select_travel_parameters-29"><span class="linenos">29</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">]</span>
-</span><span id="select_travel_parameters-30"><a href="#select_travel_parameters-30"><span class="linenos">30</span></a>            <span class="k">break</span>
-</span><span id="select_travel_parameters-31"><a href="#select_travel_parameters-31"><span class="linenos">31</span></a>
-</span><span id="select_travel_parameters-32"><a href="#select_travel_parameters-32"><span class="linenos">32</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="select_travel_parameters-33"><a href="#select_travel_parameters-33"><span class="linenos">33</span></a>    <span class="k">return</span> <span class="n">_travel_speed</span><span class="p">,</span> <span class="n">_rations</span><span class="p">,</span> <span class="n">_date</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="select_travel_parameters-8"><a href="#select_travel_parameters-8"><span class="linenos"> 8</span></a><span class="k">def</span> <span class="nf">select_travel_parameters</span><span class="p">():</span>
+</span><span id="select_travel_parameters-9"><a href="#select_travel_parameters-9"><span class="linenos"> 9</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;open the window to select the parameters and return their values once closed&quot;&quot;&quot;</span>
+</span><span id="select_travel_parameters-10"><a href="#select_travel_parameters-10"><span class="linenos">10</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="select_travel_parameters-11"><a href="#select_travel_parameters-11"><span class="linenos">11</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your travel speed (Slow, Moderate, Quick):&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span><span id="select_travel_parameters-12"><a href="#select_travel_parameters-12"><span class="linenos">12</span></a>                 <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)],</span>
+</span><span id="select_travel_parameters-13"><a href="#select_travel_parameters-13"><span class="linenos">13</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Slow&#39;</span><span class="p">,</span> <span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="s1">&#39;Quick&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Moderate&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="select_travel_parameters-14"><a href="#select_travel_parameters-14"><span class="linenos">14</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="select_travel_parameters-15"><a href="#select_travel_parameters-15"><span class="linenos">15</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select ration size (light, standard, heavy):&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span><span id="select_travel_parameters-16"><a href="#select_travel_parameters-16"><span class="linenos">16</span></a>                 <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)],</span>
+</span><span id="select_travel_parameters-17"><a href="#select_travel_parameters-17"><span class="linenos">17</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Light&#39;</span><span class="p">,</span> <span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="s1">&#39;Heavy&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="select_travel_parameters-18"><a href="#select_travel_parameters-18"><span class="linenos">18</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="select_travel_parameters-19"><a href="#select_travel_parameters-19"><span class="linenos">19</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select leave date (March, April, May, June):&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span><span id="select_travel_parameters-20"><a href="#select_travel_parameters-20"><span class="linenos">20</span></a>                 <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)],</span>
+</span><span id="select_travel_parameters-21"><a href="#select_travel_parameters-21"><span class="linenos">21</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Mar&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;May&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="select_travel_parameters-22"><a href="#select_travel_parameters-22"><span class="linenos">22</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="s2">&quot;arial&quot;</span><span class="p">,</span> <span class="n">image_filename</span><span class="o">=</span><span class="n">_button_image</span><span class="p">,</span> <span class="n">button_color</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span>
+</span><span id="select_travel_parameters-23"><a href="#select_travel_parameters-23"><span class="linenos">23</span></a>                   <span class="n">border_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+</span><span id="select_travel_parameters-24"><a href="#select_travel_parameters-24"><span class="linenos">24</span></a>                   <span class="n">pad</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))],</span>
+</span><span id="select_travel_parameters-25"><a href="#select_travel_parameters-25"><span class="linenos">25</span></a>    <span class="p">]</span>
+</span><span id="select_travel_parameters-26"><a href="#select_travel_parameters-26"><span class="linenos">26</span></a>
+</span><span id="select_travel_parameters-27"><a href="#select_travel_parameters-27"><span class="linenos">27</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Travel Parameters&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="select_travel_parameters-28"><a href="#select_travel_parameters-28"><span class="linenos">28</span></a>
+</span><span id="select_travel_parameters-29"><a href="#select_travel_parameters-29"><span class="linenos">29</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># Event loop</span>
+</span><span id="select_travel_parameters-30"><a href="#select_travel_parameters-30"><span class="linenos">30</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="select_travel_parameters-31"><a href="#select_travel_parameters-31"><span class="linenos">31</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>
+</span><span id="select_travel_parameters-32"><a href="#select_travel_parameters-32"><span class="linenos">32</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="s1">&#39;Moderate&#39;</span>
+</span><span id="select_travel_parameters-33"><a href="#select_travel_parameters-33"><span class="linenos">33</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="s1">&#39;Standard&#39;</span>
+</span><span id="select_travel_parameters-34"><a href="#select_travel_parameters-34"><span class="linenos">34</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="s1">&#39;Apr&#39;</span>
+</span><span id="select_travel_parameters-35"><a href="#select_travel_parameters-35"><span class="linenos">35</span></a>            <span class="k">break</span>
+</span><span id="select_travel_parameters-36"><a href="#select_travel_parameters-36"><span class="linenos">36</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>
+</span><span id="select_travel_parameters-37"><a href="#select_travel_parameters-37"><span class="linenos">37</span></a>            <span class="n">_travel_speed</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-SPEED-&#39;</span><span class="p">]</span>
+</span><span id="select_travel_parameters-38"><a href="#select_travel_parameters-38"><span class="linenos">38</span></a>            <span class="n">_rations</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-RATIONS-&#39;</span><span class="p">]</span>
+</span><span id="select_travel_parameters-39"><a href="#select_travel_parameters-39"><span class="linenos">39</span></a>            <span class="n">_date</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-DATE-&#39;</span><span class="p">]</span>
+</span><span id="select_travel_parameters-40"><a href="#select_travel_parameters-40"><span class="linenos">40</span></a>            <span class="k">break</span>
+</span><span id="select_travel_parameters-41"><a href="#select_travel_parameters-41"><span class="linenos">41</span></a>
+</span><span id="select_travel_parameters-42"><a href="#select_travel_parameters-42"><span class="linenos">42</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="select_travel_parameters-43"><a href="#select_travel_parameters-43"><span class="linenos">43</span></a>    <span class="k">return</span> <span class="n">_travel_speed</span><span class="p">,</span> <span class="n">_rations</span><span class="p">,</span> <span class="n">_date</span>
 </span></pre></div>
 
 
@@ -173,6 +326,398 @@ parameters    </h1>
 </div>
 
 
+                </section>
+                <section id="Character">
+                            <input id="Character-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">Character</span>:
+
+                <label class="view-source-button" for="Character-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character-46"><a href="#Character-46"><span class="linenos"> 46</span></a><span class="k">class</span> <span class="nc">Character</span><span class="p">:</span>
+</span><span id="Character-47"><a href="#Character-47"><span class="linenos"> 47</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;store the data of your character class&quot;&quot;&quot;</span>
+</span><span id="Character-48"><a href="#Character-48"><span class="linenos"> 48</span></a>
+</span><span id="Character-49"><a href="#Character-49"><span class="linenos"> 49</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char_class</span><span class="p">,</span> <span class="n">char_weapon</span><span class="p">):</span>
+</span><span id="Character-50"><a href="#Character-50"><span class="linenos"> 50</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span> <span class="o">=</span> <span class="n">char_class</span>
+</span><span id="Character-51"><a href="#Character-51"><span class="linenos"> 51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_char_weapon</span> <span class="o">=</span> <span class="n">char_weapon</span>
+</span><span id="Character-52"><a href="#Character-52"><span class="linenos"> 52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_money</span><span class="p">()</span>
+</span><span id="Character-53"><a href="#Character-53"><span class="linenos"> 53</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_food</span><span class="p">()</span>
+</span><span id="Character-54"><a href="#Character-54"><span class="linenos"> 54</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_health</span><span class="p">()</span>
+</span><span id="Character-55"><a href="#Character-55"><span class="linenos"> 55</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_morale</span><span class="p">()</span>
+</span><span id="Character-56"><a href="#Character-56"><span class="linenos"> 56</span></a>
+</span><span id="Character-57"><a href="#Character-57"><span class="linenos"> 57</span></a>    <span class="k">def</span> <span class="nf">assign_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-58"><a href="#Character-58"><span class="linenos"> 58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign money based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character-59"><a href="#Character-59"><span class="linenos"> 59</span></a>        <span class="n">money_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character-60"><a href="#Character-60"><span class="linenos"> 60</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
+</span><span id="Character-61"><a href="#Character-61"><span class="linenos"> 61</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span id="Character-62"><a href="#Character-62"><span class="linenos"> 62</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">850</span>
+</span><span id="Character-63"><a href="#Character-63"><span class="linenos"> 63</span></a>        <span class="p">}</span>
+</span><span id="Character-64"><a href="#Character-64"><span class="linenos"> 64</span></a>        <span class="k">return</span> <span class="n">money_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span>  <span class="c1"># Default to 700 if class not found</span>
+</span><span id="Character-65"><a href="#Character-65"><span class="linenos"> 65</span></a>
+</span><span id="Character-66"><a href="#Character-66"><span class="linenos"> 66</span></a>    <span class="k">def</span> <span class="nf">assign_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-67"><a href="#Character-67"><span class="linenos"> 67</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign food based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character-68"><a href="#Character-68"><span class="linenos"> 68</span></a>        <span class="n">food_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character-69"><a href="#Character-69"><span class="linenos"> 69</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span><span id="Character-70"><a href="#Character-70"><span class="linenos"> 70</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="Character-71"><a href="#Character-71"><span class="linenos"> 71</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">5</span>
+</span><span id="Character-72"><a href="#Character-72"><span class="linenos"> 72</span></a>        <span class="p">}</span>
+</span><span id="Character-73"><a href="#Character-73"><span class="linenos"> 73</span></a>        <span class="k">return</span> <span class="n">food_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Default to 10 if class not found</span>
+</span><span id="Character-74"><a href="#Character-74"><span class="linenos"> 74</span></a>
+</span><span id="Character-75"><a href="#Character-75"><span class="linenos"> 75</span></a>    <span class="k">def</span> <span class="nf">assign_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-76"><a href="#Character-76"><span class="linenos"> 76</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign health based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character-77"><a href="#Character-77"><span class="linenos"> 77</span></a>        <span class="n">health_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character-78"><a href="#Character-78"><span class="linenos"> 78</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span><span id="Character-79"><a href="#Character-79"><span class="linenos"> 79</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+</span><span id="Character-80"><a href="#Character-80"><span class="linenos"> 80</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span><span id="Character-81"><a href="#Character-81"><span class="linenos"> 81</span></a>        <span class="p">}</span>
+</span><span id="Character-82"><a href="#Character-82"><span class="linenos"> 82</span></a>        <span class="k">return</span> <span class="n">health_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Default to 100 if class not found</span>
+</span><span id="Character-83"><a href="#Character-83"><span class="linenos"> 83</span></a>
+</span><span id="Character-84"><a href="#Character-84"><span class="linenos"> 84</span></a>    <span class="k">def</span> <span class="nf">assign_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-85"><a href="#Character-85"><span class="linenos"> 85</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign morale based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character-86"><a href="#Character-86"><span class="linenos"> 86</span></a>        <span class="n">morale_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character-87"><a href="#Character-87"><span class="linenos"> 87</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span id="Character-88"><a href="#Character-88"><span class="linenos"> 88</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+</span><span id="Character-89"><a href="#Character-89"><span class="linenos"> 89</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span><span id="Character-90"><a href="#Character-90"><span class="linenos"> 90</span></a>        <span class="p">}</span>
+</span><span id="Character-91"><a href="#Character-91"><span class="linenos"> 91</span></a>        <span class="k">return</span> <span class="n">morale_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Default to 5 if class not found</span>
+</span><span id="Character-92"><a href="#Character-92"><span class="linenos"> 92</span></a>
+</span><span id="Character-93"><a href="#Character-93"><span class="linenos"> 93</span></a>    <span class="k">def</span> <span class="nf">get_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-94"><a href="#Character-94"><span class="linenos"> 94</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the character&#39;s inventory.&quot;&quot;&quot;</span>
+</span><span id="Character-95"><a href="#Character-95"><span class="linenos"> 95</span></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="Character-96"><a href="#Character-96"><span class="linenos"> 96</span></a>            <span class="s1">&#39;Food&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span><span class="p">,</span>
+</span><span id="Character-97"><a href="#Character-97"><span class="linenos"> 97</span></a>            <span class="s1">&#39;Health&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span><span class="p">,</span>
+</span><span id="Character-98"><a href="#Character-98"><span class="linenos"> 98</span></a>            <span class="s1">&#39;Morale&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span><span class="p">,</span>
+</span><span id="Character-99"><a href="#Character-99"><span class="linenos"> 99</span></a>            <span class="s1">&#39;Money&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="Character-100"><a href="#Character-100"><span class="linenos">100</span></a>        <span class="p">}</span>
+</span><span id="Character-101"><a href="#Character-101"><span class="linenos">101</span></a>
+</span><span id="Character-102"><a href="#Character-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="nf">update_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food_change</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">health_change</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">morale_change</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span><span id="Character-103"><a href="#Character-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the inventory&quot;&quot;&quot;</span>
+</span><span id="Character-104"><a href="#Character-104"><span class="linenos">104</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">+=</span> <span class="n">food_change</span>
+</span><span id="Character-105"><a href="#Character-105"><span class="linenos">105</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">+=</span> <span class="n">health_change</span>
+</span><span id="Character-106"><a href="#Character-106"><span class="linenos">106</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">+=</span> <span class="n">morale_change</span>
+</span><span id="Character-107"><a href="#Character-107"><span class="linenos">107</span></a>
+</span><span id="Character-108"><a href="#Character-108"><span class="linenos">108</span></a>    <span class="k">def</span> <span class="nf">get_class_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-109"><a href="#Character-109"><span class="linenos">109</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of food you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character-110"><a href="#Character-110"><span class="linenos">110</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
+</span><span id="Character-111"><a href="#Character-111"><span class="linenos">111</span></a>
+</span><span id="Character-112"><a href="#Character-112"><span class="linenos">112</span></a>    <span class="k">def</span> <span class="nf">get_class_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-113"><a href="#Character-113"><span class="linenos">113</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of money you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character-114"><a href="#Character-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="Character-115"><a href="#Character-115"><span class="linenos">115</span></a>
+</span><span id="Character-116"><a href="#Character-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">get_class_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-117"><a href="#Character-117"><span class="linenos">117</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of morale you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character-118"><a href="#Character-118"><span class="linenos">118</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
+</span><span id="Character-119"><a href="#Character-119"><span class="linenos">119</span></a>
+</span><span id="Character-120"><a href="#Character-120"><span class="linenos">120</span></a>    <span class="k">def</span> <span class="nf">get_class_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-121"><a href="#Character-121"><span class="linenos">121</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of health you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character-122"><a href="#Character-122"><span class="linenos">122</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+</span><span id="Character-123"><a href="#Character-123"><span class="linenos">123</span></a>
+</span><span id="Character-124"><a href="#Character-124"><span class="linenos">124</span></a>    <span class="k">def</span> <span class="nf">get_weapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character-125"><a href="#Character-125"><span class="linenos">125</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return your chosen weapon&quot;&quot;&quot;</span>
+</span><span id="Character-126"><a href="#Character-126"><span class="linenos">126</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_char_weapon</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>store the data of your character class</p>
+</div>
+
+
+                            <div id="Character.__init__" class="classattr">
+                                        <input id="Character.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">Character</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">char_class</span>, </span><span class="param"><span class="n">char_weapon</span></span>)</span>
+
+                <label class="view-source-button" for="Character.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.__init__-49"><a href="#Character.__init__-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">char_class</span><span class="p">,</span> <span class="n">char_weapon</span><span class="p">):</span>
+</span><span id="Character.__init__-50"><a href="#Character.__init__-50"><span class="linenos">50</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span> <span class="o">=</span> <span class="n">char_class</span>
+</span><span id="Character.__init__-51"><a href="#Character.__init__-51"><span class="linenos">51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_char_weapon</span> <span class="o">=</span> <span class="n">char_weapon</span>
+</span><span id="Character.__init__-52"><a href="#Character.__init__-52"><span class="linenos">52</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_money</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_money</span><span class="p">()</span>
+</span><span id="Character.__init__-53"><a href="#Character.__init__-53"><span class="linenos">53</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_food</span><span class="p">()</span>
+</span><span id="Character.__init__-54"><a href="#Character.__init__-54"><span class="linenos">54</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_health</span><span class="p">()</span>
+</span><span id="Character.__init__-55"><a href="#Character.__init__-55"><span class="linenos">55</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">assign_morale</span><span class="p">()</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="Character.assign_money" class="classattr">
+                                        <input id="Character.assign_money-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">assign_money</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.assign_money-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.assign_money"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.assign_money-57"><a href="#Character.assign_money-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="nf">assign_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.assign_money-58"><a href="#Character.assign_money-58"><span class="linenos">58</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign money based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character.assign_money-59"><a href="#Character.assign_money-59"><span class="linenos">59</span></a>        <span class="n">money_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character.assign_money-60"><a href="#Character.assign_money-60"><span class="linenos">60</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">700</span><span class="p">,</span>
+</span><span id="Character.assign_money-61"><a href="#Character.assign_money-61"><span class="linenos">61</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+</span><span id="Character.assign_money-62"><a href="#Character.assign_money-62"><span class="linenos">62</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">850</span>
+</span><span id="Character.assign_money-63"><a href="#Character.assign_money-63"><span class="linenos">63</span></a>        <span class="p">}</span>
+</span><span id="Character.assign_money-64"><a href="#Character.assign_money-64"><span class="linenos">64</span></a>        <span class="k">return</span> <span class="n">money_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">700</span><span class="p">)</span>  <span class="c1"># Default to 700 if class not found</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Assign money based on the character class.</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.assign_food" class="classattr">
+                                        <input id="Character.assign_food-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">assign_food</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.assign_food-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.assign_food"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.assign_food-66"><a href="#Character.assign_food-66"><span class="linenos">66</span></a>    <span class="k">def</span> <span class="nf">assign_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.assign_food-67"><a href="#Character.assign_food-67"><span class="linenos">67</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign food based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character.assign_food-68"><a href="#Character.assign_food-68"><span class="linenos">68</span></a>        <span class="n">food_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character.assign_food-69"><a href="#Character.assign_food-69"><span class="linenos">69</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span><span id="Character.assign_food-70"><a href="#Character.assign_food-70"><span class="linenos">70</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span><span id="Character.assign_food-71"><a href="#Character.assign_food-71"><span class="linenos">71</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">5</span>
+</span><span id="Character.assign_food-72"><a href="#Character.assign_food-72"><span class="linenos">72</span></a>        <span class="p">}</span>
+</span><span id="Character.assign_food-73"><a href="#Character.assign_food-73"><span class="linenos">73</span></a>        <span class="k">return</span> <span class="n">food_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Default to 10 if class not found</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Assign food based on the character class.</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.assign_health" class="classattr">
+                                        <input id="Character.assign_health-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">assign_health</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.assign_health-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.assign_health"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.assign_health-75"><a href="#Character.assign_health-75"><span class="linenos">75</span></a>    <span class="k">def</span> <span class="nf">assign_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.assign_health-76"><a href="#Character.assign_health-76"><span class="linenos">76</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign health based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character.assign_health-77"><a href="#Character.assign_health-77"><span class="linenos">77</span></a>        <span class="n">health_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character.assign_health-78"><a href="#Character.assign_health-78"><span class="linenos">78</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+</span><span id="Character.assign_health-79"><a href="#Character.assign_health-79"><span class="linenos">79</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+</span><span id="Character.assign_health-80"><a href="#Character.assign_health-80"><span class="linenos">80</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span><span id="Character.assign_health-81"><a href="#Character.assign_health-81"><span class="linenos">81</span></a>        <span class="p">}</span>
+</span><span id="Character.assign_health-82"><a href="#Character.assign_health-82"><span class="linenos">82</span></a>        <span class="k">return</span> <span class="n">health_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Default to 100 if class not found</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Assign health based on the character class.</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.assign_morale" class="classattr">
+                                        <input id="Character.assign_morale-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">assign_morale</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.assign_morale-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.assign_morale"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.assign_morale-84"><a href="#Character.assign_morale-84"><span class="linenos">84</span></a>    <span class="k">def</span> <span class="nf">assign_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.assign_morale-85"><a href="#Character.assign_morale-85"><span class="linenos">85</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign morale based on the character class.&quot;&quot;&quot;</span>
+</span><span id="Character.assign_morale-86"><a href="#Character.assign_morale-86"><span class="linenos">86</span></a>        <span class="n">morale_by_class</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="Character.assign_morale-87"><a href="#Character.assign_morale-87"><span class="linenos">87</span></a>            <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+</span><span id="Character.assign_morale-88"><a href="#Character.assign_morale-88"><span class="linenos">88</span></a>            <span class="s1">&#39;Space Trader&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+</span><span id="Character.assign_morale-89"><a href="#Character.assign_morale-89"><span class="linenos">89</span></a>            <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">:</span> <span class="mi">10</span>
+</span><span id="Character.assign_morale-90"><a href="#Character.assign_morale-90"><span class="linenos">90</span></a>        <span class="p">}</span>
+</span><span id="Character.assign_morale-91"><a href="#Character.assign_morale-91"><span class="linenos">91</span></a>        <span class="k">return</span> <span class="n">morale_by_class</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_char_class</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Default to 5 if class not found</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Assign morale based on the character class.</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.get_inventory" class="classattr">
+                                        <input id="Character.get_inventory-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_inventory</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.get_inventory-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.get_inventory"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.get_inventory-93"><a href="#Character.get_inventory-93"><span class="linenos"> 93</span></a>    <span class="k">def</span> <span class="nf">get_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.get_inventory-94"><a href="#Character.get_inventory-94"><span class="linenos"> 94</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the character&#39;s inventory.&quot;&quot;&quot;</span>
+</span><span id="Character.get_inventory-95"><a href="#Character.get_inventory-95"><span class="linenos"> 95</span></a>        <span class="k">return</span> <span class="p">{</span>
+</span><span id="Character.get_inventory-96"><a href="#Character.get_inventory-96"><span class="linenos"> 96</span></a>            <span class="s1">&#39;Food&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span><span class="p">,</span>
+</span><span id="Character.get_inventory-97"><a href="#Character.get_inventory-97"><span class="linenos"> 97</span></a>            <span class="s1">&#39;Health&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span><span class="p">,</span>
+</span><span id="Character.get_inventory-98"><a href="#Character.get_inventory-98"><span class="linenos"> 98</span></a>            <span class="s1">&#39;Morale&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span><span class="p">,</span>
+</span><span id="Character.get_inventory-99"><a href="#Character.get_inventory-99"><span class="linenos"> 99</span></a>            <span class="s1">&#39;Money&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span><span id="Character.get_inventory-100"><a href="#Character.get_inventory-100"><span class="linenos">100</span></a>        <span class="p">}</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Return the character's inventory.</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.update_inventory" class="classattr">
+                                        <input id="Character.update_inventory-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">update_inventory</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">food_change</span><span class="o">=</span><span class="mi">0</span>, </span><span class="param"><span class="n">health_change</span><span class="o">=</span><span class="mi">0</span>, </span><span class="param"><span class="n">morale_change</span><span class="o">=</span><span class="mi">0</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.update_inventory-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.update_inventory"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.update_inventory-102"><a href="#Character.update_inventory-102"><span class="linenos">102</span></a>    <span class="k">def</span> <span class="nf">update_inventory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">food_change</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">health_change</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">morale_change</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span><span id="Character.update_inventory-103"><a href="#Character.update_inventory-103"><span class="linenos">103</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the inventory&quot;&quot;&quot;</span>
+</span><span id="Character.update_inventory-104"><a href="#Character.update_inventory-104"><span class="linenos">104</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_food</span> <span class="o">+=</span> <span class="n">food_change</span>
+</span><span id="Character.update_inventory-105"><a href="#Character.update_inventory-105"><span class="linenos">105</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_health</span> <span class="o">+=</span> <span class="n">health_change</span>
+</span><span id="Character.update_inventory-106"><a href="#Character.update_inventory-106"><span class="linenos">106</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span> <span class="o">+=</span> <span class="n">morale_change</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Update the inventory</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.get_class_food" class="classattr">
+                                        <input id="Character.get_class_food-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_class_food</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.get_class_food-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.get_class_food"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.get_class_food-108"><a href="#Character.get_class_food-108"><span class="linenos">108</span></a>    <span class="k">def</span> <span class="nf">get_class_food</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.get_class_food-109"><a href="#Character.get_class_food-109"><span class="linenos">109</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of food you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character.get_class_food-110"><a href="#Character.get_class_food-110"><span class="linenos">110</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_food</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>return the amount of food you get from your class</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.get_class_money" class="classattr">
+                                        <input id="Character.get_class_money-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_class_money</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.get_class_money-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.get_class_money"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.get_class_money-112"><a href="#Character.get_class_money-112"><span class="linenos">112</span></a>    <span class="k">def</span> <span class="nf">get_class_money</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.get_class_money-113"><a href="#Character.get_class_money-113"><span class="linenos">113</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of money you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character.get_class_money-114"><a href="#Character.get_class_money-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_money</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>return the amount of money you get from your class</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.get_class_morale" class="classattr">
+                                        <input id="Character.get_class_morale-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_class_morale</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.get_class_morale-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.get_class_morale"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.get_class_morale-116"><a href="#Character.get_class_morale-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="nf">get_class_morale</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.get_class_morale-117"><a href="#Character.get_class_morale-117"><span class="linenos">117</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of morale you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character.get_class_morale-118"><a href="#Character.get_class_morale-118"><span class="linenos">118</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_morale</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>return the amount of morale you get from your class</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.get_class_health" class="classattr">
+                                        <input id="Character.get_class_health-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_class_health</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.get_class_health-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.get_class_health"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.get_class_health-120"><a href="#Character.get_class_health-120"><span class="linenos">120</span></a>    <span class="k">def</span> <span class="nf">get_class_health</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.get_class_health-121"><a href="#Character.get_class_health-121"><span class="linenos">121</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return the amount of health you get from your class&quot;&quot;&quot;</span>
+</span><span id="Character.get_class_health-122"><a href="#Character.get_class_health-122"><span class="linenos">122</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_health</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>return the amount of health you get from your class</p>
+</div>
+
+
+                            </div>
+                            <div id="Character.get_weapon" class="classattr">
+                                        <input id="Character.get_weapon-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">get_weapon</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Character.get_weapon-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Character.get_weapon"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Character.get_weapon-124"><a href="#Character.get_weapon-124"><span class="linenos">124</span></a>    <span class="k">def</span> <span class="nf">get_weapon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Character.get_weapon-125"><a href="#Character.get_weapon-125"><span class="linenos">125</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;return your chosen weapon&quot;&quot;&quot;</span>
+</span><span id="Character.get_weapon-126"><a href="#Character.get_weapon-126"><span class="linenos">126</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_char_weapon</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>return your chosen weapon</p>
+</div>
+
+
+                            </div>
                 </section>
                 <section id="select_class_parameters">
                             <input id="select_class_parameters-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
@@ -185,39 +730,50 @@ parameters    </h1>
 
     </div>
     <a class="headerlink" href="#select_class_parameters"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="select_class_parameters-36"><a href="#select_class_parameters-36"><span class="linenos">36</span></a><span class="k">def</span> <span class="nf">select_class_parameters</span><span class="p">():</span>
-</span><span id="select_class_parameters-37"><a href="#select_class_parameters-37"><span class="linenos">37</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;set the values of the players class from the GUI&quot;&quot;&quot;</span>
-</span><span id="select_class_parameters-38"><a href="#select_class_parameters-38"><span class="linenos">38</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="select_class_parameters-39"><a href="#select_class_parameters-39"><span class="linenos">39</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your character class (Merchant, Hunter, Guide):&#39;</span><span class="p">)],</span>
-</span><span id="select_class_parameters-40"><a href="#select_class_parameters-40"><span class="linenos">40</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Hunter&#39;</span><span class="p">,</span> <span class="s1">&#39;Merchant&#39;</span><span class="p">,</span> <span class="s1">&#39;Guide&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Hunter&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">)],</span>
-</span><span id="select_class_parameters-41"><a href="#select_class_parameters-41"><span class="linenos">41</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your starting weapon (Rifle, Knife, Axe):&#39;</span><span class="p">)],</span>
-</span><span id="select_class_parameters-42"><a href="#select_class_parameters-42"><span class="linenos">42</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Knife&#39;</span><span class="p">,</span> <span class="s1">&#39;Rifle&#39;</span><span class="p">,</span> <span class="s1">&#39;Axe&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Knife&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">)],</span>
-</span><span id="select_class_parameters-43"><a href="#select_class_parameters-43"><span class="linenos">43</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your starting skill (Strength, Magic, Stealth):&#39;</span><span class="p">)],</span>
-</span><span id="select_class_parameters-44"><a href="#select_class_parameters-44"><span class="linenos">44</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="s1">&#39;Magic&#39;</span><span class="p">,</span> <span class="s1">&#39;Stealth&#39;</span><span class="p">],</span> <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Strength&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-SKILL-&#39;</span><span class="p">)],</span>
-</span><span id="select_class_parameters-45"><a href="#select_class_parameters-45"><span class="linenos">45</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">))]</span>
-</span><span id="select_class_parameters-46"><a href="#select_class_parameters-46"><span class="linenos">46</span></a>    <span class="p">]</span>
-</span><span id="select_class_parameters-47"><a href="#select_class_parameters-47"><span class="linenos">47</span></a>
-</span><span id="select_class_parameters-48"><a href="#select_class_parameters-48"><span class="linenos">48</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Choose Class&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="select_class_parameters-49"><a href="#select_class_parameters-49"><span class="linenos">49</span></a>
-</span><span id="select_class_parameters-50"><a href="#select_class_parameters-50"><span class="linenos">50</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span><span id="select_class_parameters-51"><a href="#select_class_parameters-51"><span class="linenos">51</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span id="select_class_parameters-52"><a href="#select_class_parameters-52"><span class="linenos">52</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>
-</span><span id="select_class_parameters-53"><a href="#select_class_parameters-53"><span class="linenos">53</span></a>            <span class="n">_class</span> <span class="o">=</span> <span class="s1">&#39;Hunter&#39;</span>
-</span><span id="select_class_parameters-54"><a href="#select_class_parameters-54"><span class="linenos">54</span></a>            <span class="n">_weapon</span> <span class="o">=</span> <span class="s1">&#39;Knife&#39;</span>
-</span><span id="select_class_parameters-55"><a href="#select_class_parameters-55"><span class="linenos">55</span></a>            <span class="n">_skill</span> <span class="o">=</span> <span class="s1">&#39;Strength&#39;</span>
-</span><span id="select_class_parameters-56"><a href="#select_class_parameters-56"><span class="linenos">56</span></a>            <span class="k">break</span>
-</span><span id="select_class_parameters-57"><a href="#select_class_parameters-57"><span class="linenos">57</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>
-</span><span id="select_class_parameters-58"><a href="#select_class_parameters-58"><span class="linenos">58</span></a>            <span class="n">_class</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">]</span>
-</span><span id="select_class_parameters-59"><a href="#select_class_parameters-59"><span class="linenos">59</span></a>            <span class="n">_weapon</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">]</span>
-</span><span id="select_class_parameters-60"><a href="#select_class_parameters-60"><span class="linenos">60</span></a>            <span class="n">_skill</span> <span class="o">=</span> <span class="n">_values</span><span class="p">[</span><span class="s1">&#39;-SKILL-&#39;</span><span class="p">]</span>
-</span><span id="select_class_parameters-61"><a href="#select_class_parameters-61"><span class="linenos">61</span></a>            <span class="k">break</span>
-</span><span id="select_class_parameters-62"><a href="#select_class_parameters-62"><span class="linenos">62</span></a>
-</span><span id="select_class_parameters-63"><a href="#select_class_parameters-63"><span class="linenos">63</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="select_class_parameters-64"><a href="#select_class_parameters-64"><span class="linenos">64</span></a>    <span class="k">return</span> <span class="n">_class</span><span class="p">,</span> <span class="n">_weapon</span><span class="p">,</span> <span class="n">_skill</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="select_class_parameters-129"><a href="#select_class_parameters-129"><span class="linenos">129</span></a><span class="k">def</span> <span class="nf">select_class_parameters</span><span class="p">():</span>
+</span><span id="select_class_parameters-130"><a href="#select_class_parameters-130"><span class="linenos">130</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Display a GUI for selecting character class and weapon.&quot;&quot;&quot;</span>
+</span><span id="select_class_parameters-131"><a href="#select_class_parameters-131"><span class="linenos">131</span></a>    <span class="c1"># Define the layout of the window</span>
+</span><span id="select_class_parameters-132"><a href="#select_class_parameters-132"><span class="linenos">132</span></a>    <span class="n">_layout</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="select_class_parameters-133"><a href="#select_class_parameters-133"><span class="linenos">133</span></a>
+</span><span id="select_class_parameters-134"><a href="#select_class_parameters-134"><span class="linenos">134</span></a>        <span class="c1"># Display the background image</span>
+</span><span id="select_class_parameters-135"><a href="#select_class_parameters-135"><span class="linenos">135</span></a>
+</span><span id="select_class_parameters-136"><a href="#select_class_parameters-136"><span class="linenos">136</span></a>        <span class="c1"># Text for character class selection</span>
+</span><span id="select_class_parameters-137"><a href="#select_class_parameters-137"><span class="linenos">137</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your character class (Alien Hunter, Space Trader, Astro Explorer):&#39;</span><span class="p">,</span>
+</span><span id="select_class_parameters-138"><a href="#select_class_parameters-138"><span class="linenos">138</span></a>                 <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">justification</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)],</span>
+</span><span id="select_class_parameters-139"><a href="#select_class_parameters-139"><span class="linenos">139</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Alien Hunter&#39;</span><span class="p">,</span> <span class="s1">&#39;Space Trader&#39;</span><span class="p">,</span> <span class="s1">&#39;Astro Explorer&#39;</span><span class="p">],</span>
+</span><span id="select_class_parameters-140"><a href="#select_class_parameters-140"><span class="linenos">140</span></a>                  <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Alien Hunter&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">,</span>
+</span><span id="select_class_parameters-141"><a href="#select_class_parameters-141"><span class="linenos">141</span></a>                  <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="select_class_parameters-142"><a href="#select_class_parameters-142"><span class="linenos">142</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="select_class_parameters-143"><a href="#select_class_parameters-143"><span class="linenos">143</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Select your starting weapon (Rifle, Knife, Axe):&#39;</span><span class="p">,</span>
+</span><span id="select_class_parameters-144"><a href="#select_class_parameters-144"><span class="linenos">144</span></a>                 <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">text_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">justification</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)],</span>
+</span><span id="select_class_parameters-145"><a href="#select_class_parameters-145"><span class="linenos">145</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Combo</span><span class="p">([</span><span class="s1">&#39;Light saber&#39;</span><span class="p">,</span> <span class="s1">&#39;Laser blaster&#39;</span><span class="p">,</span> <span class="s1">&#39;Gravity hammer&#39;</span><span class="p">],</span>
+</span><span id="select_class_parameters-146"><a href="#select_class_parameters-146"><span class="linenos">146</span></a>                  <span class="n">default_value</span><span class="o">=</span><span class="s1">&#39;Light saber&#39;</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">,</span>
+</span><span id="select_class_parameters-147"><a href="#select_class_parameters-147"><span class="linenos">147</span></a>                  <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;arial&#39;</span><span class="p">,</span> <span class="mi">14</span><span class="p">),</span>
+</span><span id="select_class_parameters-148"><a href="#select_class_parameters-148"><span class="linenos">148</span></a>                  <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">))],</span>
+</span><span id="select_class_parameters-149"><a href="#select_class_parameters-149"><span class="linenos">149</span></a>        <span class="p">[</span><span class="n">sg</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Confirm&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">image_filename</span><span class="o">=</span><span class="n">_button_image</span><span class="p">,</span>
+</span><span id="select_class_parameters-150"><a href="#select_class_parameters-150"><span class="linenos">150</span></a>                   <span class="n">button_color</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">),</span> <span class="n">pad</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))]</span>
+</span><span id="select_class_parameters-151"><a href="#select_class_parameters-151"><span class="linenos">151</span></a>    <span class="p">]</span>
+</span><span id="select_class_parameters-152"><a href="#select_class_parameters-152"><span class="linenos">152</span></a>
+</span><span id="select_class_parameters-153"><a href="#select_class_parameters-153"><span class="linenos">153</span></a>    <span class="n">_window</span> <span class="o">=</span> <span class="n">sg</span><span class="o">.</span><span class="n">Window</span><span class="p">(</span><span class="s1">&#39;Choose Class&#39;</span><span class="p">,</span> <span class="n">_layout</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">finalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="select_class_parameters-154"><a href="#select_class_parameters-154"><span class="linenos">154</span></a>
+</span><span id="select_class_parameters-155"><a href="#select_class_parameters-155"><span class="linenos">155</span></a>    <span class="c1"># Event loop for the window</span>
+</span><span id="select_class_parameters-156"><a href="#select_class_parameters-156"><span class="linenos">156</span></a>    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="select_class_parameters-157"><a href="#select_class_parameters-157"><span class="linenos">157</span></a>        <span class="n">_event</span><span class="p">,</span> <span class="n">_values</span> <span class="o">=</span> <span class="n">_window</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="select_class_parameters-158"><a href="#select_class_parameters-158"><span class="linenos">158</span></a>        <span class="k">if</span> <span class="n">_event</span> <span class="o">==</span> <span class="n">sg</span><span class="o">.</span><span class="n">WINDOW_CLOSED</span><span class="p">:</span>  <span class="c1"># Handle window close</span>
+</span><span id="select_class_parameters-159"><a href="#select_class_parameters-159"><span class="linenos">159</span></a>            <span class="n">_class</span><span class="p">,</span> <span class="n">_weapon</span> <span class="o">=</span> <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">,</span> <span class="s1">&#39;Knife&#39;</span>
+</span><span id="select_class_parameters-160"><a href="#select_class_parameters-160"><span class="linenos">160</span></a>            <span class="k">break</span>
+</span><span id="select_class_parameters-161"><a href="#select_class_parameters-161"><span class="linenos">161</span></a>        <span class="k">elif</span> <span class="n">_event</span> <span class="o">==</span> <span class="s1">&#39;Confirm&#39;</span><span class="p">:</span>  <span class="c1"># Handle confirm button</span>
+</span><span id="select_class_parameters-162"><a href="#select_class_parameters-162"><span class="linenos">162</span></a>            <span class="n">_class</span> <span class="o">=</span> <span class="n">_values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;-CLASS-&#39;</span><span class="p">,</span> <span class="s1">&#39;Alien Hunter&#39;</span><span class="p">)</span>
+</span><span id="select_class_parameters-163"><a href="#select_class_parameters-163"><span class="linenos">163</span></a>            <span class="n">_weapon</span> <span class="o">=</span> <span class="n">_values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;-WEAPON-&#39;</span><span class="p">,</span> <span class="s1">&#39;Knife&#39;</span><span class="p">)</span>
+</span><span id="select_class_parameters-164"><a href="#select_class_parameters-164"><span class="linenos">164</span></a>            <span class="k">break</span>
+</span><span id="select_class_parameters-165"><a href="#select_class_parameters-165"><span class="linenos">165</span></a>
+</span><span id="select_class_parameters-166"><a href="#select_class_parameters-166"><span class="linenos">166</span></a>    <span class="n">_window</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="select_class_parameters-167"><a href="#select_class_parameters-167"><span class="linenos">167</span></a>
+</span><span id="select_class_parameters-168"><a href="#select_class_parameters-168"><span class="linenos">168</span></a>    <span class="k">return</span> <span class="n">_class</span><span class="p">,</span> <span class="n">_weapon</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>set the values of the players class from the GUI</p>
+            <div class="docstring"><p>Display a GUI for selecting character class and weapon.</p>
 </div>
 
 
