@@ -11,7 +11,7 @@ from parameters import select_travel_parameters, select_class_parameters, Charac
 from actions import Actions
 from inventoryAndStats import InventoryAndStats
 from story import show_story
-from test_makeDecision import take_rest
+from take_rest import take_rest
 from traveling import traveling
 from view_status import view_status
 
