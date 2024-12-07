@@ -19,9 +19,10 @@ from view_status import view_status
 # Use Pygbag to make a web browser game
 
 def start_game():
+    """open the window for the main game loop and menu for the player"""
     button_image = r'images/new_button.png'
     sg.theme("Dark Blue 2")
-    """open the window for the main game loop and menu for the player"""
+
     # initialize inventory class
     # Prints the beginning story(This can be changed in story.py)
     show_story()
